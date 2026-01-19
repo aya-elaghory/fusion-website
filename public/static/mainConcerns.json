@@ -1,0 +1,783 @@
+[
+  {
+    "main_concern_name": "Dark Spots",
+    "subConcerns": [
+      {
+        "name": "Melasma",
+        "imageUrl": "/assets/concern_Melasma.jpg",
+        "ingredients": [
+          "Azelaic Acid",
+          "Hydroquinone",
+          "Tranexamic Acid"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/Melasma",
+        "howItWorksUrl": "/knowledge/how-it-works/Melasma"
+      },
+      {
+        "name": "Sun/Age Spots (Face)",
+        "imageUrl": "/assets/concern_SunAgeSpotsFace.jpg",
+        "ingredients": [
+          "Azelaic Acid",
+          "Hydroquinone",
+          "Tranexamic Acid"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/SunAgeSpotsFace",
+        "howItWorksUrl": "/knowledge/how-it-works/SunAgeSpotsFace"
+      },
+      {
+        "name": "Freckles (Face)",
+        "imageUrl": "/assets/concern_FrecklesFace.jpg",
+        "ingredients": [
+          "Azelaic Acid",
+          "Hydroquinone",
+          "Vitamin C"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/FrecklesFace",
+        "howItWorksUrl": "/knowledge/how-it-works/FrecklesFace"
+      },
+      {
+        "name": "Sun/Age Spots (Body)",
+        "imageUrl": "/assets/concern_SunAgeSpotsBody.jpg",
+        "ingredients": [
+          "Hydroquinone",
+          "Tranexamic Acid"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/SunAgeSpotsBody",
+        "howItWorksUrl": "/knowledge/how-it-works/SunAgeSpotsBody"
+      },
+      {
+        "name": "Freckles (Body)",
+        "imageUrl": "/assets/concern_FrecklesBody.jpg",
+        "ingredients": [
+          "Hydroquinone",
+          "Vitamin C"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/FrecklesBody",
+        "howItWorksUrl": "/knowledge/how-it-works/FrecklesBody"
+      },
+      {
+        "name": "Acne Scars (Body)",
+        "imageUrl": "/assets/concern_AcneScarsBody.jpg",
+        "ingredients": [
+          "Hydroquinone",
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/AcneScarsBody",
+        "howItWorksUrl": "/knowledge/how-it-works/AcneScarsBody"
+      },
+      {
+        "name": "Acne Scars (Face)",
+        "imageUrl": "/assets/concern_AcneScarsFace.jpg",
+        "ingredients": [
+          "Azelaic Acid",
+          "Hydroquinone"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/AcneScarsFace",
+        "howItWorksUrl": "/knowledge/how-it-works/AcneScarsFace"
+      },
+      {
+        "name": "Sun/Age Spots (Neck/Chest)",
+        "imageUrl": "/assets/concern_SunAgeSpotsNeckChest.jpg",
+        "ingredients": [
+          "Hydroquinone"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/SunAgeSpotsNeckChest",
+        "howItWorksUrl": "/knowledge/how-it-works/SunAgeSpotsNeckChest"
+      },
+      {
+        "name": "Underarm Dark Spots",
+        "imageUrl": "/assets/concern_UnderarmDarkSpots.jpg",
+        "ingredients": [
+          "Hydroquinone",
+          "Tranexamic Acid"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/UnderarmDarkSpots",
+        "howItWorksUrl": "/knowledge/how-it-works/UnderarmDarkSpots"
+      },
+      {
+        "name": "Inner Thigh Dark Spots",
+        "imageUrl": "/assets/concern_InnerThighDarkSpots.jpg",
+        "ingredients": [
+          "Hydroquinone",
+          "Tranexamic Acid"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/InnerThighDarkSpots",
+        "howItWorksUrl": "/knowledge/how-it-works/InnerThighDarkSpots"
+      },
+      {
+        "name": "Private Area Dark Spots",
+        "imageUrl": "/assets/concern_PrivateAreasDarkSpots.jpg",
+        "ingredients": [
+          "Hydroquinone",
+          "Tranexamic Acid"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/PrivateAreaDarkSpots",
+        "howItWorksUrl": "/knowledge/how-it-works/PrivateAreaDarkSpots"
+      },
+      {
+        "name": "Keratosis Pilaris (KP)",
+        "imageUrl": "/assets/concern_KeratosisPilarisKP.jpg",
+        "ingredients": [
+          "Diclofenac",
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/KeratosisPilarisKP",
+        "howItWorksUrl": "/knowledge/how-it-works/KeratosisPilarisKP"
+      }
+    ]
+  },
+  {
+    "main_concern_name": "Anti-Aging",
+    "subConcerns": [
+      {
+        "name": "Wrinkles (Eyes)",
+        "imageUrl": "/assets/concern_WrinklesEyes.jpg",
+        "ingredients": [
+          "iPSC Exosomes",
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/WrinklesEyes",
+        "howItWorksUrl": "/knowledge/how-it-works/WrinklesEyes"
+      },
+      {
+        "name": "Wrinkles (Face)",
+        "imageUrl": "/assets/concern_WrinklesFace.jpg",
+        "ingredients": [
+          "Tretinoin",
+          "iPSC Exosomes"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/WrinklesFace",
+        "howItWorksUrl": "/knowledge/how-it-works/WrinklesFace"
+      },
+      {
+        "name": "Crow's Feet",
+        "imageUrl": "/assets/concern_CrowFeetEyes.jpg",
+        "ingredients": [
+          "iPSC Exosomes",
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/CrowsFeet",
+        "howItWorksUrl": "/knowledge/how-it-works/CrowsFeet"
+      },
+      {
+        "name": "Puffiness",
+        "imageUrl": "/assets/concern_Puffiness.jpg",
+        "ingredients": [
+          "Caffeine",
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/Puffiness",
+        "howItWorksUrl": "/knowledge/how-it-works/Puffiness"
+      },
+      {
+        "name": "Dark Circles",
+        "imageUrl": "/assets/concern_DarkCircles.jpg",
+        "ingredients": [
+          "Hydroquinone",
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/DarkCircles",
+        "howItWorksUrl": "/knowledge/how-it-works/DarkCircles"
+      },
+      {
+        "name": "Large Pores",
+        "imageUrl": "/assets/concern_LargePores.jpg",
+        "ingredients": [
+          "Estriol",
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/LargePores",
+        "howItWorksUrl": "/knowledge/how-it-works/LargePores"
+      },
+      {
+        "name": "Dull Skin",
+        "imageUrl": "/assets/concern_DullSkin.jpg",
+        "ingredients": [
+          "Estriol",
+          "Hyaluronic Acid",
+          "iPSC Exosomes",
+          "Rapamycin",
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/DullSkin",
+        "howItWorksUrl": "/knowledge/how-it-works/DullSkin"
+      },
+      {
+        "name": "Uneven Texture",
+        "imageUrl": "/assets/concern_UnevenTexture.jpg",
+        "ingredients": [
+          "Estriol",
+          "Hyaluronic Acid",
+          "iPSC Exosomes",
+          "Rapamycin",
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/UnevenTexture",
+        "howItWorksUrl": "/knowledge/how-it-works/UnevenTexture"
+      },
+      {
+        "name": "Acne (Face)",
+        "imageUrl": "/assets/concern_AcneFace.jpg",
+        "ingredients": [
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/AcneFace",
+        "howItWorksUrl": "/knowledge/how-it-works/AcneFace"
+      },
+      {
+        "name": "Wrinkles (Neck/Chest)",
+        "imageUrl": "/assets/concern_WrinklesNeckChest.jpg",
+        "ingredients": [],
+        "whatCauseItUrl": "/knowledge/what-causes/WrinklesNeckChest",
+        "howItWorksUrl": "/knowledge/how-it-works/WrinklesNeckChest"
+      },
+      {
+        "name": "Turkey Neck",
+        "imageUrl": "/assets/concern_TurkeyNeck.jpg",
+        "ingredients": [
+          "Hyaluronic Acid",
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/TurkeyNeck",
+        "howItWorksUrl": "/knowledge/how-it-works/TurkeyNeck"
+      },
+      {
+        "name": "Wrinkles (Body)",
+        "imageUrl": "/assets/concern_WrinklesBody.jpg",
+        "ingredients": [
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/WrinklesBody",
+        "howItWorksUrl": "/knowledge/how-it-works/WrinklesBody"
+      },
+      {
+        "name": "Loss of Skin Elasticity",
+        "imageUrl": "/assets/concern_LossOfSkinElasticity.jpg",
+        "ingredients": [
+          "Estriol",
+          "Hyaluronic Acid"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/LossOfSkinElasticity",
+        "howItWorksUrl": "/knowledge/how-it-works/LossOfSkinElasticity"
+      },
+      {
+        "name": "Menopausal Skin",
+        "imageUrl": "/assets/concern_MenopausalSkin.jpg",
+        "ingredients": [
+          "Estriol"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/MenopausalSkin",
+        "howItWorksUrl": "/knowledge/how-it-works/MenopausalSkin"
+      }
+    ]
+  },
+  {
+    "main_concern_name": "Exosomes",
+    "subConcerns": [
+      {
+        "name": "Wrinkles (Face)",
+        "imageUrl": "/assets/concern_WrinklesFace.jpg",
+        "ingredients": [
+          "Tretinoin",
+          "iPSC Exosomes"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/WrinklesFace",
+        "howItWorksUrl": "/knowledge/how-it-works/WrinklesFace"
+      },
+      {
+        "name": "Dull Skin",
+        "imageUrl": "/assets/concern_DullSkin.jpg",
+        "ingredients": [
+          "Estriol",
+          "Hyaluronic Acid",
+          "iPSC Exosomes",
+          "Rapamycin",
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/DullSkin",
+        "howItWorksUrl": "/knowledge/how-it-works/DullSkin"
+      },
+      {
+        "name": "Uneven Texture",
+        "imageUrl": "/assets/concern_UnevenTexture.jpg",
+        "ingredients": [
+          "Estriol",
+          "Hyaluronic Acid",
+          "iPSC Exosomes",
+          "Rapamycin",
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/UnevenTexture",
+        "howItWorksUrl": "/knowledge/how-it-works/UnevenTexture"
+      }
+    ]
+  },
+  {
+    "main_concern_name": "Aging Hair",
+    "subConcerns": [
+      {
+        "name": "Thinning (Women)",
+        "imageUrl": "/assets/concern_ThinningWomen.jpg",
+        "ingredients": [
+          "Dutasteride",
+          "Minoxidil",
+          "Ketoconazole",
+          "Cetirizine",
+          "iPSC Exosomes",
+          "Latanoprost"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/ThinningWomen",
+        "howItWorksUrl": "/knowledge/how-it-works/ThinningWomen"
+      },
+      {
+        "name": "Widening Part (Women)",
+        "imageUrl": "/assets/concern_WideningPartWomen.jpg",
+        "ingredients": [
+          "Dutasteride",
+          "Minoxidil",
+          "Caffeine",
+          "iPSC Exosomes",
+          "Melatonin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/WideningPartWomen",
+        "howItWorksUrl": "/knowledge/how-it-works/WideningPartWomen"
+      },
+      {
+        "name": "Bald Spots (Women)",
+        "imageUrl": "/assets/concern_BaldSpotsWomen.jpg",
+        "ingredients": [
+          "Dutasteride",
+          "Minoxidil",
+          "Spironolactone",
+          "Caffeine",
+          "iPSC Exosomes",
+          "Latanoprost"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/BaldSpotsWomen",
+        "howItWorksUrl": "/knowledge/how-it-works/BaldSpotsWomen"
+      },
+      {
+        "name": "Receding Hairline (Women)",
+        "imageUrl": "/assets/concern_RecedingHairlineWomen.jpg",
+        "ingredients": [
+          "Dutasteride",
+          "Minoxidil",
+          "Caffeine",
+          "iPSC Exosomes",
+          "Latanoprost"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/RecedingHairlineWomen",
+        "howItWorksUrl": "/knowledge/how-it-works/RecedingHairlineWomen"
+      },
+      {
+        "name": "Thinning (Men)",
+        "imageUrl": "/assets/concern_ThinningMen.jpg",
+        "ingredients": [
+          "Dutasteride",
+          "Minoxidil",
+          "Ketoconazole",
+          "Cetirizine",
+          "iPSC Exosomes",
+          "Latanoprost"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/ThinningMen",
+        "howItWorksUrl": "/knowledge/how-it-works/ThinningMen"
+      },
+      {
+        "name": "Widening Part (Men)",
+        "imageUrl": "/assets/concern_WideningPartMen.jpg",
+        "ingredients": [
+          "Dutasteride",
+          "Minoxidil",
+          "Caffeine",
+          "iPSC Exosomes",
+          "Melatonin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/WideningPartMen",
+        "howItWorksUrl": "/knowledge/how-it-works/WideningPartMen"
+      },
+      {
+        "name": "Bald Spots (Men)",
+        "imageUrl": "/assets/concern_BaldSpotsMen.jpg",
+        "ingredients": [
+          "Dutasteride",
+          "Minoxidil",
+          "Spironolactone",
+          "Caffeine",
+          "iPSC Exosomes",
+          "Latanoprost"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/BaldSpotsMen",
+        "howItWorksUrl": "/knowledge/how-it-works/BaldSpotsMen"
+      },
+      {
+        "name": "Receding Hairline (Men)",
+        "imageUrl": "/assets/concern_RecedingHairlineMen.jpg",
+        "ingredients": [
+          "Dutasteride",
+          "Minoxidil",
+          "Caffeine",
+          "iPSC Exosomes",
+          "Latanoprost"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/RecedingHairlineMen",
+        "howItWorksUrl": "/knowledge/how-it-works/RecedingHairlineMen"
+      }
+    ]
+  },
+  {
+    "main_concern_name": "Menopause",
+    "subConcerns": [
+      {
+        "name": "Hair Changes",
+        "imageUrl": "/assets/concern_HairChanges.jpg",
+        "ingredients": [
+          "Estradiol",
+          "Estriol"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/HairChanges",
+        "howItWorksUrl": "/knowledge/how-it-works/HairChanges"
+      },
+      {
+        "name": "Skin Changes",
+        "imageUrl": "/assets/concern_SkinChanges.jpg",
+        "ingredients": [
+          "Estradiol",
+          "Estriol"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/SkinChanges",
+        "howItWorksUrl": "/knowledge/how-it-works/SkinChanges"
+      },
+      {
+        "name": "Nail Changes",
+        "imageUrl": "/assets/concern_NailChanges.jpg",
+        "ingredients": [
+          "Estradiol",
+          "Estriol"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/NailChanges",
+        "howItWorksUrl": "/knowledge/how-it-works/NailChanges"
+      },
+      {
+        "name": "Hot Flashes",
+        "imageUrl": "/assets/concern_HotFlashes.jpg",
+        "ingredients": [
+          "Estradiol",
+          "Estriol"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/HotFlashes",
+        "howItWorksUrl": "/knowledge/how-it-works/HotFlashes"
+      },
+      {
+        "name": "Low Energy",
+        "imageUrl": "/assets/concern_LowEnergy.jpg",
+        "ingredients": [
+          "Estradiol",
+          "Estriol",
+          "Progesterone"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/LowEnergy",
+        "howItWorksUrl": "/knowledge/how-it-works/LowEnergy"
+      },
+      {
+        "name": "Night Sweat",
+        "imageUrl": "/assets/concern_NightSweat.jpg",
+        "ingredients": [
+          "Estradiol",
+          "Estriol",
+          "Progesterone"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/NightSweat",
+        "howItWorksUrl": "/knowledge/how-it-works/NightSweat"
+      },
+      {
+        "name": "Menopausal Skin",
+        "imageUrl": "/assets/concern_MenopausalSkin.jpg",
+        "ingredients": [
+          "Estriol"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/MenopausalSkin",
+        "howItWorksUrl": "/knowledge/how-it-works/MenopausalSkin"
+      }
+    ]
+  },
+  {
+    "main_concern_name": "Enhancers",
+    "subConcerns": [
+      {
+        "name": "Loss of Skin Elasticity",
+        "imageUrl": "/assets/concern_LossOfSkinElasticity.jpg",
+        "ingredients": [
+          "Estriol",
+          "Hyaluronic Acid"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/LossOfSkinElasticity",
+        "howItWorksUrl": "/knowledge/how-it-works/LossOfSkinElasticity"
+      },
+      {
+        "name": "Menopausal Skin",
+        "imageUrl": "/assets/concern_MenopausalSkin.jpg",
+        "ingredients": [
+          "Estriol"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/MenopausalSkin",
+        "howItWorksUrl": "/knowledge/how-it-works/MenopausalSkin"
+      },
+      {
+        "name": "Blushing",
+        "imageUrl": "/assets/concern_Blushing.jpg",
+        "ingredients": [
+          "Azelaic Acid",
+          "Hydrocortisone",
+          "Niacinamide",
+          "Oxymetazoline"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/Blushing",
+        "howItWorksUrl": "/knowledge/how-it-works/Blushing"
+      },
+      {
+        "name": "Visible Blood Vessels",
+        "imageUrl": "/assets/concern_VisibleBloodVessels.jpg",
+        "ingredients": [
+          "Hydrocortisone",
+          "Ivermectin",
+          "Metronidazole",
+          "Oxymetazoline"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/VisibleBloodVessels",
+        "howItWorksUrl": "/knowledge/how-it-works/VisibleBloodVessels"
+      },
+      {
+        "name": "Wrinkles (Face)",
+        "imageUrl": "/assets/concern_WrinklesFace.jpg",
+        "ingredients": [
+          "Tretinoin",
+          "iPSC Exosomes"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/WrinklesFace",
+        "howItWorksUrl": "/knowledge/how-it-works/WrinklesFace"
+      },
+      {
+        "name": "Large Pores",
+        "imageUrl": "/assets/concern_LargePores.jpg",
+        "ingredients": [
+          "Estriol",
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/LargePores",
+        "howItWorksUrl": "/knowledge/how-it-works/LargePores"
+      },
+      {
+        "name": "Dull Skin",
+        "imageUrl": "/assets/concern_DullSkin.jpg",
+        "ingredients": [
+          "Estriol",
+          "Hyaluronic Acid",
+          "iPSC Exosomes",
+          "Rapamycin",
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/DullSkin",
+        "howItWorksUrl": "/knowledge/how-it-works/DullSkin"
+      },
+      {
+        "name": "Uneven Texture",
+        "imageUrl": "/assets/concern_UnevenTexture.jpg",
+        "ingredients": [
+          "Estriol",
+          "Hyaluronic Acid",
+          "iPSC Exosomes",
+          "Rapamycin",
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/UnevenTexture",
+        "howItWorksUrl": "/knowledge/how-it-works/UnevenTexture"
+      },
+      {
+        "name": "Short Lashes",
+        "imageUrl": "/assets/concern_ShortLashes.jpg",
+        "ingredients": [
+          "Latanoprost"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/ShortLashes",
+        "howItWorksUrl": "/knowledge/how-it-works/ShortLashes"
+      }
+    ]
+  },
+  {
+    "main_concern_name": "Redness/Breakouts",
+    "subConcerns": [
+      {
+        "name": "Skin Redness",
+        "imageUrl": "/assets/concern_SkinRedness.jpg",
+        "ingredients": [
+          "Hydrocortisone",
+          "Ivermectin",
+          "Niacinamide",
+          "Oxymetazoline"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/SkinRedness",
+        "howItWorksUrl": "/knowledge/how-it-works/SkinRedness"
+      },
+      {
+        "name": "Pustules",
+        "imageUrl": "/assets/concern_Pustules.jpg",
+        "ingredients": [
+          "Azelaic Acid",
+          "Hydrocortisone",
+          "Oxymetazoline",
+          "Sulfur"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/Pustules",
+        "howItWorksUrl": "/knowledge/how-it-works/Pustules"
+      },
+      {
+        "name": "Blushing",
+        "imageUrl": "/assets/concern_Blushing.jpg",
+        "ingredients": [
+          "Azelaic Acid",
+          "Hydrocortisone",
+          "Niacinamide",
+          "Oxymetazoline"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/Blushing",
+        "howItWorksUrl": "/knowledge/how-it-works/Blushing"
+      },
+      {
+        "name": "Visible Blood Vessels",
+        "imageUrl": "/assets/concern_VisibleBloodVessels.jpg",
+        "ingredients": [
+          "Hydrocortisone",
+          "Ivermectin",
+          "Metronidazole",
+          "Oxymetazoline"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/VisibleBloodVessels",
+        "howItWorksUrl": "/knowledge/how-it-works/VisibleBloodVessels"
+      },
+      {
+        "name": "Acne (Face)",
+        "imageUrl": "/assets/concern_AcneFace.jpg",
+        "ingredients": [
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/AcneFace",
+        "howItWorksUrl": "/knowledge/how-it-works/AcneFace"
+      },
+      {
+        "name": "Acne Scars (Face)",
+        "imageUrl": "/assets/concern_AcneScarsFace.jpg",
+        "ingredients": [
+          "Azelaic Acid",
+          "Hydroquinone"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/AcneScarsFace",
+        "howItWorksUrl": "/knowledge/how-it-works/AcneScarsFace"
+      },
+      {
+        "name": "Acne Scars (Body)",
+        "imageUrl": "/assets/concern_AcneScarsBody.jpg",
+        "ingredients": [
+          "Hydroquinone",
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/AcneScarsBody",
+        "howItWorksUrl": "/knowledge/how-it-works/AcneScarsBody"
+      }
+    ]
+  },
+  {
+    "main_concern_name": "Body/Private",
+    "subConcerns": [
+      {
+        "name": "Freckles (Body)",
+        "imageUrl": "/assets/concern_FrecklesBody.jpg",
+        "ingredients": [
+          "Hydroquinone",
+          "Vitamin C"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/FrecklesBody",
+        "howItWorksUrl": "/knowledge/how-it-works/FrecklesBody"
+      },
+      {
+        "name": "Sun/Age Spots (Neck/Chest)",
+        "imageUrl": "/assets/concern_SunAgeSpotsNeckChest.jpg",
+        "ingredients": [
+          "Hydroquinone"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/SunAgeSpotsNeckChest",
+        "howItWorksUrl": "/knowledge/how-it-works/SunAgeSpotsNeckChest"
+      },
+      {
+        "name": "Turkey Neck",
+        "imageUrl": "/assets/concern_TurkeyNeck.jpg",
+        "ingredients": [
+          "Hyaluronic Acid",
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/TurkeyNeck",
+        "howItWorksUrl": "/knowledge/how-it-works/TurkeyNeck"
+      },
+      {
+        "name": "Sun/Age Spots (Body)",
+        "imageUrl": "/assets/concern_SunAgeSpotsBody.jpg",
+        "ingredients": [
+          "Hydroquinone",
+          "Tranexamic Acid"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/SunAgeSpotsBody",
+        "howItWorksUrl": "/knowledge/how-it-works/SunAgeSpotsBody"
+      },
+      {
+        "name": "Keratosis Pilaris (KP)",
+        "imageUrl": "/assets/concern_KeratosisPilarisKP.jpg",
+        "ingredients": [
+          "Diclofenac",
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/KeratosisPilarisKP",
+        "howItWorksUrl": "/knowledge/how-it-works/KeratosisPilarisKP"
+      },
+      {
+        "name": "Acne Scars (Body)",
+        "imageUrl": "/assets/concern_AcneScarsBody.jpg",
+        "ingredients": [
+          "Hydroquinone",
+          "Tretinoin"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/AcneScarsBody",
+        "howItWorksUrl": "/knowledge/how-it-works/AcneScarsBody"
+      },
+      {
+        "name": "Underarm Dark Spots",
+        "imageUrl": "/assets/concern_UnderarmDarkSpots.jpg",
+        "ingredients": [
+          "Hydroquinone",
+          "Tranexamic Acid"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/UnderarmDarkSpots",
+        "howItWorksUrl": "/knowledge/how-it-works/UnderarmDarkSpots"
+      },
+      {
+        "name": "Inner Thigh Dark Spots",
+        "imageUrl": "/assets/concern_InnerThighDarkSpots.jpg",
+        "ingredients": [
+          "Hydroquinone",
+          "Tranexamic Acid"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/InnerThighDarkSpots",
+        "howItWorksUrl": "/knowledge/how-it-works/InnerThighDarkSpots"
+      },
+      {
+        "name": "Private Area Dark Spots",
+        "imageUrl": "/assets/concern_PrivateAreasDarkSpots.jpg",
+        "ingredients": [
+          "Hydroquinone",
+          "Tranexamic Acid"
+        ],
+        "whatCauseItUrl": "/knowledge/what-causes/PrivateAreaDarkSpots",
+        "howItWorksUrl": "/knowledge/how-it-works/PrivateAreaDarkSpots"
+      }
+    ]
+  }
+]

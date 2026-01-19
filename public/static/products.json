@@ -1,0 +1,1398 @@
+[
+  {
+    "id": "68d907e7fba6e61ba6e9dc8b",
+    "name": "The Spot Cream",
+    "description": "Remove your dark spots for $36/month (starting with a 2-month supply). A prescription dark spot corrector cream packed with hydroquinone and powerful ingredients that treat melasma, fade dark spots, and brighten the complexion.",
+    "price": 55,
+    "type": "RX",
+    "imageUrl": "/assets/TheSpotCream.png",
+    "ingredients": [
+      {
+        "name": "Hydroquinone",
+        "description": "Fades dark spots by preventing the formation of excess melanin in skin.",
+        "howItWorks": "Targets discoloration at its source by inhibiting the overproduction of melanin that causes dark spots, melasma, and post-inflammatory marks."
+      },
+      {
+        "name": "Niacinamide",
+        "description": "Reduces inflammation, improving smoothness and skin structure.",
+        "howItWorks": "Calibrates oil production to prevent clogged pores while strengthening the skin barrier and soothing inflammation to reduce redness from acne and rosacea."
+      },
+      {
+        "name": "Azelaic Acid",
+        "description": "Helps skin renew faster and kill bacteria that cause acne and rosacea.",
+        "howItWorks": "Accelerates the shedding of discolored surface cells to smooth texture, while also interrupting variant pigment production and eliminating bacteria to resolve breakouts and restore an even skin tone."
+      },
+      {
+        "name": "Tretinoin",
+        "description": "Speeds up the skin cell turnover process to treat wrinkles, acne, and more.",
+        "howItWorks": "Reboots the skin's cell turnover rate to purge clogged pores, smooth uneven texture, rebuild collagen for fewer wrinkles, and push fresh, undamaged cells to the surface."
+      },
+      {
+        "name": "Hydrocortisone",
+        "description": "Mild steroid used to treat redness, itching, and inflammation of the skin.",
+        "howItWorks": "Calms the underlying inflammatory response that causes persistent redness, discomfort, and flare-ups from conditions like rosacea."
+      },
+      {
+        "name": "Tranexamic Acid",
+        "description": "Blocks excess melanin production to fade dark spots.",
+        "howItWorks": "Intercepts the pigment-producing pathways triggered by UV light, hormones, and irritation, effectively fading existing dark spots and preventing new ones from forming."
+      },
+      {
+        "name": "Vitamin C",
+        "description": "A potent antioxidant that helps tone and repair the skin.",
+        "howItWorks": "Deploys potent antioxidant power to repair UV-induced cellular damage, helping to fade discoloration and restore the skin's natural brightness and tone."
+      },
+      {
+        "name": "Kojic Acid",
+        "description": "A brightening antioxidant that helps reduce the appearance of hyperpigmentation and uneven tone.",
+        "howItWorks": "Inhibits the tyrosinase enzyme involved in melanin synthesis, gradually lightening dark spots."
+      }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Erase",
+        "ingredients": [
+          { "ingredientName": "Hydroquinone", "percentage": "12%" },
+          { "ingredientName": "Niacinamide", "percentage": "2%" },
+          { "ingredientName": "Hydrocortisone", "percentage": "1% (initial 2-month only)" }
+        ]
+      },
+      {
+        "formulaName": "Nurture",
+        "ingredients": [
+          { "ingredientName": "Hydroquinone", "percentage": "6%" },
+          { "ingredientName": "Vitamin C", "percentage": "1%" },
+          { "ingredientName": "Niacinamide", "percentage": "2%" }
+        ]
+      },
+      {
+        "formulaName": "HQ Free",
+        "ingredients": [
+          { "ingredientName": "Azelaic Acid", "percentage": "17%" },
+          { "ingredientName": "Tranexamic Acid", "percentage": "4%" },
+          { "ingredientName": "Niacinamide", "percentage": "1%" }
+        ]
+      },
+      {
+        "formulaName": "M+",
+        "ingredients": [
+          { "ingredientName": "Hydroquinone", "percentage": "12%" },
+          { "ingredientName": "Tretinoin", "percentage": "0.05%" },
+          { "ingredientName": "Niacinamide", "percentage": "2%" },
+          { "ingredientName": "Hydrocortisone", "percentage": "2.5% (initial 2-month only)" }
+        ]
+      }
+    ],
+    "concerns": [
+      "Acne Scars (Face)",
+      "Melasma",
+      "Sun/Age Spots (Face)",
+      "Freckles (Face)"
+    ],
+    "photos": ["frontFace", "rightSideFace", "leftSideFace"],
+    "topIcon": "Most Prescribed",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Prevents the formation of excess melanin. Reduces inflammation. Improves skin structure. Dermatologist-formulated with concentrated prescription ingredients. Freshly compounded at the pharmacy, ensuring maximum efficacy.",
+    "howToUse": "After cleansing skin, apply one pump to the hyperpigmented area and gently massage. It can be used as a spot treatment, all over face, or as directed by your doctor. Our dermatologists suggest using a gentle hydrating moisturizer after applying. Be sure to wear a mineral-based sunscreen with minimum SPF 30 daily, as your skin will be extra sensitive to sun exposure. Results typically seen in 6-8 weeks with consistent use. One bottle contains approximately a 2-month supply.",
+    "pairsWith": [
+      { "name": "The Spot Peel", "description": "One-time fast acting facial dark spot treatment" },
+      { "name": "The Spot Pill with Tranexamic Acid", "description": "Oral dark spot medication that treats from within" },
+      { "name": "The Anti-Aging Cream", "description": "Topical tretinoin cream to treat fine lines and wrinkles." }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dc8c",
+    "name": "The Anti-Aging Cream",
+    "description": "Treat face wrinkles and fine lines for $35/month (starting with a 2-month supply). Prescription anti-aging cream made with freshly compounded tretinoin, hyaluronic acid, and niacinamide to effectively treat wrinkles, fine lines, acne, and sun damage.",
+    "price": 35,
+    "type": "RX",
+    "imageUrl": "/assets/TheAnti-AgingCream.png",
+    "ingredients": [
+      {
+        "name": "Tretinoin",
+        "description": "Speeds up the skin cell turnover process to treat wrinkles, acne, and more.",
+        "howItWorks": "Reboots the skin's cell turnover rate to purge clogged pores, smooth uneven texture, rebuild collagen for fewer wrinkles, and push fresh, undamaged cells to the surface."
+      },
+      {
+        "name": "Niacinamide",
+        "description": "Reduces inflammation, improving smoothness and skin structure.",
+        "howItWorks": "Calibrates oil production to prevent clogged pores while strengthening the skin barrier and soothing inflammation to reduce redness from acne and rosacea."
+      },
+      {
+        "name": "Hyaluronic Acid",
+        "description": "Retains moisture, reducing loss of elasticity and skin aging.",
+        "howItWorks": "Acts as a hydration reservoir for the skin, drawing in moisture to counteract dehydration, plump the surface, and restore elasticity."
+      }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Gentle",
+        "ingredients": [
+          { "ingredientName": "Tretinoin", "percentage": "0.025%" },
+          { "ingredientName": "Niacinamide", "percentage": "4%" },
+          { "ingredientName": "Hyaluronic Acid", "percentage": "0.5%" }
+        ]
+      },
+      {
+        "formulaName": "Balanced",
+        "ingredients": [
+          { "ingredientName": "Tretinoin", "percentage": "0.05%" },
+          { "ingredientName": "Niacinamide", "percentage": "4%" },
+          { "ingredientName": "Hyaluronic Acid", "percentage": "0.5%" }
+        ]
+      },
+      {
+        "formulaName": "Veteran",
+        "ingredients": [
+          { "ingredientName": "Tretinoin", "percentage": "0.1%" },
+          { "ingredientName": "Niacinamide", "percentage": "4%" },
+          { "ingredientName": "Hyaluronic Acid", "percentage": "0.5%" }
+        ]
+      }
+    ],
+    "concerns": ["Acne (Face)", "Large Pores", "Dull Skin", "Uneven Texture", "Wrinkles (Face)"],
+    "photos": ["frontFace", "rightSideFace", "leftSideFace"],
+    "topIcon": "Most Prescribed",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Speeds up skin cell turnover. Treats wrinkles, fine lines & acne. Reduces hyperpigmentation while hydrating the skin. Promotes a smoother, more even texture. Dermatologist-formulated with concentrated prescription ingredients. Freshly compounded for maximum efficacy.",
+    "howToUse": "After cleansing skin, apply one pump to your fingertips and gently massage onto your face—or as directed by your doctor. Use a gentle moisturizer after applying. Wear a mineral-based sunscreen (SPF 30+) daily. Results typically seen in 6-8 weeks with consistent use. One bottle ≈ 2-month supply.",
+    "pairsWith": [
+      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" },
+      { "name": "The Eye Serum", "description": "Topical eye serum for signs of aging" }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dc8d",
+    "name": "The Body Cream",
+    "description": "Keep the dark spots away for $49/month (starting with a 2-month supply). A prescription dark spot cream for your body formulated to treat hyperpigmentation, sun damage, and signs of aging on hands, arms, legs, feet and back.",
+    "price": 49,
+    "type": "RX",
+    "imageUrl": "/assets/TheBodyCream.png",
+    "ingredients": [
+      {
+        "name": "Hydroquinone",
+        "description": "Fades dark spots by preventing the formation of excess melanin in skin.",
+        "howItWorks": "Targets discoloration at its source by inhibiting the overproduction of melanin that causes dark spots, melasma, and post-inflammatory marks."
+      },
+      {
+        "name": "Tretinoin",
+        "description": "Speeds up the skin cell turnover process to treat wrinkles and more.",
+        "howItWorks": "Reboots the skin's cell turnover rate to smooth texture and push fresh, undamaged cells to the surface."
+      },
+      {
+        "name": "Glycolic Acid",
+        "description": "Helps shed dead skin cells and supports collagen.",
+        "howItWorks": "Loosens the bonds between dull, discolored cells to refine texture and enhance penetration of companion actives."
+      },
+      {
+        "name": "Vitamin C",
+        "description": "Potent antioxidant that helps tone and repair the skin.",
+        "howItWorks": "Deploys antioxidant power to repair UV-induced cellular damage and brighten tone."
+      },
+      {
+        "name": "Hyaluronic Acid",
+        "description": "Retains moisture for smoother, plumper skin.",
+        "howItWorks": "Acts as a hydration reservoir, drawing moisture into the skin to improve elasticity."
+      }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Vanish",
+        "ingredients": [
+          { "ingredientName": "Hydroquinone", "percentage": "12%" },
+          { "ingredientName": "Tretinoin", "percentage": "0.01%" },
+          { "ingredientName": "Glycolic Acid", "percentage": "1%" },
+          { "ingredientName": "Vitamin C", "percentage": "1%" },
+          { "ingredientName": "Fusion Micro Base", "percentage": "" }
+        ]
+      },
+      {
+        "formulaName": "Fade",
+        "ingredients": [
+          { "ingredientName": "Tretinoin", "percentage": "0.01%" },
+          { "ingredientName": "Glycolic Acid", "percentage": "6%" },
+          { "ingredientName": "Vitamin C", "percentage": "2%" },
+          { "ingredientName": "Hyaluronic Acid", "percentage": "0.5%" },
+          { "ingredientName": "Fusion Micro Base", "percentage": "" }
+        ]
+      }
+    ],
+    "concerns": ["Acne Scars (Body)", "Sun/Age Spots (Body)", "Freckles (Body)", "Wrinkles (Body)"],
+    "photos": ["frontBody", "leftArm", "rightArm"],
+    "topIcon": "Most Prescribed",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Fusion Micro Base enhances penetration through thicker body skin. Blocks melanin formation, lifts away dark spots, and increases cell turnover to smooth texture. Dermatologist-formulated and freshly compounded.",
+    "howToUse": "Gently massage one full pump onto clean, dry skin (mix with moisturizer initially to reduce irritation), or as directed by your doctor. Use a hydrating moisturizer and SPF 30+ daily. Results in ~6–8 weeks. One bottle ≈ 2-month supply.",
+    "pairsWith": [
+      { "name": "The Private Cream", "description": "Topical dark spot treatment for intimate areas" },
+      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dc8e",
+    "name": "The Private Cream",
+    "description": "Skin lightening cream for private parts for $36/month (starting with a 2-month supply). A powerful prescription cream with hydroquinone to fight dark spots in underarms, genitals, groin, inner thigh, and anus.",
+    "price": 36,
+    "type": "RX",
+    "imageUrl": "/assets/ThePrivateCream.png",
+    "ingredients": [
+      {
+        "name": "Hydroquinone",
+        "description": "Fades dark spots by preventing excess melanin formation.",
+        "howItWorks": "Targets discoloration at its source by inhibiting the overproduction of melanin that causes dark spots."
+      },
+      {
+        "name": "Tranexamic Acid",
+        "description": "Blocks excess melanin production to fade dark spots.",
+        "howItWorks": "Intercepts pigment-producing pathways triggered by friction, hormones, and irritation."
+      },
+      {
+        "name": "Niacinamide",
+        "description": "Reduces inflammation and improves skin structure.",
+        "howItWorks": "Strengthens the barrier and calms irritation in sensitive, high-friction areas."
+      }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Desire",
+        "ingredients": [
+          { "ingredientName": "Hydroquinone", "percentage": "12%" },
+          { "ingredientName": "Niacinamide", "percentage": "2%" }
+        ]
+      },
+      {
+        "formulaName": "Tender",
+        "ingredients": [
+          { "ingredientName": "Tranexamic Acid", "percentage": "6%" },
+          { "ingredientName": "Niacinamide", "percentage": "2%" }
+        ]
+      },
+      {
+        "formulaName": "Bliss",
+        "ingredients": [
+          { "ingredientName": "Hydroquinone", "percentage": "6%" },
+          { "ingredientName": "Niacinamide", "percentage": "2%" }
+        ]
+      },
+      {
+        "formulaName": "Delight",
+        "ingredients": [
+          { "ingredientName": "Hydroquinone", "percentage": "3%" },
+          { "ingredientName": "Niacinamide", "percentage": "2%" }
+        ]
+      }
+    ],
+    "concerns": ["Private Area Dark Spots", "Underarm Dark Spots", "Inner Thigh Dark Spots"],
+    "photos": ["underarm", "groin", "innerThigh"],
+    "topIcon": "",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Combines gold-standard hyperpigmentation fighters to fade intimate area dark spots. Dermatologist-formulated and freshly compounded for potency.",
+    "howToUse": "Massage one full pump onto clean, dry skin in the treatment area, or as directed by your doctor. Use a gentle moisturizer after applying. External use only. Results in ~6–8 weeks. One bottle ≈ 2-month supply.",
+    "pairsWith": [
+      { "name": "The Body Cream", "description": "Topical cream to treat dark spots on the body" }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dc8f",
+    "name": "The KP Cream",
+    "description": "Treat keratosis pilaris (chicken skin) for $49/month (starting with a 2-month supply). A prescription cream formulated to smooth KP bumps and redness.",
+    "price": 49,
+    "type": "RX",
+    "imageUrl": "/assets/TheKPCream.png",
+    "ingredients": [
+      {
+        "name": "Urea",
+        "description": "Moisturizes and softens rough, bumpy KP skin.",
+        "howItWorks": "Breaks down hardened keratin and draws in moisture to smooth dryness and rough texture."
+      },
+      {
+        "name": "Salicylic Acid",
+        "description": "Helps loosen and remove dead skin cells.",
+        "howItWorks": "Dissolves pore-clogging debris and compacted keratin to reduce bumps."
+      },
+      {
+        "name": "Triamcinolone",
+        "description": "Temporarily reduces redness and softens KP bumps.",
+        "howItWorks": "Dampens local inflammatory signals that contribute to redness and irritation."
+      },
+      {
+        "name": "Tretinoin",
+        "description": "Speeds up skin cell turnover.",
+        "howItWorks": "Promotes faster shedding of keratin plugs and supports smoother texture."
+      },
+      {
+        "name": "Diclofenac",
+        "description": "Topical anti-inflammatory that reduces redness and discomfort.",
+        "howItWorks": "Directly targets inflammation around clogged follicles, easing redness and irritation characteristic of KP."
+      },
+      {
+        "name": "Tacrolimus",
+        "description": "Helps soothe inflammation and support smoother texture.",
+        "howItWorks": "Modulates inflammatory pathways to calm persistent redness and roughness."
+      }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Clear+",
+        "ingredients": [
+          { "ingredientName": "Urea", "percentage": "35%" },
+          { "ingredientName": "Salicylic Acid", "percentage": "2.5%" },
+          { "ingredientName": "Tretinoin", "percentage": "0.07%" },
+          { "ingredientName": "Triamcinolone", "percentage": "0.04%" },
+          { "ingredientName": "Fusion Micro Base", "percentage": "" }
+        ]
+      },
+      {
+        "formulaName": "Clear",
+        "ingredients": [
+          { "ingredientName": "Urea", "percentage": "35%" },
+          { "ingredientName": "Salicylic Acid", "percentage": "2.5%" },
+          { "ingredientName": "Tretinoin", "percentage": "0.07%" },
+          { "ingredientName": "Fusion Micro Base", "percentage": "" }
+        ]
+      },
+      {
+        "formulaName": "Classic",
+        "ingredients": [
+          { "ingredientName": "Diclofenac", "percentage": "0.85%" },
+          { "ingredientName": "Tretinoin", "percentage": "0.015%" },
+          { "ingredientName": "Tacrolimus", "percentage": "0.05%" },
+          { "ingredientName": "Fusion Micro Base", "percentage": "" }
+        ]
+      }
+    ],
+    "concerns": ["Keratosis Pilaris (KP)"],
+    "photos": ["upperArm", "thigh", "back"],
+    "topIcon": "Most Prescribed",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Fusion base enhances penetration through body skin. Increases cell turnover, helps remove excess keratin, moisturizes, and reduces redness. Dermatologist-formulated and freshly compounded.",
+    "howToUse": "At night, massage 1 full pump onto KP areas after cleansing and drying the skin, or as directed by your doctor. Results typically in ~4 weeks. One bottle ≈ 2-month supply.",
+    "pairsWith": [
+      { "name": "The Private Cream", "description": "Topical dark spot treatment for intimate areas" },
+      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dc90",
+    "name": "The Facial Hair Cream",
+    "description": "Get rid of unwanted facial hair for $41/month (starting with a 2-month supply). A prescription cream formulated with eflornithine to slow growth of unwanted facial hair.",
+    "price": 41,
+    "type": "RX",
+    "imageUrl": "/assets/TheFacialHairCream.png",
+    "ingredients": [
+      {
+        "name": "Eflornithine",
+        "description": "Blocks the enzyme that stimulates hair growth.",
+        "howItWorks": "Works at the follicular level to block a key enzyme responsible for hair production, directly targeting androgen-driven growth."
+      }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Bare",
+        "ingredients": [
+          { "ingredientName": "Eflornithine", "percentage": "6%" }
+        ]
+      }
+    ],
+    "concerns": ["Facial Hair"],
+    "photos": ["upperLip", "chin", "jawline"],
+    "topIcon": "",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Penetrates to the follicle level to slow hair growth by inhibiting ODC enzyme activity. Freshly compounded for potency.",
+    "howToUse": "After cleansing, apply one pump to affected facial areas up to twice daily, or as directed. Moisturize after applying and wear SPF 30+ daily. Results in ~6–8 weeks. One bottle ≈ 2-month supply.",
+    "pairsWith": [
+      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" },
+      { "name": "The Anti-Aging Cream", "description": "Topical tretinoin cream to treat fine lines and wrinkles." }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dc91",
+    "name": "The Cell Repair Serum",
+    "description": "Repair damaged and aging cells with our rejuvenating exosome serum for $50/month (starting with a 2-month supply). A prescription serum that boosts the effectiveness of topical skincare by stimulating natural regenerative pathways.",
+    "price": 50,
+    "type": "RX",
+    "imageUrl": "/assets/TheCellRepairSerum.png",
+    "ingredients": [
+      {
+        "name": "iPSC Exosomes",
+        "description": "Exosome signals support anti-aging, renewal, and wound healing.",
+        "howItWorks": "Act as cellular messengers, signaling skin to ramp up collagen production for firmness and renewal."
+      },
+      {
+        "name": "Rapamycin",
+        "description": "Helps protect collagen and reduce signs of aging.",
+        "howItWorks": "Protects existing collagen from breakdown by neutralizing inflammatory triggers and oxidative stress."
+      }
+    ],
+    "formulations": [
+      {
+        "formulaName": "X",
+        "ingredients": [
+          { "ingredientName": "iPSC Exosomes", "percentage": "250 million/bottle" },
+          { "ingredientName": "Rapamycin", "percentage": "0.0125%" }
+        ]
+      },
+      {
+        "formulaName": "X++",
+        "ingredients": [
+          { "ingredientName": "iPSC Exosomes", "percentage": "1 billion/bottle" },
+          { "ingredientName": "Rapamycin", "percentage": "0.0125%" }
+        ]
+      }
+    ],
+    "concerns": ["Wrinkles (Face)", "Dull Skin", "Uneven Texture"],
+    "photos": ["frontFace", "rightSideFace", "leftSideFace"],
+    "topIcon": "New Treatment",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Exosomes signal collagen renewal; rapamycin helps prevent collagen breakdown by limiting inflammation/oxidative stress. Freshly compounded for maximum efficacy.",
+    "howToUse": "At night on clean, dry skin, massage 1 full pump using upward motions, or as directed by your doctor.",
+    "pairsWith": [
+      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" },
+      { "name": "The Anti-Aging Cream", "description": "Topical tretinoin cream to treat fine lines and wrinkles." },
+      { "name": "The Aging Repair Cream (Women)", "description": "Topical treatment that plumps the skin and restores elasticity" }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dc92",
+    "name": "The Acne Cream",
+    "description": "Combat acne breakouts and reduce inflammation for $30/month (starting with a 2-month supply). A prescription acne cream targeting oil, bacteria, inflammation, and clogged skin cells.",
+    "price": 30,
+    "type": "RX",
+    "imageUrl": "/assets/TheAcneCream.png",
+    "ingredients": [
+      {
+        "name": "Tretinoin",
+        "description": "Speeds up skin cell turnover.",
+        "howItWorks": "Reboots the skin's cell turnover rate to purge clogged pores and smooth uneven texture."
+      },
+      {
+        "name": "Clindamycin",
+        "description": "Topical antibiotic that reduces acne-causing bacteria.",
+        "howItWorks": "Neutralizes acne-causing bacteria within clogged follicles to halt infection and inflammation."
+      },
+      {
+        "name": "Niacinamide",
+        "description": "Reduces inflammation and helps regulate oil.",
+        "howItWorks": "Calibrates oil production and strengthens the barrier to reduce redness and irritation."
+      },
+      {
+        "name": "Azelaic Acid",
+        "description": "Renews skin and kills acne-causing bacteria.",
+        "howItWorks": "Accelerates shedding of discolored cells and reduces bacteria to clear breakouts and even tone."
+      }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Zap",
+        "ingredients": [
+          { "ingredientName": "Tretinoin", "percentage": "0.015%" },
+          { "ingredientName": "Clindamycin", "percentage": "0.75%" },
+          { "ingredientName": "Niacinamide", "percentage": "4%" },
+          { "ingredientName": "Azelaic Acid", "percentage": "2%" }
+        ]
+      }
+    ],
+    "concerns": ["Acne Scars (Face)", "Pustules", "Uneven Texture"],
+    "photos": ["frontFace", "rightSideFace", "leftSideFace"],
+    "topIcon": "",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Combines retinoid, antibacterial, anti-inflammatory, and keratolytic actions to clear and prevent breakouts. Freshly compounded.",
+    "howToUse": "At night on clean, dry skin, massage 1 pump onto treatment areas, or as directed. Moisturize after applying and wear SPF 30+ daily. Results ~6–8 weeks. One bottle ≈ 2-month supply.",
+    "pairsWith": [
+      { "name": "The Red Set", "description": "Pair for redness and rosacea-prone skin" },
+      { "name": "The Rosacea Pill", "description": "Oral medication intended to treat severe rosacea flare-ups" }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dc93",
+    "name": "The Aging Repair Cream (Women)",
+    "description": "Plump the skin and restore elasticity for $36/month (starting with a 2-month supply). An estrogen-based anti-aging cream for women 30+ that improves firmness, shrinks pores, and reduces dryness and dullness.",
+    "price": 36,
+    "type": "RX",
+    "imageUrl": "/assets/TheAgingRepairCream.png",
+    "ingredients": [
+      {
+        "name": "Estriol",
+        "description": "Estrogen-infused topical that increases collagen and elasticity.",
+        "howItWorks": "Replenishes diminished estrogen signals to support collagen production and improved skin thickness and elasticity."
+      },
+      {
+        "name": "Vitamin C",
+        "description": "Antioxidant that brightens and supports repair.",
+        "howItWorks": "Repairs UV-induced cellular damage and helps even tone."
+      },
+      {
+        "name": "Hyaluronic Acid",
+        "description": "Retains moisture to reduce visible lines.",
+        "howItWorks": "Acts as a hydration reservoir to plump and restore elasticity."
+      },
+      {
+        "name": "Aloe",
+        "description": "Soothing botanical that supports collagen.",
+        "howItWorks": "Provides calming hydration and supports a healthier skin barrier."
+      }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Plump",
+        "ingredients": [
+          { "ingredientName": "Estriol", "percentage": "0.3%" },
+          { "ingredientName": "Vitamin C", "percentage": "1%" },
+          { "ingredientName": "Hyaluronic Acid", "percentage": "0.5%" },
+          { "ingredientName": "Aloe", "percentage": "" }
+        ]
+      }
+    ],
+    "concerns": ["Loss of Skin Elasticity", "Menopausal Skin", "Wrinkles (Face)", "Large Pores", "Dull Skin", "Uneven Texture"],
+    "photos": ["frontFace", "rightSideFace", "leftSideFace"],
+    "topIcon": "",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Plumps the skin, restores elasticity, reduces wrinkles and pore appearance, and improves dryness and dullness. OBGYN & dermatologist formulated; freshly compounded.",
+    "howToUse": "After cleansing, apply 1 pump to the face and gently massage. Moisturize and use SPF 30+ daily. Results ~6–8 weeks. One bottle ≈ 2-month supply.",
+    "pairsWith": [
+      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" },
+      { "name": "The Red Rescue", "description": "Topical treatment that reduces redness and flushing" },
+      { "name": "The Anti-Aging Cream", "description": "Topical tretinoin cream to treat fine lines and wrinkles." }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dc94",
+    "name": "The Red Rescue",
+    "description": "Treats redness caused by rosacea and irritation for $36/month (starting with a 2-month supply). A prescription topical with oxymetazoline plus anti-inflammatory support to calm flushing.",
+    "price": 36,
+    "type": "RX",
+    "imageUrl": "/assets/TheRedRescue.png",
+    "ingredients": [
+      {
+        "name": "Oxymetazoline",
+        "description": "Narrows blood vessels to reduce redness.",
+        "howItWorks": "Directly constricts dilated facial vessels for rapid reduction in redness and flushing."
+      },
+      {
+        "name": "Hydrocortisone",
+        "description": "Mild steroid to treat redness and itching.",
+        "howItWorks": "Calms inflammatory pathways to reduce irritation and visible redness."
+      }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Calm",
+        "ingredients": [
+          { "ingredientName": "Oxymetazoline", "percentage": "0.88%" },
+          { "ingredientName": "Hydrocortisone", "percentage": "1%" }
+        ]
+      }
+    ],
+    "concerns": ["Skin Redness", "Blushing", "Pustules", "Visible Blood Vessels"],
+    "photos": ["cheeks", "nose", "chin"],
+    "topIcon": "",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Soothes redness quickly and reduces inflammation to improve skin appearance. Freshly compounded.",
+    "howToUse": "Apply one pump to affected facial areas and gently massage. Moisturize after applying and wear SPF 30+ daily. Visible effect in ~30–60 minutes; max effect ~6 hours. One bottle ≈ 2-month supply.",
+    "pairsWith": [
+      { "name": "The Red Set", "description": "Pair of topical treatments for rosacea and redness" },
+      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" },
+      { "name": "The Anti-Aging Cream", "description": "Topical tretinoin cream to treat fine lines and wrinkles." }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dc95",
+    "name": "The Rosacea Cream",
+    "description": "Eliminate your rosacea for $41/month (starting with a 2-month supply). A topical treatment formulated to alleviate rosacea symptoms and redness. Best results with The Red Set.",
+    "price": 41,
+    "type": "RX",
+    "imageUrl": "/assets/TheRosaceaCream.png",
+    "ingredients": [
+      {
+        "name": "Ivermectin",
+        "description": "Anti-inflammatory agent that helps treat rosacea.",
+        "howItWorks": "Calms rosacea flare-ups by reducing underlying inflammation that drives persistent facial redness and discomfort."
+      },
+      {
+        "name": "Metronidazole",
+        "description": "Topical antibiotic that improves inflammatory lesions and erythema.",
+        "howItWorks": "Reduces inflammatory lesions and erythema, which lessens visible blood vessels."
+      },
+      {
+        "name": "Niacinamide",
+        "description": "Soothes inflammation and strengthens barrier.",
+        "howItWorks": "Calibrates oil production and reduces redness from inflammatory skin conditions."
+      },
+      {
+        "name": "Azelaic Acid",
+        "description": "Helps skin renew faster and kills bacteria tied to rosacea.",
+        "howItWorks": "Accelerates shedding of surface cells and reduces bacteria to ease bumps and flushing."
+      },
+      {
+        "name": "Sulfur",
+        "description": "Unclogs pores and combats bacteria.",
+        "howItWorks": "Prevents pore blockages and suppresses bacteria that contribute to pustules."
+      }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Red",
+        "ingredients": [
+          { "ingredientName": "Ivermectin", "percentage": "1%" },
+          { "ingredientName": "Metronidazole", "percentage": "1%" },
+          { "ingredientName": "Niacinamide", "percentage": "4%" }
+        ]
+      },
+      {
+        "formulaName": "Blush",
+        "ingredients": [
+          { "ingredientName": "Azelaic Acid", "percentage": "17%" },
+          { "ingredientName": "Niacinamide", "percentage": "2%" }
+        ]
+      }
+    ],
+    "concerns": ["Skin Redness", "Blushing", "Pustules", "Visible Blood Vessels"],
+    "photos": ["cheeks", "nose", "chin"],
+    "topIcon": "",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Dermatologist-formulated with targeted anti-inflammatory, antibacterial, and barrier-supporting actives; freshly compounded.",
+    "howToUse": "After cleansing, apply one pump and gently massage onto clean skin, or as directed. Moisturize and use SPF 30+ daily. The Red Set is recommended for best results.",
+    "pairsWith": [
+      { "name": "The Rosacea Pill", "description": "Oral medication intended to treat severe rosacea flare-ups" },
+      { "name": "The Red Rescue", "description": "Topical treatment that reduces redness and flushing" }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dc96",
+    "name": "The Neck Cream",
+    "description": "Anti-aging and dark spot treatment for neck & chest for $35/month (starting with a 2-month supply). Formulated to treat sun damage, improve texture, and reduce fine lines and wrinkles.",
+    "price": 35,
+    "type": "RX",
+    "imageUrl": "/assets/TheNeckCream.png",
+    "ingredients": [
+      {
+        "name": "Tretinoin",
+        "description": "Speeds up skin cell turnover to improve crepey skin.",
+        "howItWorks": "Promotes renewal for smoother texture and fewer lines."
+      },
+      {
+        "name": "Niacinamide",
+        "description": "Reduces inflammation and improves skin structure.",
+        "howItWorks": "Strengthens the skin barrier and helps even tone."
+      },
+      {
+        "name": "Hyaluronic Acid",
+        "description": "Hydrates and reduces loss of elasticity.",
+        "howItWorks": "Attracts and retains moisture to plump delicate chest/neck skin."
+      },
+      {
+        "name": "Hydroquinone",
+        "description": "Fades sun/age spots on the chest.",
+        "howItWorks": "Inhibits excess melanin formation to lighten discoloration."
+      }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Neck",
+        "ingredients": [
+          { "ingredientName": "Tretinoin", "percentage": "0.025%" },
+          { "ingredientName": "Niacinamide", "percentage": "2%" },
+          { "ingredientName": "Hyaluronic Acid", "percentage": "1%" }
+        ]
+      },
+      {
+        "formulaName": "Chest",
+        "ingredients": [
+          { "ingredientName": "Tretinoin", "percentage": "0.01%" },
+          { "ingredientName": "Hydroquinone", "percentage": "8%" },
+          { "ingredientName": "Niacinamide", "percentage": "2%" },
+          { "ingredientName": "Hyaluronic Acid", "percentage": "0.5%" }
+        ]
+      }
+    ],
+    "concerns": ["Sun/Age Spots (Neck/Chest)", "Wrinkles (Neck/Chest)", "Turkey Neck"],
+    "photos": ["frontNeck", "chest", "profileNeck"],
+    "topIcon": "",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Pairs gold-standard tretinoin with brighteners and hydrators to reduce lines, discoloration, and laxity. Freshly compounded.",
+    "howToUse": "Apply one pump to neck or chest after cleansing. Moisturize and use SPF 30+ daily. Results ~6–8 weeks. One bottle ≈ 2-month supply.",
+    "pairsWith": [
+      { "name": "The Anti-Aging Cream", "description": "Topical tretinoin cream to treat fine lines and wrinkles." },
+      { "name": "The Body Cream", "description": "Topical cream to treat dark spots on the body" }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dc97",
+    "name": "The Spot Peel",
+    "description": "Fast-acting chemical peel designed to kick-start fading facial dark spots while unifying skin tone and enhancing luminosity.",
+    "price": null,
+    "type": "RX",
+    "imageUrl": "/assets/TheSpotPeel.png",
+    "ingredients": [
+      {
+        "name": "Azelaic Acid",
+        "description": "Exfoliates and helps clear discoloration.",
+        "howItWorks": "Accelerates shedding of pigmented surface cells and reduces bacteria."
+      },
+      {
+        "name": "Tretinoin",
+        "description": "Speeds up cell turnover.",
+        "howItWorks": "Promotes rapid renewal for smoother, brighter skin."
+      },
+      {
+        "name": "Arbutin",
+        "description": "Brightening agent that reduces melanin formation.",
+        "howItWorks": "Inhibits tyrosinase to gradually lighten dark spots."
+      },
+      {
+        "name": "Hydroquinone",
+        "description": "Fades dark spots by limiting melanin overproduction.",
+        "howItWorks": "Targets pigment pathways to reduce existing and future discoloration."
+      },
+      {
+        "name": "Vitamin C",
+        "description": "Antioxidant brightener.",
+        "howItWorks": "Helps repair UV damage and boost radiance."
+      },
+      {
+        "name": "Titanium Dioxide",
+        "description": "Provides protective shielding during peel period.",
+        "howItWorks": "Physically blocks UV exposure to protect sensitized skin post-application."
+      }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Boost",
+        "ingredients": [
+          { "ingredientName": "Azelaic Acid", "percentage": "20%" },
+          { "ingredientName": "Tretinoin", "percentage": "0.01%" },
+          { "ingredientName": "Arbutin", "percentage": "2%" },
+          { "ingredientName": "Vitamin C", "percentage": "1%" },
+          { "ingredientName": "Titanium Dioxide", "percentage": "5%" }
+        ]
+      },
+      {
+        "formulaName": "Burst",
+        "ingredients": [
+          { "ingredientName": "Hydroquinone", "percentage": "12%" },
+          { "ingredientName": "Tretinoin", "percentage": "0.01%" },
+          { "ingredientName": "Arbutin", "percentage": "2%" },
+          { "ingredientName": "Vitamin C", "percentage": "1%" },
+          { "ingredientName": "Titanium Dioxide", "percentage": "5%" }
+        ]
+      }
+    ],
+    "concerns": ["Melasma", "Sun/Age Spots (Face)", "Acne Scars (Face)", "Freckles (Face)"],
+    "photos": ["frontFace", "rightSideFace", "leftSideFace"],
+    "topIcon": "",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Prevents excess melanin, reduces inflammation, and improves skin structure. Most effective when paired with The Spot Cream for continued treatment. Freshly compounded.",
+    "howToUse": "Patch test first. Apply a thin, even layer to the entire face (≈1/4 of medication). After 1–2 hours, apply another layer for a thick coat. After 8–12 hours, wipe off and cleanse; then apply a thick moisturizer. One-time treatment; results typically within 30 days. Maintain with The Spot Cream.",
+    "pairsWith": [
+      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" },
+      { "name": "The Spot Pill with Tranexamic Acid", "description": "Oral dark spot medication that treats from within" }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dc98",
+    "name": "The Estrogen Boost (Women)",
+    "description": "Treats symptoms of menopause for $46/month (starting with a 2-month supply). Topical HRT cream with bioidentical hormones for women 40–60.",
+    "price": 46,
+    "type": "RX",
+    "imageUrl": "/assets/TheEstrogenBoost.png",
+    "ingredients": [
+      {
+        "name": "Estradiol",
+        "description": "Primary natural estrogen supporting women’s health.",
+        "howItWorks": "Replenishes diminished estrogen signals to support healthy skin, hair, and nail cycles."
+      },
+      {
+        "name": "Estriol",
+        "description": "Topical estrogen that boosts collagen and elasticity.",
+        "howItWorks": "Restores estrogenic signaling to improve skin hydration and firmness."
+      },
+      {
+        "name": "Progesterone",
+        "description": "Balances estrogen and supports uterine protection.",
+        "howItWorks": "Works with estrogen to restore hormonal balance that governs sleep and metabolic rate, helping reduce fatigue and night sweats."
+      }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Duo",
+        "ingredients": [
+          { "ingredientName": "Estriol", "percentage": "0.4%" },
+          { "ingredientName": "Estradiol", "percentage": "0.1%" }
+        ]
+      },
+      {
+        "formulaName": "Trio",
+        "ingredients": [
+          { "ingredientName": "Estriol", "percentage": "0.4%" },
+          { "ingredientName": "Estradiol", "percentage": "0.1%" },
+          { "ingredientName": "Progesterone", "percentage": "20%" }
+        ]
+      }
+    ],
+    "concerns": ["Hair Changes", "Skin Changes", "Nail Changes", "Hot Flashes", "Low Energy", "Night Sweat"],
+    "photos": ["applicationSites1", "applicationSites2"],
+    "topIcon": "",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Bioidentical hormones restore estrogen loss due to aging to rebalance symptoms and support skin, hair, and nails. Developed by board-certified physician experts; freshly compounded.",
+    "howToUse": "Apply two pumps to one defined site (rotate sites) or as directed. Avoid breasts/face or broken skin. Avoid intense exercise or close contact within 1 hour. Use SPF 30+ daily. Results ~6–8 weeks. One bottle ≈ 2-month supply.",
+    "pairsWith": [
+      { "name": "The Aging Repair Cream (Women)", "description": "Topical treatment that plumps the skin and restores elasticity" },
+      { "name": "The Anti-Aging Cream", "description": "Topical tretinoin cream to treat fine lines and wrinkles." }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dc99",
+    "name": "The Spot Pill with Tranexamic Acid",
+    "description": "Treat melasma for $30/month (starting with a 3-month supply). Oral tranexamic acid to reduce stubborn melasma, dark spots, and PIH from within.",
+    "price": 30,
+    "type": "RX",
+    "imageUrl": "/assets/TheSpotPill.png",
+    "ingredients": [
+      {
+        "name": "Tranexamic Acid",
+        "description": "Blocks excess melanin production to fade dark spots.",
+        "howItWorks": "Intercepts pigment pathways triggered by UV/hormones to fade existing spots and help prevent new ones."
+      }
+    ],
+    "formulations": [
+      {
+        "formulaName": "PM",
+        "ingredients": [
+          { "ingredientName": "Tranexamic Acid", "percentage": "225mg" }
+        ]
+      }
+    ],
+    "concerns": ["Melasma"],
+    "photos": ["bottleFront"],
+    "topIcon": "",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Prevents enzymes that drive excess pigmentation—ideal alongside The Spot Cream or during topical breaks. Freshly compounded.",
+    "howToUse": "Take one dose in the evening with food and a full glass of water. Some regimens include an initial AM boost as directed. Use SPF 30+ daily. Results ~8–12 weeks. One bottle ≈ 3-month supply.",
+    "pairsWith": [
+      { "name": "The Spot Peel", "description": "One-time fast acting facial dark spot treatment" },
+      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dc9a",
+    "name": "The Hair Pill (Women)",
+    "description": "Grow your hair back for $32/month (starting with a 3-month supply). Oral hair growth medication with minoxidil, dutasteride, spironolactone and supportive nutrients.",
+    "price": 32,
+    "type": "RX",
+    "imageUrl": "/assets/TheHairPillWomen.png",
+    "ingredients": [
+      {
+        "name": "Minoxidil",
+        "description": "Improves blood flow to follicles to support growth.",
+        "howItWorks": "Widens scalp vessels to increase oxygen and nutrient delivery to shrunken follicles."
+      },
+      {
+        "name": "Dutasteride",
+        "description": "Inhibits production of DHT, the hair loss hormone.",
+        "howItWorks": "Intercepts conversion of testosterone to DHT to halt miniaturization and reactivate growth."
+      },
+      {
+        "name": "Spironolactone",
+        "description": "Anti-androgen that supports reduced shedding.",
+        "howItWorks": "Blocks androgen receptors on follicles to shield against miniaturizing hormones."
+      },
+      {
+        "name": "Ketoconazole",
+        "description": "Anti-dandruff/anti-inflammatory that supports scalp health.",
+        "howItWorks": "Reduces DHT pathway activity and inflammation for an optimal growth environment."
+      }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Bloom (45+)",
+        "ingredients": [
+          { "ingredientName": "Minoxidil", "percentage": "1 mg" },
+          { "ingredientName": "Dutasteride", "percentage": "0.4 mg" }
+        ]
+      },
+      {
+        "formulaName": "Bloom+ (45+)",
+        "ingredients": [
+          { "ingredientName": "Minoxidil", "percentage": "2 mg" },
+          { "ingredientName": "Dutasteride", "percentage": "0.4 mg" }
+        ]
+      },
+      {
+        "formulaName": "Sprout (<45)",
+        "ingredients": [
+          { "ingredientName": "Minoxidil", "percentage": "1 mg" },
+          { "ingredientName": "Spironolactone", "percentage": "60 mg" }
+        ]
+      },
+      {
+        "formulaName": "Growth",
+        "ingredients": [
+          { "ingredientName": "Minoxidil", "percentage": "1 mg" }
+        ]
+      },
+      {
+        "formulaName": "Growth+",
+        "ingredients": [
+          { "ingredientName": "Minoxidil", "percentage": "2 mg" }
+        ]
+      }
+    ],
+    "concerns": ["Thinning (Women)", "Widening Part (Women)", "Bald Spots (Women)", "Receding Hairline (Women)"],
+    "photos": ["frontScalp", "crown", "temples"],
+    "topIcon": "",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Improves follicle blood flow, inhibits DHT, and blocks androgen signaling; includes supportive nutrients. Freshly compounded.",
+    "howToUse": "Take once nightly with water, or as directed. Reduced shedding in 3–6 months; regrowth 6–12 months. One bottle ≈ 3-month supply.",
+    "pairsWith": [
+      { "name": "The Hair Solution Classic Formula (Women)", "description": "Topical treatment for hair loss & thinning" }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dc9b",
+    "name": "The Hair Pill (Men)",
+    "description": "Grow your hair back for $32/month (starting with a 3-month supply). Oral hair growth medication with minoxidil and dutasteride plus supportive nutrients.",
+    "price": 32,
+    "type": "RX",
+    "imageUrl": "/assets/TheHairPillMen.png",
+    "ingredients": [
+      {
+        "name": "Minoxidil",
+        "description": "Improves blood flow to follicles.",
+        "howItWorks": "Widens scalp vessels to increase oxygen/nutrient delivery."
+      },
+      {
+        "name": "Dutasteride",
+        "description": "Inhibits production of DHT.",
+        "howItWorks": "Blocks conversion of testosterone to DHT to slow/stop male-pattern thinning."
+      }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Bloom",
+        "ingredients": [
+          { "ingredientName": "Minoxidil", "percentage": "1 mg" },
+          { "ingredientName": "Dutasteride", "percentage": "0.4 mg" }
+        ]
+      },
+      {
+        "formulaName": "Bloom+",
+        "ingredients": [
+          { "ingredientName": "Minoxidil", "percentage": "2 mg" },
+          { "ingredientName": "Dutasteride", "percentage": "0.4 mg" }
+        ]
+      },
+      {
+        "formulaName": "Growth",
+        "ingredients": [
+          { "ingredientName": "Minoxidil", "percentage": "1 mg" }
+        ]
+      },
+      {
+        "formulaName": "Growth+",
+        "ingredients": [
+          { "ingredientName": "Minoxidil", "percentage": "2 mg" }
+        ]
+      }
+    ],
+    "concerns": ["Thinning (Men)", "Widening Part (Men)", "Bald Spots (Men)", "Receding Hairline (Men)"],
+    "photos": ["frontScalp", "crown", "temples"],
+    "topIcon": "",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Targets hair loss from multiple angles: vascular support and DHT inhibition. Freshly compounded.",
+    "howToUse": "Take once nightly with water. Reduced shedding in 3–6 months; regrowth 6–12 months. One bottle ≈ 3-month supply.",
+    "pairsWith": [
+      { "name": "The Hair Solution Classic Formula (Men)", "description": "Topical treatment for hair loss & thinning" }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dc9c",
+    "name": "The Hair Solution Classic Formula (Women)",
+    "description": "Grow your hair back for $33/month (starting with a 3-month supply). Topical solution with minoxidil, dutasteride, spironolactone and more to encourage growth and halt loss.",
+    "price": 33,
+    "type": "RX",
+    "imageUrl": "/assets/HairSolutionClassicWomen.png",
+    "ingredients": [
+      { "name": "Minoxidil", "description": "Widens vessels to nourish follicles.", "howItWorks": "Increases blood flow and prolongs growth phase." },
+      { "name": "Dutasteride", "description": "Reduces DHT at the follicle.", "howItWorks": "Inhibits conversion to DHT to combat miniaturization." },
+      { "name": "Spironolactone", "description": "Anti-androgen topical support.", "howItWorks": "Blocks androgen receptors on follicles." },
+      { "name": "Tretinoin", "description": "Supports penetration and follicle turnover.", "howItWorks": "Speeds turnover and can enhance minoxidil uptake." },
+      { "name": "Ketoconazole", "description": "Anti-inflammatory, anti-DHT at scalp.", "howItWorks": "Disrupts DHT pathway and lowers inflammation." },
+      { "name": "Hydrocortisone", "description": "Soothes irritation/redness.", "howItWorks": "Calms inflammatory response to improve tolerance." }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Keep",
+        "ingredients": [
+          { "ingredientName": "Minoxidil", "percentage": "8%" },
+          { "ingredientName": "Dutasteride", "percentage": "0.3%" },
+          { "ingredientName": "Spironolactone", "percentage": "0.075%" },
+          { "ingredientName": "Tretinoin", "percentage": "0.01%" },
+          { "ingredientName": "Ketoconazole", "percentage": "2%" },
+          { "ingredientName": "Hydrocortisone", "percentage": "1%" }
+        ]
+      }
+    ],
+    "concerns": ["Thinning (Women)", "Widening Part (Women)", "Bald Spots (Women)", "Receding Hairline (Women)"],
+    "photos": ["frontScalp", "crown", "temples"],
+    "topIcon": "",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Improves follicular blood flow, counters DHT, reduces inflammation, and supports healthy turnover. Freshly compounded.",
+    "howToUse": "Apply 0.5–1 dropperful nightly to scalp; massage in. Do not wet hair for 4 hours. Apply only to scalp. Results: shedding ↓ in 3–6 months; regrowth 6–12 months. One bottle ≈ 3-month supply.",
+    "pairsWith": [
+      { "name": "The Hair Pill (Women)", "description": "Oral medication for hair loss & thinning" }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dc9d",
+    "name": "The Hair Solution Classic Formula (Men)",
+    "description": "Grow your hair back for $33/month (starting with a 3-month supply). Topical solution with minoxidil, dutasteride, and more to encourage growth and halt loss.",
+    "price": 33,
+    "type": "RX",
+    "imageUrl": "/assets/HairSolutionClassicMen.png",
+    "ingredients": [
+      { "name": "Minoxidil", "description": "Widens vessels to nourish follicles.", "howItWorks": "Increases blood flow and prolongs growth phase." },
+      { "name": "Dutasteride", "description": "Reduces DHT at the follicle.", "howItWorks": "Inhibits conversion to DHT to combat miniaturization." },
+      { "name": "Tretinoin", "description": "Supports penetration and turnover.", "howItWorks": "Speeds turnover and can enhance minoxidil uptake." },
+      { "name": "Ketoconazole", "description": "Anti-inflammatory, anti-DHT at scalp.", "howItWorks": "Disrupts DHT pathway and lowers inflammation." },
+      { "name": "Hydrocortisone", "description": "Soothes irritation/redness.", "howItWorks": "Calms inflammatory response to improve tolerance." }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Keep",
+        "ingredients": [
+          { "ingredientName": "Minoxidil", "percentage": "8%" },
+          { "ingredientName": "Dutasteride", "percentage": "0.3%" },
+          { "ingredientName": "Tretinoin", "percentage": "0.01%" },
+          { "ingredientName": "Ketoconazole", "percentage": "2%" },
+          { "ingredientName": "Hydrocortisone", "percentage": "1%" }
+        ]
+      }
+    ],
+    "concerns": ["Thinning (Men)", "Widening Part (Men)", "Bald Spots (Men)", "Receding Hairline (Men)"],
+    "photos": ["frontScalp", "crown", "temples"],
+    "topIcon": "",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Targets hair loss with complementary mechanisms: vascular support, DHT inhibition, anti-inflammatory action. Freshly compounded.",
+    "howToUse": "Apply 0.5–1 dropperful nightly to scalp; massage in. Do not wet hair for 4 hours. Apply only to scalp. Results: shedding ↓ in 3–6 months; regrowth 6–12 months. One bottle ≈ 3-month supply.",
+    "pairsWith": [
+      { "name": "The Hair Pill (Men)", "description": "Oral medication for hair loss & thinning" }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dc9e",
+    "name": "The Hair Solution Exosomes Formula (Women)",
+    "description": "Grow thicker hair for $36/month (starting with a 3-month supply). Exosomes + latanoprost + caffeine to encourage hair density.",
+    "price": 36,
+    "type": "RX",
+    "imageUrl": "/assets/HairSolutionExosomesWomen.png",
+    "ingredients": [
+      { "name": "iPSC Exosomes", "description": "Nourish follicles and scalp.", "howItWorks": "Revitalize follicles and signal growth-supportive activity." },
+      { "name": "Latanoprost", "description": "Prolongs hair growth phase.", "howItWorks": "Extends anagen to promote longer, thicker strands." },
+      { "name": "Caffeine", "description": "Stimulates roots and circulation.", "howItWorks": "Boosts microcirculation and counteracts DHT effects at the follicle." },
+      { "name": "Cetirizine", "description": "Soothes follicular inflammation.", "howItWorks": "Calms inflammation around follicles to support stronger growth." },
+      { "name": "Melatonin", "description": "Antioxidant protection for follicles.", "howItWorks": "Shields follicles from oxidative stress and environmental damage." }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Full",
+        "ingredients": [
+          { "ingredientName": "iPSC Exosomes", "percentage": "250 million/bottle" },
+          { "ingredientName": "Latanoprost", "percentage": "0.004%" },
+          { "ingredientName": "Caffeine", "percentage": "0.5%" },
+          { "ingredientName": "Cetirizine", "percentage": "1%" },
+          { "ingredientName": "Melatonin", "percentage": "0.1%" }
+        ]
+      }
+    ],
+    "concerns": ["Thinning (Women)", "Widening Part (Women)", "Bald Spots (Women)", "Receding Hairline (Women)"],
+    "photos": ["frontScalp", "crown", "temples"],
+    "topIcon": "",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Exosomes condition the scalp and follicles; latanoprost extends growth phase; caffeine, cetirizine, and melatonin support thicker, stronger hair.",
+    "howToUse": "Apply 0.5–1 dropperful nightly to scalp. Do not wet hair for 4 hours. Apply only to scalp. Results 3–6 months for shedding ↓; 6–12 months for density ↑. One bottle ≈ 3-month supply.",
+    "pairsWith": [
+      { "name": "The Hair Solution Classic Formula (Women)", "description": "Topical treatment for hair loss & thinning" },
+      { "name": "The Hair Pill (Women)", "description": "Oral medication for hair loss & thinning" }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dc9f",
+    "name": "The Hair Solution Exosomes Formula (Men)",
+    "description": "Grow thicker hair for $36/month (starting with a 3-month supply). Exosomes + latanoprost + caffeine to increase hair density.",
+    "price": 36,
+    "type": "RX",
+    "imageUrl": "/assets/HairSolutionExosomesMen.png",
+    "ingredients": [
+      { "name": "iPSC Exosomes", "description": "Nourish follicles and scalp.", "howItWorks": "Revitalize follicles and signal growth-supportive activity." },
+      { "name": "Latanoprost", "description": "Prolongs hair growth phase.", "howItWorks": "Extends anagen to promote longer, thicker strands." },
+      { "name": "Caffeine", "description": "Stimulates roots and circulation.", "howItWorks": "Boosts microcirculation and counteracts DHT effects at the follicle." },
+      { "name": "Cetirizine", "description": "Soothes follicular inflammation.", "howItWorks": "Calms inflammation around follicles to support stronger growth." },
+      { "name": "Melatonin", "description": "Antioxidant protection for follicles.", "howItWorks": "Shields follicles from oxidative stress and environmental damage." }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Full",
+        "ingredients": [
+          { "ingredientName": "iPSC Exosomes", "percentage": "250 million/bottle" },
+          { "ingredientName": "Latanoprost", "percentage": "0.004%" },
+          { "ingredientName": "Caffeine", "percentage": "0.5%" },
+          { "ingredientName": "Cetirizine", "percentage": "1%" },
+          { "ingredientName": "Melatonin", "percentage": "0.1%" }
+        ]
+      }
+    ],
+    "concerns": ["Thinning (Men)", "Widening Part (Men)", "Bald Spots (Men)", "Receding Hairline (Men)"],
+    "photos": ["frontScalp", "crown", "temples"],
+    "topIcon": "",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Exosomes condition the scalp and follicles; latanoprost extends growth phase; caffeine, cetirizine, and melatonin support thicker, stronger hair.",
+    "howToUse": "Apply 0.5–1 dropperful nightly to scalp. Do not wet hair for 4 hours. Apply only to scalp. Results 3–6 months for shedding ↓; 6–12 months for density ↑. One bottle ≈ 3-month supply.",
+    "pairsWith": [
+      { "name": "The Hair Solution Classic Formula (Men)", "description": "Topical treatment for hair loss & thinning" },
+      { "name": "The Hair Pill (Men)", "description": "Oral medication for hair loss & thinning" }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dca0",
+    "name": "The Hair Solution Bundle (Women)",
+    "description": "Includes Classic + Exosomes formulas for $69/month (starting with a 3-month supply). Layered approach to treat hair loss and encourage growth.",
+    "price": 69,
+    "type": "RX",
+    "imageUrl": "/assets/HairSolutionBundleWomen.png",
+    "ingredients": [
+      { "name": "Minoxidil", "description": "Vasodilator that nourishes follicles.", "howItWorks": "Widens vessels and prolongs anagen." },
+      { "name": "Dutasteride", "description": "DHT pathway inhibitor.", "howItWorks": "Reduces follicular miniaturization via DHT blockade." },
+      { "name": "Spironolactone", "description": "Anti-androgen support.", "howItWorks": "Blocks androgen receptors on follicles." },
+      { "name": "Tretinoin", "description": "Supports penetration and turnover.", "howItWorks": "Speeds turnover; may enhance minoxidil uptake." },
+      { "name": "Ketoconazole", "description": "Anti-inflammatory, anti-DHT.", "howItWorks": "Lowers inflammation and DHT signaling." },
+      { "name": "Hydrocortisone", "description": "Soothes irritation.", "howItWorks": "Calms redness to improve tolerance." },
+      { "name": "iPSC Exosomes", "description": "Follicle & scalp conditioning.", "howItWorks": "Signals growth-supportive activity." },
+      { "name": "Latanoprost", "description": "Extends growth phase.", "howItWorks": "Prolongs anagen for thicker strands." },
+      { "name": "Caffeine", "description": "Stimulates roots.", "howItWorks": "Boosts microcirculation; counters DHT effects." },
+      { "name": "Cetirizine", "description": "Soothes follicles.", "howItWorks": "Reduces inflammation around follicles." },
+      { "name": "Melatonin", "description": "Antioxidant support.", "howItWorks": "Protects follicles from oxidative stress." }
+    ],
+    "formulations": [
+      {
+        "formulaName": "1. Classic",
+        "ingredients": [
+          { "ingredientName": "Minoxidil", "percentage": "8%" },
+          { "ingredientName": "Dutasteride", "percentage": "0.3%" },
+          { "ingredientName": "Spironolactone", "percentage": "0.075%" },
+          { "ingredientName": "Tretinoin", "percentage": "0.01%" },
+          { "ingredientName": "Ketoconazole", "percentage": "2%" },
+          { "ingredientName": "Hydrocortisone", "percentage": "1%" }
+        ]
+      },
+      {
+        "formulaName": "2. Exosomes",
+        "ingredients": [
+          { "ingredientName": "iPSC Exosomes", "percentage": "250 million/bottle" },
+          { "ingredientName": "Latanoprost", "percentage": "0.004%" },
+          { "ingredientName": "Caffeine", "percentage": "0.5%" },
+          { "ingredientName": "Cetirizine", "percentage": "1%" },
+          { "ingredientName": "Melatonin", "percentage": "0.1%" }
+        ]
+      }
+    ],
+    "concerns": ["Thinning (Women)", "Widening Part (Women)", "Bald Spots (Women)", "Receding Hairline (Women)"],
+    "photos": ["frontScalp", "crown", "temples"],
+    "topIcon": "",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Classic boosts blood flow and blocks DHT; Exosomes conditions follicles and extends growth phase. Layering supports complementary mechanisms.",
+    "howToUse": "Apply Exosomes first, then Classic after a few minutes (or per doctor). 0.5–1 dropperful of each nightly. Do not wet hair 4 hours. Results 3–6 months for shedding ↓; 6–12 months for density ↑. One bottle each ≈ 3-month supply.",
+    "pairsWith": [
+      { "name": "The Hair Pill (Women)", "description": "Oral medication for hair loss & thinning" }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dca1",
+    "name": "The Hair Solution Bundle (Men)",
+    "description": "Includes Classic + Exosomes formulas for $69/month (starting with a 3-month supply). Layered approach to encourage growth and reduce loss.",
+    "price": 69,
+    "type": "RX",
+    "imageUrl": "/assets/HairSolutionBundleMen.png",
+    "ingredients": [
+      { "name": "Minoxidil", "description": "Vasodilator that nourishes follicles.", "howItWorks": "Widens vessels and prolongs anagen." },
+      { "name": "Dutasteride", "description": "DHT pathway inhibitor.", "howItWorks": "Reduces follicular miniaturization via DHT blockade." },
+      { "name": "Tretinoin", "description": "Supports penetration and turnover.", "howItWorks": "Speeds turnover; may enhance minoxidil uptake." },
+      { "name": "Ketoconazole", "description": "Anti-inflammatory, anti-DHT.", "howItWorks": "Lowers inflammation and DHT signaling." },
+      { "name": "Hydrocortisone", "description": "Soothes irritation.", "howItWorks": "Calms redness to improve tolerance." },
+      { "name": "iPSC Exosomes", "description": "Follicle & scalp conditioning.", "howItWorks": "Signals growth-supportive activity." },
+      { "name": "Latanoprost", "description": "Extends growth phase.", "howItWorks": "Prolongs anagen for thicker strands." },
+      { "name": "Caffeine", "description": "Stimulates roots.", "howItWorks": "Boosts microcirculation; counters DHT effects." },
+      { "name": "Cetirizine", "description": "Soothes follicles.", "howItWorks": "Reduces inflammation around follicles." },
+      { "name": "Melatonin", "description": "Antioxidant support.", "howItWorks": "Protects follicles from oxidative stress." }
+    ],
+    "formulations": [
+      {
+        "formulaName": "1. Classic",
+        "ingredients": [
+          { "ingredientName": "Minoxidil", "percentage": "8%" },
+          { "ingredientName": "Dutasteride", "percentage": "0.3%" },
+          { "ingredientName": "Tretinoin", "percentage": "0.01%" },
+          { "ingredientName": "Ketoconazole", "percentage": "2%" },
+          { "ingredientName": "Hydrocortisone", "percentage": "1%" }
+        ]
+      },
+      {
+        "formulaName": "2. Exosomes",
+        "ingredients": [
+          { "ingredientName": "iPSC Exosomes", "percentage": "250 million/bottle" },
+          { "ingredientName": "Latanoprost", "percentage": "0.004%" },
+          { "ingredientName": "Caffeine", "percentage": "0.5%" },
+          { "ingredientName": "Cetirizine", "percentage": "1%" },
+          { "ingredientName": "Melatonin", "percentage": "0.1%" }
+        ]
+      }
+    ],
+    "concerns": ["Thinning (Men)", "Widening Part (Men)", "Bald Spots (Men)", "Receding Hairline (Men)"],
+    "photos": ["frontScalp", "crown", "temples"],
+    "topIcon": "",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Classic improves blood flow and counters DHT; Exosomes condition follicles and extend growth phase. Synergistic when layered.",
+    "howToUse": "Apply Exosomes first, then Classic after a few minutes (or per doctor). 0.5–1 dropperful of each nightly. Don’t wet hair for 4 hours. Results 3–6 months shedding ↓; 6–12 months density ↑. One bottle each ≈ 3-month supply.",
+    "pairsWith": [
+      { "name": "The Hair Pill (Men)", "description": "Oral medication for hair loss & thinning" }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dca2",
+    "name": "The Red Set",
+    "description": "Eliminate your rosacea for $62/month (starting with a 2-month supply). A comprehensive routine to calm redness, flushing, and acne-like bumps.",
+    "price": 62,
+    "type": "RX",
+    "imageUrl": "/assets/TheRedSet.png",
+    "ingredients": [
+      { "name": "Sulfur", "description": "Keeps pores unblocked and combats bacteria.", "howItWorks": "Prevents pore blockages and suppresses bacteria that contribute to pustules." },
+      { "name": "Sodium Sulfacetamide", "description": "Topical antibiotic to reduce bacteria.", "howItWorks": "Inhibits bacterial growth linked to rosacea and acne." },
+      { "name": "Ivermectin", "description": "Anti-inflammatory agent.", "howItWorks": "Calms underlying inflammation to reduce persistent redness." },
+      { "name": "Metronidazole", "description": "Topical antibiotic.", "howItWorks": "Reduces inflammatory lesions and erythema." },
+      { "name": "Niacinamide", "description": "Anti-inflammatory/Barrier support.", "howItWorks": "Strengthens barrier and reduces redness." },
+      { "name": "Azelaic Acid", "description": "Exfoliates and antibacterial.", "howItWorks": "Accelerates shedding and reduces bacteria to ease bumps/flushing." },
+      { "name": "Doxycycline (add-on pill)", "description": "Oral antibiotic for severe flare-ups.", "howItWorks": "Decreases inflammatory lesions and bacterial overgrowth in severe cases." }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Step 1: The Rosacea Mask",
+        "ingredients": [
+          { "ingredientName": "Sulfur", "percentage": "3%" },
+          { "ingredientName": "Sodium Sulfacetamide", "percentage": "9%" }
+        ]
+      },
+      {
+        "formulaName": "Step 2: The Rosacea Cream (Red)",
+        "ingredients": [
+          { "ingredientName": "Ivermectin", "percentage": "1%" },
+          { "ingredientName": "Metronidazole", "percentage": "1%" },
+          { "ingredientName": "Niacinamide", "percentage": "4%" }
+        ]
+      },
+      {
+        "formulaName": "Step 2: The Rosacea Cream (Blush)",
+        "ingredients": [
+          { "ingredientName": "Azelaic Acid", "percentage": "17%" },
+          { "ingredientName": "Niacinamide", "percentage": "2%" }
+        ]
+      },
+      {
+        "formulaName": "Step 3: The Rosacea Pill (Add-On)",
+        "ingredients": [
+          { "ingredientName": "Doxycycline", "percentage": "56–100 mg" }
+        ]
+      }
+    ],
+    "concerns": ["Skin Redness", "Blushing", "Pustules", "Visible Blood Vessels"],
+    "photos": ["cheeks", "nose", "chin"],
+    "topIcon": "",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "A three-step regimen to gently cleanse, calm inflammation, reduce bacteria, and control severe flares when needed.",
+    "howToUse": "Mask: leave on 5–10 minutes and rinse. Cream: apply 1 pump and massage in. Add-on Pill: for severe cases per doctor. Use SPF 30+ daily.",
+    "pairsWith": [
+      { "name": "The Red Rescue", "description": "Topical treatment that reduces redness and flushing" }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dca3",
+    "name": "The Eye Serum",
+    "description": "Keep crow’s feet and dark circles away for $41/month (starting with a 2-month supply). Prescription-strength eye serum with iPSC exosomes, tretinoin, caffeine, and hydroquinone to smooth lines, reduce puffiness, and brighten dark circles.",
+    "price": 41,
+    "type": "RX",
+    "imageUrl": "/assets/TheEyeSerum.png",
+    "ingredients": [
+      { "name": "iPSC Exosomes", "description": "Signals renewal for smoother eye skin.", "howItWorks": "Encourages collagen production and cell turnover for firmer, smoother texture." },
+      { "name": "Tretinoin", "description": "Speeds cell turnover and supports collagen.", "howItWorks": "Promotes renewal and elasticity in delicate periocular skin." },
+      { "name": "Caffeine", "description": "Anti-inflammatory that reduces puffiness.", "howItWorks": "Stimulates microcirculation to reduce fluid retention and under-eye bags." },
+      { "name": "Hyaluronic Acid", "description": "Hydrates and plumps fine lines.", "howItWorks": "Attracts moisture to improve elasticity and smoothness." },
+      { "name": "Hydroquinone", "description": "Targets dark pigment under the eyes.", "howItWorks": "Inhibits melanin overproduction to brighten dark circles." },
+      { "name": "Niacinamide", "description": "Soothes and strengthens barrier.", "howItWorks": "Reduces redness and supports smoother texture." },
+      { "name": "Vitamin C", "description": "Antioxidant brightener.", "howItWorks": "Helps repair UV damage and boost radiance." },
+      { "name": "Bisabolol", "description": "Calming antioxidant support.", "howItWorks": "Soothes delicate eye area and supports recovery." }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Smooth 2.0",
+        "ingredients": [
+          { "ingredientName": "iPSC Exosomes", "percentage": "100 million/bottle" },
+          { "ingredientName": "Tretinoin", "percentage": "0.001%" },
+          { "ingredientName": "Caffeine", "percentage": "1%" },
+          { "ingredientName": "Hyaluronic Acid", "percentage": "2%" }
+        ]
+      },
+      {
+        "formulaName": "Smooth+Bright 2.0",
+        "ingredients": [
+          { "ingredientName": "iPSC Exosomes", "percentage": "100 million/bottle" },
+          { "ingredientName": "Hydroquinone", "percentage": "3%" },
+          { "ingredientName": "Tretinoin", "percentage": "0.001%" },
+          { "ingredientName": "Caffeine", "percentage": "1%" },
+          { "ingredientName": "Hyaluronic Acid", "percentage": "2%" }
+        ]
+      }
+    ],
+    "concerns": ["Wrinkles (Eyes)", "Crow's Feet", "Puffiness", "Dark Circles"],
+    "photos": ["eyesFront", "eyesLeft", "eyesRight"],
+    "topIcon": "New Treatment",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Increases collagen, speeds turnover, stimulates microcirculation, hydrates, and targets pigment for a brighter, smoother eye area. Freshly compounded.",
+    "howToUse": "Gently tap one pump around the orbital bone on clean, dry skin, or as directed. Moisturize after applying and wear SPF 30+ daily. Results ~6–8 weeks. One bottle ≈ 2-month supply.",
+    "pairsWith": [
+      { "name": "The Anti-Aging Cream", "description": "Topical tretinoin cream to treat fine lines and wrinkles." },
+      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" }
+    ]
+  },
+  {
+    "id": "68d907e7fba6e61ba6e9dca4",
+    "name": "The Lash Serum",
+    "description": "Grow and strengthen your eyelashes for $33/month (starting with a 3-month supply). Prescription eyelash serum formulated for lash growth and darker, stronger lashes.",
+    "price": 33,
+    "type": "RX",
+    "imageUrl": "/assets/TheLashSerum.png",
+    "ingredients": [
+      {
+        "name": "Latanoprost",
+        "description": "Extends the anagen phase of eyelash growth.",
+        "howItWorks": "Prolongs the growth phase so lashes grow longer and thicker before shedding."
+      }
+    ],
+    "formulations": [
+      {
+        "formulaName": "Lash",
+        "ingredients": [
+          { "ingredientName": "Latanoprost", "percentage": "0.005%" }
+        ]
+      }
+    ],
+    "concerns": ["Short Lashes"],
+    "photos": ["lashesClosed", "lashesOpen"],
+    "topIcon": "",
+    "sideIcon": "/assets/logo4.png",
+    "howWhy": "Triggers and extends the anagen hair cycle for fuller, longer lashes.",
+    "howToUse": "At night on clean, dry skin remove contact lenses. Apply 1 drop to a sterile applicator and swipe along upper lash line; repeat with a new applicator for the other eye. Visible improvements ~8 weeks; full results ~16 weeks. Two bottles ≈ 3-month supply.",
+    "pairsWith": [
+      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" },
+      { "name": "The Anti-Aging Cream", "description": "Topical tretinoin cream to treat fine lines and wrinkles." },
+      { "name": "The Aging Repair Cream (Women)", "description": "Topical treatment that plumps the skin and restores elasticity" }
+    ]
+  }
+]

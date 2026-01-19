@@ -1,0 +1,182 @@
+[
+  {
+    "questionId": "ageConsent",
+    "questionText": "Are you at least 18 years old?",
+    "type": "radio",
+    "options": ["Yes, I am over 18", "No, I am under 18"],
+    "category": "personal",
+    "productKey": null
+  },
+  {
+    "questionId": "biologicalSex",
+    "questionText": "What is your biological sex?",
+    "type": "radio",
+    "options": ["Male", "Female", "Other"],
+    "category": "personal",
+    "productKey": null
+  },
+  {
+    "questionId": "ethnicity",
+    "questionText": "What is your ethnicity?",
+    "type": "radio",
+    "options": [
+      "Asian",
+      "Black or African American",
+      "Hispanic or Latino",
+      "White",
+      "Other"
+    ],
+    "category": "personal",
+    "productKey": null,
+    "detailsQuestion": {
+      "questionText": "Please specify your ethnicity if you selected 'Other'.",
+      "type": "text",
+      "showIf": ["Other"]
+    }
+  },
+
+  {
+    "questionId": "medicalConditions",
+    "questionText": "Do you have any medical conditions that your provider should know of?",
+    "type": "radio",
+    "options": ["Yes", "No"],
+    "category": "medical",
+    "productKey": null,
+    "detailsQuestion": {
+      "questionText": "If yes, please specify your medical conditions.",
+      "type": "text",
+      "showIf": ["Yes"]
+    }
+  },
+  {
+    "questionId": "medications",
+    "questionText": "Do you currently take medications (oral or topical) or supplement(s)?",
+    "type": "radio",
+    "options": ["Yes", "No"],
+    "category": "medical",
+    "productKey": null,
+    "detailsQuestion": {
+      "questionText": "If yes, please list your medications or supplements.",
+      "type": "text",
+      "showIf": ["Yes"]
+    }
+  },
+  {
+    "questionId": "skinIssues",
+    "questionText": "Do you experience any of the following skin issues (acne, rosacea, etc.)?",
+    "type": "radio",
+    "options": ["Yes", "No"],
+    "category": "medical",
+    "productKey": null,
+    "detailsQuestion": {
+      "questionText": "If yes, please specify your skin issues.",
+      "type": "text",
+      "showIf": ["Yes"]
+    }
+  },
+  {
+    "questionId": "allergies",
+    "questionText": "Do you have any known skin or drug allergies?",
+    "type": "radio",
+    "options": ["Yes", "No"],
+    "category": "medical",
+    "productKey": null,
+    "detailsQuestion": {
+      "questionText": "If yes, please list your allergies.",
+      "type": "text",
+      "showIf": ["Yes"]
+    }
+  },
+  {
+    "questionId": "pregnancy",
+    "questionText": "Are you currently nursing or pregnant?",
+    "type": "radio",
+    "options": [
+      "I'm not currently nursing or pregnant",
+      "Yes, I am nursing",
+      "Yes, I am pregnant"
+    ],
+    "category": "medical",
+    "productKey": null
+  },
+
+  { "questionId": "TopicalCreamHQ8_issue", "questionText": "Which issue do you primarily want Topical Cream HQ8 to address?", "type": "radio", "options": ["Hyperpigmentation", "Melasma", "Acne", "Wrinkles", "Redness"], "category": "product", "productKey": "Topical Cream HQ8" },
+  { "questionId": "TopicalCreamHQ8_dermatologist", "questionText": "Has a dermatologist seen you for this issue?", "type": "radio", "options": ["Yes", "No"], "category": "product", "productKey": "Topical Cream HQ8" },
+  { "questionId": "TopicalCreamHQ8_area", "questionText": "What area are you treating with Topical Cream HQ8?", "type": "radio", "options": ["Full Face", "Forehead", "Cheeks", "Other"], "category": "product", "productKey": "Topical Cream HQ8", "detailsQuestion": { "questionText": "Please specify the area if you selected 'Other'.", "type": "text", "showIf": ["Other"] } },
+  { "questionId": "TopicalCreamHQ8_severity", "questionText": "How severe is your primary concern?", "type": "radio", "options": ["Mild", "Moderate", "Severe"], "category": "product", "productKey": "Topical Cream HQ8" },
+
+  { "questionId": "TopicalCreamHQ4_issue", "questionText": "Which issue do you primarily want Topical Cream HQ4 to address?", "type": "radio", "options": ["Hyperpigmentation", "Melasma", "Acne", "Irritation", "Wrinkles"], "category": "product", "productKey": "Topical Cream HQ4" },
+  { "questionId": "TopicalCreamHQ4_dermatologist", "questionText": "Has a dermatologist seen you for this issue?", "type": "radio", "options": ["Yes", "No"], "category": "product", "productKey": "Topical Cream HQ4" },
+  { "questionId": "TopicalCreamHQ4_area", "questionText": "What area are you treating with Topical Cream HQ4?", "type": "radio", "options": ["Full Face", "Forehead", "Cheeks", "Other"], "category": "product", "productKey": "Topical Cream HQ4", "detailsQuestion": { "questionText": "Please specify the area if you selected 'Other'.", "type": "text", "showIf": ["Other"] } },
+  { "questionId": "TopicalCreamHQ4_sensitivity", "questionText": "Do you have sensitive skin?", "type": "radio", "options": ["Yes", "No"], "category": "product", "productKey": "Topical Cream HQ4" },
+
+  { "questionId": "TopicalCreamHQ6SB_issue", "questionText": "Which issue do you primarily want Topical Cream HQ6 Silicone Base to address?", "type": "radio", "options": ["Hyperpigmentation", "Melasma", "Acne", "Scars"], "category": "product", "productKey": "Topical Cream HQ6 Silicone Base" },
+  { "questionId": "TopicalCreamHQ6SB_dermatologist", "questionText": "Has a dermatologist seen you for this issue?", "type": "radio", "options": ["Yes", "No"], "category": "product", "productKey": "Topical Cream HQ6 Silicone Base" },
+  { "questionId": "TopicalCreamHQ6SB_area", "questionText": "What area are you treating with Topical Cream HQ6 Silicone Base?", "type": "radio", "options": ["Full Face", "Scars Only", "Other"], "category": "product", "productKey": "Topical Cream HQ6 Silicone Base", "detailsQuestion": { "questionText": "Please specify the area if you selected 'Other'.", "type": "text", "showIf": ["Other"] } },
+  { "questionId": "TopicalCreamHQ6SB_scarAge", "questionText": "How old are the scars you’re treating?", "type": "radio", "options": ["Less than 6 months", "6-12 months", "Over 1 year"], "category": "product", "productKey": "Topical Cream HQ6 Silicone Base" },
+
+  { "questionId": "TopicalCreamScar1_issue", "questionText": "Which issue do you primarily want Topical Cream Scar 1 to address?", "type": "radio", "options": ["Scars", "Wrinkles", "Redness"], "category": "product", "productKey": "Topical Cream Scar 1" },
+  { "questionId": "TopicalCreamScar1_area", "questionText": "What area are you treating with Topical Cream Scar 1?", "type": "radio", "options": ["Face", "Body", "Other"], "category": "product", "productKey": "Topical Cream Scar 1", "detailsQuestion": { "questionText": "Please specify the area if you selected 'Other'.", "type": "text", "showIf": ["Other"] } },
+  { "questionId": "TopicalCreamScar1_scarAge", "questionText": "How old are the scars you’re treating?", "type": "radio", "options": ["Less than 6 months", "6-12 months", "Over 1 year"], "category": "product", "productKey": "Topical Cream Scar 1" },
+  { "questionId": "TopicalCreamScar1_frequency", "questionText": "How often do you plan to use this product?", "type": "radio", "options": ["Daily", "Twice Daily", "As Needed"], "category": "product", "productKey": "Topical Cream Scar 1" },
+
+  { "questionId": "TopicalCreamScar2_issue", "questionText": "Which issue do you primarily want Topical Cream Scar 2 to address?", "type": "radio", "options": ["Scars", "Infections", "Redness"], "category": "product", "productKey": "Topical Cream Scar 2" },
+  { "questionId": "TopicalCreamScar2_dermatologist", "questionText": "Has a dermatologist seen you for this issue?", "type": "radio", "options": ["Yes", "No"], "category": "product", "productKey": "Topical Cream Scar 2" },
+  { "questionId": "TopicalCreamScar2_area", "questionText": "What area are you treating with Topical Cream Scar 2?", "type": "radio", "options": ["Face", "Body", "Other"], "category": "product", "productKey": "Topical Cream Scar 2", "detailsQuestion": { "questionText": "Please specify the area if you selected 'Other'.", "type": "text", "showIf": ["Other"] } },
+  { "questionId": "TopicalCreamScar2_scarStatus", "questionText": "Is the scar fresh or healed?", "type": "radio", "options": ["Fresh (less than 1 month)", "Healed (over 1 month)"], "category": "product", "productKey": "Topical Cream Scar 2" },
+
+  { "questionId": "TopicalCreamScar3Keloid_issue", "questionText": "Which issue do you primarily want Topical Cream Scar 3 to address?", "type": "radio", "options": ["Keloid Scars", "Hypertrophic Scars", "Itching", "Pain"], "category": "product", "productKey": "Topical Cream Scar 3 - Keloid Scars" },
+  { "questionId": "TopicalCreamScar3Keloid_dermatologist", "questionText": "Has a dermatologist seen you for this issue?", "type": "radio", "options": ["Yes", "No"], "category": "product", "productKey": "Topical Cream Scar 3 - Keloid Scars" },
+  { "questionId": "TopicalCreamScar3Keloid_area", "questionText": "What area are you treating with Topical Cream Scar 3?", "type": "radio", "options": ["Face", "Chest", "Back", "Other"], "category": "product", "productKey": "Topical Cream Scar 3 - Keloid Scars", "detailsQuestion": { "questionText": "Please specify the area if you selected 'Other'.", "type": "text", "showIf": ["Other"] } },
+  { "questionId": "TopicalCreamScar3Keloid_keloidSize", "questionText": "How large is the keloid scar?", "type": "radio", "options": ["Small (less than 1 cm)", "Medium (1-3 cm)", "Large (over 3 cm)"], "category": "product", "productKey": "Topical Cream Scar 3 - Keloid Scars" },
+
+  { "questionId": "SerumVCS30mL_issue", "questionText": "Which issue do you primarily want Serum VCS 30mL to address?", "type": "radio", "options": ["Dull Skin", "Uneven Skin Tone", "Fine Lines", "Dryness", "Hyperpigmentation"], "category": "product", "productKey": "Serum VCS 30mL" },
+  { "questionId": "SerumVCS30mL_area", "questionText": "What area are you treating with Serum VCS 30mL?", "type": "radio", "options": ["Full Face", "Neck", "Other"], "category": "product", "productKey": "Serum VCS 30mL", "detailsQuestion": { "questionText": "Please specify the area if you selected 'Other'.", "type": "text", "showIf": ["Other"] } },
+  { "questionId": "SerumVCS30mL_frequency", "questionText": "How often do you plan to use this product?", "type": "radio", "options": ["Daily", "Every Other Day", "As Needed"], "category": "product", "productKey": "Serum VCS 30mL" },
+  { "questionId": "SerumVCS30mL_sensitivity", "questionText": "Do you have sensitive skin?", "type": "radio", "options": ["Yes", "No"], "category": "product", "productKey": "Serum VCS 30mL" },
+
+  { "questionId": "TopicalCreamINT_issue", "questionText": "Which issue do you primarily want Topical Cream INT to address?", "type": "radio", "options": ["Hyperpigmentation", "Melasma", "Dryness", "Uneven Texture"], "category": "product", "productKey": "Topical Cream INT 30g/50g" },
+  { "questionId": "TopicalCreamINT_dermatologist", "questionText": "Has a dermatologist seen you for this issue?", "type": "radio", "options": ["Yes", "No"], "category": "product", "productKey": "Topical Cream INT 30g/50g" },
+  { "questionId": "TopicalCreamINT_area", "questionText": "What area are you treating with Topical Cream INT?", "type": "radio", "options": ["Full Face", "Body", "Other"], "category": "product", "productKey": "Topical Cream INT 30g/50g", "detailsQuestion": { "questionText": "Please specify the area if you selected 'Other'.", "type": "text", "showIf": ["Other"] } },
+  { "questionId": "TopicalCreamINT_drynessSeverity", "questionText": "How severe is your skin dryness?", "type": "radio", "options": ["Mild", "Moderate", "Severe"], "category": "product", "productKey": "Topical Cream INT 30g/50g" },
+
+  { "questionId": "TopicalCream130g_issue", "questionText": "Which issue do you primarily want Topical Cream 130g to address?", "type": "radio", "options": ["Hyperpigmentation", "Acne", "Uneven Texture", "Dryness", "Redness"], "category": "product", "productKey": "Topical Cream 130g" },
+  { "questionId": "TopicalCream130g_area", "questionText": "What area are you treating with Topical Cream 130g?", "type": "radio", "options": ["Full Face", "Body", "Other"], "category": "product", "productKey": "Topical Cream 130g", "detailsQuestion": { "questionText": "Please specify the area if you selected 'Other'.", "type": "text", "showIf": ["Other"] } },
+  { "questionId": "TopicalCream130g_frequency", "questionText": "How often do you plan to use this product?", "type": "radio", "options": ["Daily", "Every Other Day", "As Needed"], "category": "product", "productKey": "Topical Cream 130g" },
+  { "questionId": "TopicalCream130g_sensitivity", "questionText": "Do you have sensitive skin?", "type": "radio", "options": ["Yes", "No"], "category": "product", "productKey": "Topical Cream 130g" },
+
+  { "questionId": "TopicalCreamUE15g_issue", "questionText": "Which issue do you primarily want Topical Cream UE 15g to address?", "type": "radio", "options": ["Puffiness", "Dark Circles", "Fine Lines", "Bruising"], "category": "product", "productKey": "Topical Cream UE 15g" },
+  { "questionId": "TopicalCreamUE15g_area", "questionText": "What area are you treating with Topical Cream UE 15g?", "type": "radio", "options": ["Under Eyes", "Around Eyes", "Other"], "category": "product", "productKey": "Topical Cream UE 15g", "detailsQuestion": { "questionText": "Please specify the area if you selected 'Other'.", "type": "text", "showIf": ["Other"] } },
+  { "questionId": "TopicalCreamUE15g_frequency", "questionText": "How often do you plan to use this product?", "type": "radio", "options": ["Daily", "Twice Daily", "As Needed"], "category": "product", "productKey": "Topical Cream UE 15g" },
+  { "questionId": "TopicalCreamUE15g_severity", "questionText": "How severe are your under-eye concerns?", "type": "radio", "options": ["Mild", "Moderate", "Severe"], "category": "product", "productKey": "Topical Cream UE 15g" },
+
+  { "questionId": "SolutionHLM1_issue", "questionText": "Which issue do you primarily want Solution HLM1 to address?", "type": "radio", "options": ["Hair Loss", "Scalp Inflammation", "Thinning Hair"], "category": "product", "productKey": "Solution HLM1 50mL" },
+  { "questionId": "SolutionHLM1_dermatologist", "questionText": "Has a dermatologist seen you for this issue?", "type": "radio", "options": ["Yes", "No"], "category": "product", "productKey": "Solution HLM1 50mL" },
+  { "questionId": "SolutionHLM1_area", "questionText": "What scalp area are you treating with Solution HLM1?", "type": "radio", "options": ["Crown", "Hairline", "Entire Scalp", "Other"], "category": "product", "productKey": "Solution HLM1 50mL", "detailsQuestion": { "questionText": "Please specify the area if you selected 'Other'.", "type": "text", "showIf": ["Other"] } },
+  { "questionId": "SolutionHLM1_hairLossDuration", "questionText": "How long have you experienced hair loss?", "type": "radio", "options": ["Less than 6 months", "6-12 months", "Over 1 year"], "category": "product", "productKey": "Solution HLM1 50mL" },
+
+  { "questionId": "SolutionHLM2_issue", "questionText": "Which issue do you primarily want Solution HLM2 to address?", "type": "radio", "options": ["Hair Loss", "Dandruff", "Seborrheic Dermatitis", "Thinning Hair"], "category": "product", "productKey": "Solution HLM2 50mL" },
+  { "questionId": "SolutionHLM2_dermatologist", "questionText": "Has a dermatologist seen you for this issue?", "type": "radio", "options": ["Yes", "No"], "category": "product", "productKey": "Solution HLM2 50mL" },
+  { "questionId": "SolutionHLM2_area", "questionText": "What scalp area are you treating with Solution HLM2?", "type": "radio", "options": ["Crown", "Hairline", "Entire Scalp", "Other"], "category": "product", "productKey": "Solution HLM2 50mL", "detailsQuestion": { "questionText": "Please specify the area if you selected 'Other'.", "type": "text", "showIf": ["Other"] } },
+  { "questionId": "SolutionHLM2_dandruffSeverity", "questionText": "How severe is your dandruff or scalp condition?", "type": "radio", "options": ["Mild", "Moderate", "Severe"], "category": "product", "productKey": "Solution HLM2 50mL" },
+
+  { "questionId": "SolutionHLF1_issue", "questionText": "Which issue do you primarily want Solution HLF1 to address?", "type": "radio", "options": ["Hair Loss", "Scalp Irritation", "Thinning Hair"], "category": "product", "productKey": "Solution HLF1 50mL" },
+  { "questionId": "SolutionHLF1_dermatologist", "questionText": "Has a dermatologist seen you for this issue?", "type": "radio", "options": ["Yes", "No"], "category": "product", "productKey": "Solution HLF1 50mL" },
+  { "questionId": "SolutionHLF1_area", "questionText": "What scalp area are you treating with Solution HLF1?", "type": "radio", "options": ["Crown", "Hairline", "Entire Scalp", "Other"], "category": "product", "productKey": "Solution HLF1 50mL", "detailsQuestion": { "questionText": "Please specify the area if you selected 'Other'.", "type": "text", "showIf": ["Other"] } },
+  { "questionId": "SolutionHLF1_hormonalFactors", "questionText": "Do you suspect hormonal factors are contributing to your hair loss?", "type": "radio", "options": ["Yes", "No", "Not sure"], "category": "product", "productKey": "Solution HLF1 50mL" },
+
+  { "questionId": "SolutionHLF2_issue", "questionText": "Which issue do you primarily want Solution HLF2 to address?", "type": "radio", "options": ["Hair Loss", "Dandruff", "Seborrheic Dermatitis", "Thinning Hair"], "category": "product", "productKey": "Solution HLF2 50mL" },
+  { "questionId": "SolutionHLF2_dermatologist", "questionText": "Has a dermatologist seen you for this issue?", "type": "radio", "options": ["Yes", "No"], "category": "product", "productKey": "Solution HLF2 50mL" },
+  { "questionId": "SolutionHLF2_area", "questionText": "What scalp area are you treating with Solution HLF2?", "type": "radio", "options": ["Crown", "Hairline", "Entire Scalp", "Other"], "category": "product", "productKey": "Solution HLF2 50mL", "detailsQuestion": { "questionText": "Please specify the area if you selected 'Other'.", "type": "text", "showIf": ["Other"] } },
+  { "questionId": "SolutionHLF2_scalpHealth", "questionText": "Do you experience scalp flaking or itching?", "type": "radio", "options": ["Yes", "No"], "category": "product", "productKey": "Solution HLF2 50mL" },
+
+  { "questionId": "TheSpotCream_issue", "questionText": "Which issue do you primarily want The Spot Cream to address?", "type": "radio", "options": ["Brown Spots", "Hyperpigmentation", "Melasma", "Acne Pigmentation"], "category": "product", "productKey": "The Spot Cream" },
+  { "questionId": "TheSpotCream_dermatologist", "questionText": "Has a dermatologist seen you for this issue?", "type": "radio", "options": ["Yes", "No"], "category": "product", "productKey": "The Spot Cream" },
+  { "questionId": "TheSpotCream_area", "questionText": "Is The Spot Cream for your full face or specific spot?", "type": "radio", "options": ["Full Face", "Forehead", "Cheeks", "Other"], "category": "product", "productKey": "The Spot Cream", "detailsQuestion": { "questionText": "Please specify the area if you selected 'Other'.", "type": "text", "showIf": ["Other"] } },
+  { "questionId": "TheSpotCream_formula", "questionText": "Do you have any formula preference? *Your dermatologist will make the final call.", "type": "radio", "options": ["Let my doctor decide what's best", "Hydroquinone 4%", "Tretinoin 0.025%"], "category": "product", "productKey": "The Spot Cream" },
+
+  { "questionId": "TheBodyCream_issue", "questionText": "Which issue do you primarily want The Body Cream to address?", "type": "radio", "options": ["Sun Damage", "Dryness", "Eczema", "Hyperpigmentation"], "category": "product", "productKey": "The Body Cream" },
+  { "questionId": "TheBodyCream_dermatologist", "questionText": "Has a dermatologist seen you for this issue?", "type": "radio", "options": ["Yes", "No"], "category": "product", "productKey": "The Body Cream" },
+  { "questionId": "TheBodyCream_area", "questionText": "What area do you intend to treat with The Body Cream?", "type": "radio", "options": ["Back", "Arms", "Legs", "Other"], "category": "product", "productKey": "The Body Cream", "detailsQuestion": { "questionText": "Please specify the area if you selected 'Other'.", "type": "text", "showIf": ["Other"] } },
+  { "questionId": "TheBodyCream_formula", "questionText": "Do you have any formula preference? *Your dermatologist will make the final call.", "type": "radio", "options": ["Let my doctor decide what's best", "Tretinoin 0.01%", "Hydrocortisone 1%"], "category": "product", "productKey": "The Body Cream" }
+]
