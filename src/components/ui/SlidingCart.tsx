@@ -6,12 +6,11 @@ import { useNavigate } from "react-router-dom";
 import { RootState, AppDispatch } from "@/store";
 import {
   fetchCart,
-  updateQuantity,
-  removeFromCart,
-  addToCartThunk,
   removeFromCartThunk,
   updateCartQuantityThunk,
+  addToCartThunk,
   CartItem,
+  PurchaseOption,
 } from "@/slices/cartSlice";
 import { X, Loader2 } from "lucide-react";
 import { setIncompleteVisit, updateProfile } from "@/slices/profileSlice";
@@ -38,7 +37,7 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
   const initialFocusRef = useRef<HTMLButtonElement | null>(null);
 
   // Busy flags
-  const [merging, setMerging] = useState(false);   // login merge
+  const [merging, setMerging] = useState(false); // login merge
   const [blocking, setBlocking] = useState(false); // checkout sync lock
   const mergeInFlightRef = useRef(false);
   const busyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -50,7 +49,9 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
     if (!isOpen) return;
     const original = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = original; };
+    return () => {
+      document.body.style.overflow = original;
+    };
   }, [isOpen]);
 
   // Focus close button when opening (a11y)
@@ -63,7 +64,9 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
   // Close on ESC
   useEffect(() => {
     if (!isOpen) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [isOpen, onClose]);
@@ -74,18 +77,16 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
       setBlocking(false);
       setMerging(false);
       setError(null);
-      if (!hasFetched && isAuthenticated) {
-        // hydrate once per session after login
-        dispatch(fetchCart());
-      }
+
+      // ✅ Always refresh server cart when drawer opens (if logged in)
+      if (isAuthenticated) dispatch(fetchCart());
     } else {
-      // cleanup any timeout when closing
       if (busyTimerRef.current) {
         clearTimeout(busyTimerRef.current);
         busyTimerRef.current = null;
       }
     }
-  }, [isOpen, isAuthenticated, hasFetched, dispatch]);
+  }, [isOpen, isAuthenticated, dispatch]);
 
   // Auto-unlock if blocking or merging hangs too long
   useEffect(() => {
@@ -96,12 +97,14 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
       }
       return;
     }
+
     if (busyTimerRef.current) clearTimeout(busyTimerRef.current);
     busyTimerRef.current = setTimeout(() => {
       setBlocking(false);
       setMerging(false);
       setError("Took too long to sync your cart. Please try again.");
     }, BUSY_TIMEOUT_MS);
+
     return () => {
       if (busyTimerRef.current) {
         clearTimeout(busyTimerRef.current);
@@ -113,8 +116,10 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
   // Merge local -> server after login (idempotent)
   useEffect(() => {
     const justLoggedIn = isAuthenticated && !wasAuthed.current;
+
     if (justLoggedIn && !mergeInFlightRef.current) {
       mergeInFlightRef.current = true;
+
       (async () => {
         setMerging(true);
         try {
@@ -128,31 +133,32 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
         }
       })();
     }
+
     wasAuthed.current = isAuthenticated;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated, items]);
+  }, [isAuthenticated]);
 
   // ---------- Sync helpers ----------
 
   // Read server cart WITHOUT touching Redux (prevents flicker)
-  const readServerCartNoRedux = async (): Promise<CartItem[]> => {
+  const readServerCartNoRedux = async (): Promise<
+    Array<{ key: string; id: string; purchaseOption: PurchaseOption; quantity: number }>
+  > => {
     const res = await api.get("/cart");
     const raw = res?.data?.items ?? [];
-    return raw.map((it: any) => {
-      const prod = it?.product ?? it ?? {};
-      const id = prod._id || prod.id || it?.productId || it?.id || "";
-      return {
-        id,
-        name: prod.name || "",
-        price: prod.price ? `$${Number(prod.price).toFixed(2)}` : "$0.00",
-        imageSrc: prod.imageUrl || "",
-        quantity: it.quantity ?? it.qty ?? 1,
-      } as CartItem;
+
+    return raw.map((row: any) => {
+      const prod = row?.product ?? row ?? {};
+      const id = String(prod.id ?? row.productId ?? row.id ?? "");
+      const purchaseOption: PurchaseOption = (row.purchaseOption as PurchaseOption) ?? "ONE_TIME";
+      const quantity = typeof row.quantity === "number" && row.quantity > 0 ? row.quantity : 1;
+      const key = `${id}::${purchaseOption}`;
+      return { key, id, purchaseOption, quantity };
     });
   };
 
   /**
-   * Safely sync local cart to server sequentially to avoid Mongoose VersionError.
+   * Safely sync local cart to server sequentially.
    * refreshRedux:
    *   - true  => refresh Redux state after sync (login merge)
    *   - false => don't refresh Redux (checkout, to avoid flicker before navigating)
@@ -162,80 +168,117 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
     { refreshRedux }: { refreshRedux: boolean }
   ) => {
     const serverItems = await readServerCartNoRedux();
+
     const serverQty = new Map<string, number>();
-    for (const it of serverItems) serverQty.set(it.id, it.quantity);
+    for (const it of serverItems) serverQty.set(it.key, it.quantity);
 
     for (const it of localItems) {
-      const srv = serverQty.get(it.id) ?? 0;
+      const purchaseOption: PurchaseOption = it.purchaseOption ?? "ONE_TIME";
+      const key = `${it.id}::${purchaseOption}`;
+      const srv = serverQty.get(key) ?? 0;
+
       if (srv === 0) {
-        await dispatch(addToCartThunk({ productId: it.id, quantity: it.quantity })).unwrap();
+        await dispatch(
+          addToCartThunk({
+            productId: it.id,
+            quantity: it.quantity,
+            purchaseOption,
+          })
+        ).unwrap();
       } else if (srv !== it.quantity) {
-        await dispatch(updateCartQuantityThunk({ productId: it.id, quantity: it.quantity })).unwrap();
+        await dispatch(
+          updateCartQuantityThunk({
+            productId: it.id,
+            quantity: it.quantity,
+            purchaseOption,
+          })
+        ).unwrap();
       }
     }
 
-    // Optional: remove extras that exist on server but not locally
-    // for (const [serverId] of serverQty) {
-    //   if (!localItems.find(li => li.id === serverId)) {
-    //     await dispatch(removeFromCartThunk({ productId: serverId })).unwrap();
-    //   }
-    // }
-
     if (refreshRedux) {
-      await dispatch(fetchCart());
+      await dispatch(fetchCart()).unwrap();
     }
   };
 
   // ---------- Actions ----------
 
-  const handleRemove = (id: string) => {
+  const handleRemove = async (item: CartItem) => {
     if (!isAuthenticated) {
       onClose();
       navigate("/login");
       return;
     }
     if (blocking || merging) return;
-    dispatch(removeFromCart(id));
-    dispatch(removeFromCartThunk({ productId: id })).catch(() =>
-      setError("Failed to remove item from cart.")
-    );
+
+    setError(null);
+    try {
+      await dispatch(
+        removeFromCartThunk({
+          productId: item.id,
+          purchaseOption: item.purchaseOption ?? "ONE_TIME",
+        })
+      ).unwrap();
+
+      // ✅ Refresh from server so UI updates reliably
+      await dispatch(fetchCart()).unwrap();
+    } catch (e: any) {
+      setError(e?.message || "Failed to remove item from cart.");
+    }
   };
 
-  const handleQuantityChange = (id: string, qty: number) => {
+  const handleQuantityChange = async (item: CartItem, qty: number) => {
     if (!isAuthenticated) {
       onClose();
       navigate("/login");
       return;
     }
     if (blocking || merging) return;
+
     const quantity = Math.max(1, Number.isFinite(qty) ? qty : 1);
-    dispatch(updateQuantity({ id, quantity }));
-    dispatch(updateCartQuantityThunk({ productId: id, quantity })).catch(() =>
-      setError("Failed to update quantity.")
-    );
+    setError(null);
+
+    try {
+      await dispatch(
+        updateCartQuantityThunk({
+          productId: item.id,
+          quantity,
+          purchaseOption: item.purchaseOption ?? "ONE_TIME",
+        })
+      ).unwrap();
+
+      // ✅ Refresh from server so UI updates reliably
+      await dispatch(fetchCart()).unwrap();
+    } catch (e: any) {
+      setError(e?.message || "Failed to update quantity.");
+    }
   };
 
   const handleCheckout = async () => {
     if (items.length === 0) return;
+
     if (!isAuthenticated) {
       onClose();
-      // ⬇️ carry intent so Login can route to Questionnaire
       navigate("/login", { state: { from: "/checkout", intent: "checkout" } });
       return;
     }
+
     setBlocking(true);
+    setError(null);
+
     try {
       await syncCartToServer(items, { refreshRedux: false });
+
       dispatch(setIncompleteVisit(true));
       dispatch(updateProfile({ incompleteVisit: true })).catch(() => {
         setError("Saved locally. Failed to persist visit status.");
       });
+
       onClose();
       navigate("/questionnaire");
     } catch {
       setError("Error syncing cart with server. Try again.");
     } finally {
-      // Always unlock UI even if we navigated away; prevents "locked" drawer next time
       setBlocking(false);
     }
   };
@@ -246,12 +289,12 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
   const disableCheckout = items.length === 0 || isBusy;
   const showSpinnerOnly = items.length === 0 && (loading || merging);
 
-  // ---------- Render in a Portal to avoid clipping/z-index issues ----------
+  // ---------- Render ----------
   if (!isOpen) return null;
 
   return createPortal(
     <>
-      {/* Backdrop (below drawer) */}
+      {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/40 z-[100000]"
         onClick={onClose}
@@ -296,7 +339,7 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
           ) : items.length ? (
             items.map((item) => (
               <div
-                key={item.id}
+                key={`${item.id}-${item.purchaseOption ?? "ONE_TIME"}`}
                 className="flex items-center bg-gray-100 p-4 rounded shadow-sm hover:shadow-md transition"
               >
                 <img
@@ -304,20 +347,25 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
                   alt={item.name}
                   className="h-14 w-14 object-cover mr-4 rounded"
                 />
+
                 <div className="flex-1">
                   <p className="font-medium text-gray-800">{item.name}</p>
                   <p className="text-sm text-gray-500">{item.price}</p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {item.purchaseOption === "REFILL_2M" ? "Refill (2M)" : "One-time"}
+                  </p>
+
                   <div className="mt-2 flex items-center space-x-2">
                     <input
                       type="number"
                       min={1}
                       value={item.quantity}
                       disabled={isBusy}
-                      onChange={(e) => handleQuantityChange(item.id, +e.target.value)}
+                      onChange={(e) => handleQuantityChange(item, +e.target.value)}
                       className="w-20 border border-gray-300 p-1 text-sm rounded focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 focus:ring-offset-1 disabled:opacity-60"
                     />
                     <button
-                      onClick={() => handleRemove(item.id)}
+                      onClick={() => handleRemove(item)}
                       disabled={isBusy}
                       className="text-red-500 hover:text-red-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 rounded disabled:opacity-60"
                     >

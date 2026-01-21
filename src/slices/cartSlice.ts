@@ -4,10 +4,10 @@ import api from "@/services/api";
 export type PurchaseOption = "REFILL_2M" | "ONE_TIME";
 
 export interface CartItem {
-  id: string; // ✅ Prisma Product.id
+  id: string; // Prisma Product.id
   imageSrc: string;
   name: string;
-  price: string; // "$55.00" (UI only)
+  price: string; // UI only
   quantity: number;
   purchaseOption: PurchaseOption;
 }
@@ -31,149 +31,184 @@ const initialState: CartState = {
 const centsToDollarsString = (cents?: number) =>
   `$${(((cents ?? 0) as number) / 100).toFixed(2)}`;
 
-// ✅ GET /cart (expects backend returns { items: [...] })
-export const fetchCart = createAsyncThunk<CartItem[]>(
+function normalizeCartItems(rawItems: any[]): CartItem[] {
+  return (rawItems ?? []).map((row: any) => {
+    const prod = row.product ?? row;
+
+    const id = String(prod.id ?? row.productId ?? "");
+    const name = String(prod.name ?? "");
+    const imageSrc = String(prod.imageUrl ?? prod.imageSrc ?? "");
+
+    const purchaseOption: PurchaseOption =
+      (row.purchaseOption as PurchaseOption) ?? "ONE_TIME";
+
+    const price =
+      purchaseOption === "REFILL_2M"
+        ? centsToDollarsString(prod.priceRefill2MCents)
+        : centsToDollarsString(prod.priceOneTimeCents);
+
+    const quantity =
+      typeof row.quantity === "number" && row.quantity > 0 ? row.quantity : 1;
+
+    return { id, name, imageSrc, price, quantity, purchaseOption };
+  });
+}
+
+function extractErrorMessage(err: any) {
+  return (
+    err?.response?.data?.message ||
+    err?.response?.data?.error ||
+    err?.message ||
+    "Request failed"
+  );
+}
+
+// ✅ GET /cart
+export const fetchCart = createAsyncThunk<CartItem[], void, { rejectValue: string }>(
   "cart/fetchCart",
-  async () => {
-    const res = await api.get("/cart");
-    const rawItems = res.data?.items ?? [];
-
-    // expected row shape:
-    // row = { product: { id,name,imageUrl, priceOneTimeCents, priceRefill2MCents }, quantity, purchaseOption }
-    const normalized: CartItem[] = rawItems.map((row: any) => {
-      const prod = row.product ?? row;
-
-      const id = String(prod.id ?? row.productId ?? "");
-      const name = String(prod.name ?? "");
-      const imageSrc = String(prod.imageUrl ?? prod.imageSrc ?? "");
-
-      const purchaseOption: PurchaseOption =
-        (row.purchaseOption as PurchaseOption) ?? "ONE_TIME";
-
-      const price =
-        purchaseOption === "REFILL_2M"
-          ? centsToDollarsString(prod.priceRefill2MCents)
-          : centsToDollarsString(prod.priceOneTimeCents);
-
-      const quantity =
-        typeof row.quantity === "number" && row.quantity > 0 ? row.quantity : 1;
-
-      return { id, name, imageSrc, price, quantity, purchaseOption };
-    });
-
-    return normalized;
+  async (_, thunkAPI) => {
+    try {
+      const res = await api.get("/cart");
+      return normalizeCartItems(res.data?.items ?? []);
+    } catch (err: any) {
+      return thunkAPI.rejectWithValue(extractErrorMessage(err));
+    }
   }
 );
 
-// ✅ POST /cart
+// ✅ POST /cart then refresh cart
 export const addToCartThunk = createAsyncThunk<
-  void,
-  { productId: string; quantity: number; purchaseOption?: PurchaseOption }
->("cart/addToCartThunk", async ({ productId, quantity, purchaseOption }) => {
-  await api.post("/cart", { productId, quantity, purchaseOption });
+  CartItem[],
+  { productId: string; quantity: number; purchaseOption?: PurchaseOption },
+  { rejectValue: string }
+>("cart/addToCartThunk", async (payload, thunkAPI) => {
+  try {
+    if (!payload?.productId) {
+      return thunkAPI.rejectWithValue("Missing productId");
+    }
+
+    await api.post("/cart", {
+      productId: payload.productId,
+      quantity: payload.quantity,
+      purchaseOption: payload.purchaseOption ?? "ONE_TIME",
+    });
+
+    const res = await api.get("/cart");
+    return normalizeCartItems(res.data?.items ?? []);
+  } catch (err: any) {
+    return thunkAPI.rejectWithValue(extractErrorMessage(err));
+  }
 });
 
-// ✅ PUT /cart/:productId
+// ✅ PUT /cart/:productId then refresh cart
 export const updateCartQuantityThunk = createAsyncThunk<
-  void,
-  { productId: string; quantity: number; purchaseOption?: PurchaseOption }
->("cart/updateCartQuantityThunk", async ({ productId, quantity, purchaseOption }) => {
-  await api.put(`/cart/${productId}`, { quantity, purchaseOption });
+  CartItem[],
+  { productId: string; quantity: number; purchaseOption?: PurchaseOption },
+  { rejectValue: string }
+>("cart/updateCartQuantityThunk", async ({ productId, quantity, purchaseOption }, thunkAPI) => {
+  try {
+    if (!productId) return thunkAPI.rejectWithValue("Missing productId");
+
+    await api.put(`/cart/${productId}`, { quantity, purchaseOption });
+
+    const res = await api.get("/cart");
+    return normalizeCartItems(res.data?.items ?? []);
+  } catch (err: any) {
+    return thunkAPI.rejectWithValue(extractErrorMessage(err));
+  }
 });
 
-// ✅ DELETE /cart/:productId
+// ✅ DELETE /cart/:productId then refresh cart
 export const removeFromCartThunk = createAsyncThunk<
-  void,
-  { productId: string; purchaseOption?: PurchaseOption }
->("cart/removeFromCartThunk", async ({ productId, purchaseOption }) => {
-  // if your backend ignores purchaseOption, it’s fine
-  await api.delete(`/cart/${productId}`, { data: { purchaseOption } });
+  CartItem[],
+  { productId: string; purchaseOption?: PurchaseOption },
+  { rejectValue: string }
+>("cart/removeFromCartThunk", async ({ productId, purchaseOption }, thunkAPI) => {
+  try {
+    if (!productId) return thunkAPI.rejectWithValue("Missing productId");
+
+    await api.delete(`/cart/${productId}`, { data: { purchaseOption } });
+
+    const res = await api.get("/cart");
+    return normalizeCartItems(res.data?.items ?? []);
+  } catch (err: any) {
+    return thunkAPI.rejectWithValue(extractErrorMessage(err));
+  }
 });
 
-// ✅ DELETE /cart
-export const clearCartThunk = createAsyncThunk<void>("cart/clearCartThunk", async () => {
-  await api.delete("/cart");
-});
+// ✅ DELETE /cart then refresh cart
+export const clearCartThunk = createAsyncThunk<CartItem[], void, { rejectValue: string }>(
+  "cart/clearCartThunk",
+  async (_, thunkAPI) => {
+    try {
+      await api.delete("/cart");
+      const res = await api.get("/cart");
+      return normalizeCartItems(res.data?.items ?? []);
+    } catch (err: any) {
+      return thunkAPI.rejectWithValue(extractErrorMessage(err));
+    }
+  }
+);
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart(state, action: PayloadAction<CartItem>) {
-      const existing = state.items.find(
-        (i) => i.id === action.payload.id && i.purchaseOption === action.payload.purchaseOption
-      );
-      if (existing) existing.quantity += action.payload.quantity;
-      else state.items.push(action.payload);
-    },
-
-    removeFromCart(
-      state,
-      action: PayloadAction<{ id: string; purchaseOption?: PurchaseOption }>
-    ) {
-      state.items = state.items.filter(
-        (i) =>
-          !(i.id === action.payload.id &&
-            (action.payload.purchaseOption ? i.purchaseOption === action.payload.purchaseOption : true))
-      );
-    },
-
-    updateQuantity(
-      state,
-      action: PayloadAction<{ id: string; quantity: number; purchaseOption?: PurchaseOption }>
-    ) {
-      const it = state.items.find(
-        (i) =>
-          i.id === action.payload.id &&
-          (action.payload.purchaseOption ? i.purchaseOption === action.payload.purchaseOption : true)
-      );
-      if (it) it.quantity = action.payload.quantity;
-    },
-
+    // (Optional UI-only reducers; keep if you want)
     clearCart(state) {
       state.items = [];
       state.hasFetched = false;
       state.addConsultation = false;
+      state.error = null;
     },
-
     toggleConsultation(state, action: PayloadAction<boolean>) {
       state.addConsultation = !!action.payload;
     },
   },
-
   extraReducers: (builder) => {
+    const pending = (state: CartState) => {
+      state.loading = true;
+      state.error = null;
+    };
+    const fulfilled = (state: CartState, action: any) => {
+      state.items = action.payload;
+      state.loading = false;
+      state.hasFetched = true;
+      state.error = null;
+    };
+    const rejected = (state: CartState, action: any, fallback: string) => {
+      state.loading = false;
+      state.hasFetched = true;
+      state.error = action.payload || action.error?.message || fallback;
+    };
+
     builder
-      .addCase(fetchCart.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchCart.fulfilled, (state, action) => {
-        state.items = action.payload;
-        state.loading = false;
-        state.hasFetched = true;
-        state.error = null;
-      })
-      .addCase(fetchCart.rejected, (state, action) => {
-        state.loading = false;
-        state.hasFetched = true;
-        state.error = action.error.message || "Failed to fetch cart";
-      })
-      .addCase(addToCartThunk.rejected, (state, action) => {
-        state.error = action.error.message || "Add to cart failed";
-      })
-      .addCase(updateCartQuantityThunk.rejected, (state, action) => {
-        state.error = action.error.message || "Update quantity failed";
-      })
-      .addCase(removeFromCartThunk.rejected, (state, action) => {
-        state.error = action.error.message || "Remove failed";
-      })
-      .addCase(clearCartThunk.rejected, (state, action) => {
-        state.error = action.error.message || "Clear cart failed";
-      });
+      // fetch
+      .addCase(fetchCart.pending, pending)
+      .addCase(fetchCart.fulfilled, fulfilled)
+      .addCase(fetchCart.rejected, (s, a) => rejected(s, a, "Failed to fetch cart"))
+
+      // add
+      .addCase(addToCartThunk.pending, pending)
+      .addCase(addToCartThunk.fulfilled, fulfilled)
+      .addCase(addToCartThunk.rejected, (s, a) => rejected(s, a, "Add to cart failed"))
+
+      // update
+      .addCase(updateCartQuantityThunk.pending, pending)
+      .addCase(updateCartQuantityThunk.fulfilled, fulfilled)
+      .addCase(updateCartQuantityThunk.rejected, (s, a) => rejected(s, a, "Update quantity failed"))
+
+      // remove
+      .addCase(removeFromCartThunk.pending, pending)
+      .addCase(removeFromCartThunk.fulfilled, fulfilled)
+      .addCase(removeFromCartThunk.rejected, (s, a) => rejected(s, a, "Remove failed"))
+
+      // clear
+      .addCase(clearCartThunk.pending, pending)
+      .addCase(clearCartThunk.fulfilled, fulfilled)
+      .addCase(clearCartThunk.rejected, (s, a) => rejected(s, a, "Clear cart failed"));
   },
 });
 
-export const { addToCart, removeFromCart, updateQuantity, clearCart, toggleConsultation } =
-  cartSlice.actions;
-
+export const { clearCart, toggleConsultation } = cartSlice.actions;
 export default cartSlice.reducer;

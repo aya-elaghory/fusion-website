@@ -2,11 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "@/store";
-import { addToCart, addToCartThunk } from "@/slices/cartSlice";
+import { addToCartThunk, fetchCart } from "@/slices/cartSlice";
 import ingredientsLogo from "/assets/ingredients_logo.png";
 
 interface ProductCardProps {
-  id: string; // ✅ MUST be Prisma product.id
+  id: string; // ✅ Prisma product.id
   imageSrc: string;
   name: string;
   rating: number;
@@ -49,7 +49,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const dispatch = useDispatch<AppDispatch>();
 
   const cartItems = useSelector((state: RootState) => state.cart?.items || []);
-  const token = useSelector((state: RootState) => state.auth?.token) as string | undefined;
 
   const isInCart =
     addedToCart !== undefined ? addedToCart : cartItems.some((item) => item.id === id);
@@ -72,32 +71,27 @@ const ProductCard: React.FC<ProductCardProps> = ({
     return names.length > 3 ? `${names.slice(0, 3).join(", ")} & more` : names.join(", ");
   };
 
-const handleAddToCart = async () => {
-  if (isInCart) return;
+  const handleAddToCart = async () => {
+    if (isInCart) return;
 
-  try {
-    // 1) send to backend (this calls POST /cart)
-    await dispatch(
-      addToCartThunk({ productId: id, quantity: 1 })
-    ).unwrap();
+    try {
+      // ✅ Send to backend
+      await dispatch(
+        addToCartThunk({
+          productId: id,
+          quantity: 1,
+          purchaseOption: "ONE_TIME",
+        })
+      ).unwrap();
 
-    // 2) update local UI cart
-    dispatch(
-      addToCart({
-        id,
-        imageSrc,
-        name,
-        price: price != null ? `$${Number(price).toFixed(2)}` : "$0.00",
-        quantity: 1,
-        purchaseOption: "ONE_TIME",
-      })
-    );
+      // ✅ Refresh cart from backend so UI updates
+      await dispatch(fetchCart()).unwrap();
 
-    toggleCart();
-  } catch (e) {
-    console.error("Add to cart failed:", e);
-  }
-};
+      toggleCart();
+    } catch (e) {
+      console.error("Add to cart failed:", e);
+    }
+  };
 
   const layoutStyles = {
     treatments: "bg-green-50 w-full max-w-sm mx-auto flex flex-col border h-auto",
@@ -178,10 +172,14 @@ const handleAddToCart = async () => {
             <h3 className="font-semibold text-gray-900 text-[32px]">{name}</h3>
             <div className="flex items-center">
               <span className="text-green-600">★</span>
-              <span className="ml-1 text-lg text-gray-600">{rating}/5</span>
+              <span className="ml-1 text-lg text-gray-600">
+                {rating}/5
+              </span>
             </div>
           </div>
+
           <p className="text-gray-600 text-base">{description}</p>
+
           <div className="mt-2 flex items-center space-x-2 bg-white p-1">
             <img src={ingredientsLogo} alt="Ingredients" className="w-5 h-5 object-contain" />
             <p className="text-sm text-gray-700 font-bold text-[16px]">{formatIngredients()}</p>
@@ -215,13 +213,20 @@ const handleAddToCart = async () => {
         <div className="flex-grow grid grid-rows-[auto,auto,auto,1fr] gap-3 p-4">
           <div className="flex items-start justify-between">
             <div>
-              <h3 className={`font-semibold text-gray-900 ${layout === "treatments" ? "text-md" : "text-lg"}`}>
+              <h3
+                className={`font-semibold text-gray-900 ${
+                  layout === "treatments" ? "text-md" : "text-lg"
+                }`}
+              >
                 {name}
               </h3>
               {price != null && layout === "treatments" && (
-                <p className="text-sm font-semibold text-gray-700 mt-1">{`$${price.toFixed(2)}/month`}</p>
+                <p className="text-sm font-semibold text-gray-700 mt-1">
+                  {`$${price.toFixed(2)}/month`}
+                </p>
               )}
             </div>
+
             <div className="flex items-center">
               <span className="text-green-600">★</span>
               <span className="ml-1 text-sm text-gray-600">{rating}/5</span>

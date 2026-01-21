@@ -7,24 +7,38 @@ interface TreatmentsProps {
   toggleCart: () => void;
 }
 
-const centsToDollars = (cents?: number) => Number(((cents ?? 0) / 100).toFixed(2));
+const centsToDollars = (cents?: number) =>
+  Number(((cents ?? 0) / 100).toFixed(2));
+
+const slugify = (s: string) =>
+  String(s || "")
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-");
 
 const Treatments: React.FC<TreatmentsProps> = ({ toggleCart }) => {
   const cartItems = useSelector((state: RootState) => state.cart?.items ?? []);
-  const loading = useSelector((state: RootState) => state.products?.loading ?? false);
+  const loading = useSelector(
+    (state: RootState) => state.products?.loading ?? false
+  );
   const error = useSelector((state: RootState) => state.products?.error ?? null);
-  const allProducts = useSelector((state: RootState) => state.products?.products ?? []) as any[];
+  const allProducts = useSelector(
+    (state: RootState) => state.products?.products ?? []
+  ) as any[];
 
   const treatments = useMemo(() => {
-    return allProducts.map((product) => {
-      const id = String(product.id); // ✅ Prisma id
+    return (allProducts ?? []).map((product) => {
+      const id = String(product.id ?? ""); // ✅ Prisma id
 
       const monthly = centsToDollars(product.priceOneTimeCents);
 
       const ingredientsStr =
         Array.isArray(product.ingredients)
           ? (() => {
-              const names = product.ingredients.map((i: any) => i?.name).filter(Boolean);
+              const names = product.ingredients
+                .map((i: any) => i?.name)
+                .filter(Boolean);
               const topThree = names.slice(0, 3);
               return topThree.join(", ") + (names.length > 3 ? " & more" : "");
             })()
@@ -32,7 +46,7 @@ const Treatments: React.FC<TreatmentsProps> = ({ toggleCart }) => {
 
       return {
         id,
-        imageSrc: product.imageUrl,
+        imageSrc: product.imageUrl || product.imageSrc || "",
         topIcon: product.topIcon,
         sideIcon: product.sideIcon,
         name: product.name,
@@ -40,7 +54,7 @@ const Treatments: React.FC<TreatmentsProps> = ({ toggleCart }) => {
         price: monthly,
         description: product.description,
         ingredients: ingredientsStr,
-        learnLink: `/product/${String(product.name).toLowerCase().replace(/\s+/g, "-")}`,
+        learnLink: `/product/${slugify(product.name)}`,
         concerns: product.concerns ?? [],
       };
     });
@@ -56,7 +70,7 @@ const Treatments: React.FC<TreatmentsProps> = ({ toggleCart }) => {
         {loading ? (
           <p className="text-center">Loading products…</p>
         ) : error ? (
-          <p className="text-center text-red-500">{error}</p>
+          <p className="text-center text-red-500">{String(error)}</p>
         ) : treatments.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {treatments.map((t) => {
@@ -65,7 +79,7 @@ const Treatments: React.FC<TreatmentsProps> = ({ toggleCart }) => {
               return (
                 <ProductCard
                   key={t.id}
-                  id={t.id}                 // ✅ Prisma id
+                  id={t.id} // ✅ Prisma id
                   imageSrc={t.imageSrc}
                   topIcon={t.topIcon}
                   sideIcon={t.sideIcon}

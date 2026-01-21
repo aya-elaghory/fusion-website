@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "@/store";
+import type { RootState, AppDispatch } from "@/store";
 import {
   addToCart as addToCartLocal,
   addToCartThunk,
-  CartItem,
+  fetchCart,
+  type PurchaseOption,
 } from "@/slices/cartSlice";
 import { concernMapUrl } from "@/data/products";
 import ingredientsLogo from "/assets/ingredients_logo.png";
 
 interface ProductCardConcernsProps {
-  id: string; // IMPORTANT: Prisma Product.id (UUID)
+  id: string; // expected: Prisma Product.id (UUID)
   imageSrc: string;
   topIcon?: string;
   sideIcon?: string;
@@ -20,10 +21,8 @@ interface ProductCardConcernsProps {
   price?: number;
   description: string;
   ingredients: { name: string; percentage: string }[];
-  orderLink?: string;
   learnLink?: string;
   className?: string;
-  cartLogo?: string;
   toggleCart: () => void;
   concerns?: string[];
 }
@@ -46,48 +45,61 @@ const ProductCardConcerns: React.FC<ProductCardConcernsProps> = ({
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
+  const [error, setError] = useState<string | null>(null);
+
   const cartItems = useSelector((state: RootState) => state.cart?.items || []);
   const isAuthenticated = useSelector(
     (state: RootState) => state.auth.isAuthenticated
   );
 
-  const isInCart = cartItems.some((item) => item.id === id);
-
- const handleAddToCart = () => {
-  if (isInCart) return;
-
-  dispatch(
-    addToCart({
-      id, // ✅ Prisma product.id
-      imageSrc,
-      name,
-      price: price != null ? `$${Number(price).toFixed(2)}` : "$0.00",
-      quantity: 1,
-      purchaseOption: "ONE_TIME",
-    })
+  const isInCart = cartItems.some(
+    (item) => item.id === id && (item.purchaseOption ?? "ONE_TIME") === "ONE_TIME"
   );
-
-  toggleCart();
-};
-
-    dispatch(addToCartLocal(cartItem));
-    toggleCart();
-
-    if (isAuthenticated) {
-      dispatch(
-        addToCartThunk({
-          productId: id,
-          quantity: 1,
-          purchaseOption: "ONE_TIME",
-        })
-      );
-    }
-  };
 
   const formattedIngredients =
     ingredients.length > 3
       ? `${ingredients.slice(0, 3).map((ing) => ing.name).join(", ")} & more`
       : ingredients.map((ing) => ing.name).join(", ");
+
+  const handleAddToCart = async () => {
+    if (isInCart) return;
+
+    setError(null);
+
+    const purchaseOption: PurchaseOption = "ONE_TIME";
+
+    // ✅ Add locally so UI updates immediately
+    dispatch(
+      addToCartLocal({
+        id,
+        imageSrc,
+        name,
+        price: price != null ? `$${Number(price).toFixed(2)}` : "$0.00",
+        quantity: 1,
+        purchaseOption,
+      })
+    );
+
+    toggleCart();
+
+    // ✅ If logged in, also add to backend
+    if (isAuthenticated) {
+      try {
+        await dispatch(
+          addToCartThunk({
+            productId: id,
+            quantity: 1,
+            purchaseOption,
+          })
+        ).unwrap();
+
+        // ✅ Pull server cart back (keeps UI in sync with backend)
+        await dispatch(fetchCart()).unwrap();
+      } catch (e: any) {
+        setError(e?.message || "Failed to add item to server cart.");
+      }
+    }
+  };
 
   return (
     <div
@@ -99,11 +111,13 @@ const ProductCardConcerns: React.FC<ProductCardConcernsProps> = ({
           alt={name}
           className="w-full h-[474px] object-cover rounded-t-lg"
         />
+
         {topIcon && (
           <div className="absolute top-2 right-2 bg-white text-gray-800 text-xs font-semibold px-2 py-1 rounded shadow-sm">
             {topIcon}
           </div>
         )}
+
         {sideIcon && (
           <div className="absolute bottom-2 right-2">
             <img
@@ -137,6 +151,10 @@ const ProductCardConcerns: React.FC<ProductCardConcernsProps> = ({
           </p>
         </div>
 
+        {error ? (
+          <p className="mt-3 text-sm text-red-600">{error}</p>
+        ) : null}
+
         <div className="mt-6 flex items-center space-x-3">
           {learnLink && (
             <button
@@ -156,6 +174,7 @@ const ProductCardConcerns: React.FC<ProductCardConcernsProps> = ({
                 : "bg-white text-gray-700 border-gray-300 hover:bg-green-200"
             } transition-colors`}
             aria-label={isInCart ? "Added to cart" : "Add to cart"}
+            title={isInCart ? "Already in cart" : "Add to cart"}
           >
             {isInCart ? "✓" : "+"}
           </button>
@@ -171,7 +190,10 @@ const ProductCardConcerns: React.FC<ProductCardConcernsProps> = ({
                 <div key={concern} className="flex flex-col items-center">
                   <div className="w-16 h-14 border rounded-md overflow-hidden">
                     <img
-                      src={concernMapUrl.get(concern) || "https://via.placeholder.com/50"}
+                      src={
+                        concernMapUrl.get(concern) ||
+                        "https://via.placeholder.com/50"
+                      }
                       alt={concern}
                       className="w-full h-full object-cover"
                     />
