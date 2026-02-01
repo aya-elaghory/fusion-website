@@ -41,18 +41,32 @@ const disableDevProxy =
 
 // In production builds, ignore a dev-only value of "/api" (used for the Vite
 // proxy) so the client calls the real backend instead of the static host.
+const allowProdApiPath =
+  (import.meta.env.VITE_ALLOW_API_PATH_IN_PROD as string) === "true";
+
 const envApiUrlRaw = (() => {
   const raw = (import.meta.env.VITE_API_URL as string) || "";
   if (isDev && !disableDevProxy) return "/api"; // prefer proxy in dev
-  if (!isDev && raw.trim() === "/api") {
+
+  // In production we normally avoid a bare "/api" to prevent hitting the
+  // static host. Allow it explicitly when a platform rewrite (e.g., Vercel)
+  // forwards /api to the backend and VITE_ALLOW_API_PATH_IN_PROD=true.
+  if (!isDev && raw.trim() === "/api" && !allowProdApiPath) {
     // eslint-disable-next-line no-console
     console.warn(
-      "VITE_API_URL was '/api' in production; falling back to backend URL to avoid same-origin /api calls.",
+      "VITE_API_URL was '/api' in production; set VITE_ALLOW_API_PATH_IN_PROD=true when using platform rewrites.",
     );
     return "";
   }
   return raw;
 })();
+
+// Detect Vercel at build/run time to auto-prefer the rewrite path when no env
+const isLikelyVercel =
+  (typeof window !== "undefined" &&
+    /\.vercel\.app$/i.test(window.location.hostname)) ||
+  (import.meta.env as any).VERCEL === "1" ||
+  !!(import.meta.env as any).VITE_VERCEL_URL;
 
 // Default to the production backend as a proxy target in dev so CORS is avoided
 // even when no env vars are set locally.
@@ -75,7 +89,17 @@ const shouldUseDevProxy = isDev && !disableDevProxy;
 
 // If we should use the proxy (dev or localhost runtime), force base to /api.
 // This avoids hitting the remote backend directly and side-steps CORS.
-const rawBase = shouldUseDevProxy ? "/api" : envApiUrlRaw || defaultProdUrl;
+let rawBase = shouldUseDevProxy ? "/api" : envApiUrlRaw || defaultProdUrl;
+
+// Fallback for Vercel deployments when env vars are missing: prefer /api so the
+// vercel.json rewrite handles CORS.
+if (
+  !isDev &&
+  isLikelyVercel &&
+  (!envApiUrlRaw || envApiUrlRaw === defaultProdUrl)
+) {
+  rawBase = "/api";
+}
 const proxyTarget = coerceHttpsForRailway(
   envProxyTarget || (isFullUrl ? envApiUrlRaw : undefined) || defaultProdUrl,
 );
@@ -104,6 +128,12 @@ const api = axios.create({
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
 });
+
+// Debug hint: log the resolved baseURL in production to verify rewrites/envs
+if (!import.meta.env.DEV) {
+  // eslint-disable-next-line no-console
+  console.info("API baseURL", baseURL);
+}
 
 // Upgrade accidental http calls to Railway to https to avoid 301/307 preflight failures
 const upgradeRailwayToHttps = (config: any) => {

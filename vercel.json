@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://fusionbackend-production.up.railway.app/$1"
+    }
+  ]
+}
