@@ -16,10 +16,10 @@ const ConcernTreatments: React.FC<ConcernTreatmentsProps> = ({
 
   const cartItems = useSelector((state: RootState) => state.cart?.items || []);
   const mainConcerns = useSelector(
-    (state: RootState) => state.mainConcerns.concerns || []
+    (state: RootState) => state.mainConcerns.concerns || [],
   );
   const products = useSelector(
-    (state: RootState) => state.products.products || []
+    (state: RootState) => state.products.products || [],
   );
 
   // Read main concern from URL (e.g. /dark-spots)
@@ -28,7 +28,7 @@ const ConcernTreatments: React.FC<ConcernTreatmentsProps> = ({
   const initialConcern =
     mainConcerns.find(
       (main) =>
-        main.main_concern_name.toLowerCase().replace(/ /g, "-") === pathConcern
+        main.main_concern_name.toLowerCase().replace(/ /g, "-") === pathConcern,
     )?.main_concern_name ||
     mainConcerns[0]?.main_concern_name ||
     "";
@@ -42,7 +42,7 @@ const ConcernTreatments: React.FC<ConcernTreatmentsProps> = ({
       mainConcerns.find(
         (main) =>
           main.main_concern_name.toLowerCase().replace(/ /g, "-") ===
-          pathConcern
+          pathConcern,
       )?.main_concern_name ||
       mainConcerns[0]?.main_concern_name ||
       "";
@@ -52,21 +52,23 @@ const ConcernTreatments: React.FC<ConcernTreatmentsProps> = ({
   // The selected main concern object
   const selectedMain = useMemo(
     () => mainConcerns.find((m) => m.main_concern_name === selectedMainConcern),
-    [mainConcerns, selectedMainConcern]
+    [mainConcerns, selectedMainConcern],
   );
 
   // Build the flat list of products for ALL subconcerns under the selected main concern
   const allProductsForMain = useMemo(() => {
     if (!selectedMain) return [];
     const subNames = new Set(
-      (selectedMain.subConcerns || []).map((s: any) => s.name)
+      (selectedMain.subConcerns || []).map((s: any) =>
+        (s.name || "").toLowerCase(),
+      ),
     );
 
     // Filter products that match ANY subconcern name
     const filtered = products.filter(
       (p: any) =>
         Array.isArray(p.concerns) &&
-        p.concerns.some((c: string) => subNames.has(c))
+        p.concerns.some((c: string) => subNames.has((c || "").toLowerCase())),
     );
 
     // Deduplicate by product id (in case a product matches multiple subconcerns)
@@ -139,7 +141,7 @@ const ConcernTreatments: React.FC<ConcernTreatmentsProps> = ({
                       .replace(/ /g, "-")}`}
                     toggleCart={toggleCart}
                     addedToCart={cartItems.some(
-                      (item) => item.id === product.id
+                      (item) => item.id === product.id,
                     )}
                     layout="concerns"
                   />

@@ -59,8 +59,8 @@ const getOrderTimestamp = (o: any): number => {
     if (!Number.isNaN(t)) return t;
   }
   // Fallback: extract timestamp from Mongo ObjectId (first 4 bytes = seconds since epoch)
-  if (o?._id && typeof o._id === "string" && o._id.length >= 8) {
-    const seconds = parseInt(o._id.substring(0, 8), 16);
+  if (o?.id && typeof o.id === "string" && o.id.length >= 8) {
+    const seconds = parseInt(o.id.substring(0, 8), 16);
     if (!Number.isNaN(seconds)) return seconds * 1000;
   }
   return 0;
@@ -105,7 +105,8 @@ const AdminOrders: React.FC = () => {
   useEffect(() => {
     setLoading(true);
     api
-      .get("/orders/all")
+      // Trailing slash to prevent backend redirect (which breaks preflight)
+      .get("/orders/all/")
       .then((res) => setOrders(sortOrdersDesc(res.data)))
       .catch(() => setError("Failed to fetch orders"))
       .finally(() => setLoading(false));
@@ -114,13 +115,13 @@ const AdminOrders: React.FC = () => {
   const handleStatusChange = async (orderId: string, status: string) => {
     setUpdatingOrderId(orderId);
     try {
-      await api.put(`/orders/${orderId}/status`, { status });
+      await api.put(`/orders/${orderId}/status/`, { status });
       setOrders((prev) =>
         sortOrdersDesc(
           prev.map((order) =>
-            order._id === orderId ? { ...order, status } : order
-          )
-        )
+            order.id === orderId ? { ...order, status } : order,
+          ),
+        ),
       );
     } catch {
       alert("Failed to update order status.");
@@ -169,10 +170,10 @@ const AdminOrders: React.FC = () => {
 
       <div className="space-y-7">
         {sortedOrders.map((order) => (
-          <div key={order._id} className="bg-white shadow p-5 rounded-xl mb-4">
+          <div key={order.id} className="bg-white shadow p-5 rounded-xl mb-4">
             <div className="flex items-center justify-between mb-2">
               <span className="font-bold text-lg">
-                #{order._id.slice(-6).toUpperCase()}
+                #{order.id.slice(-6).toUpperCase()}
               </span>
               <span className="flex items-center gap-1 text-sm text-gray-500">
                 <Clock className="w-4 h-4" />
@@ -196,9 +197,9 @@ const AdminOrders: React.FC = () => {
               <span>{getStatusIcon(order.status)}</span>
               <select
                 value={order.status || "pending"}
-                onChange={(e) => handleStatusChange(order._id, e.target.value)}
+                onChange={(e) => handleStatusChange(order.id, e.target.value)}
                 className="border rounded p-1 text-sm"
-                disabled={updatingOrderId === order._id}
+                disabled={updatingOrderId === order.id}
               >
                 {ORDER_STATUSES.map((statusOpt) => (
                   <option key={statusOpt.value} value={statusOpt.value}>
@@ -206,7 +207,7 @@ const AdminOrders: React.FC = () => {
                   </option>
                 ))}
               </select>
-              {updatingOrderId === order._id && (
+              {updatingOrderId === order.id && (
                 <Loader2 className="w-4 h-4 animate-spin text-green-800 ml-2" />
               )}
             </div>
@@ -215,7 +216,7 @@ const AdminOrders: React.FC = () => {
               <h4 className="font-semibold mb-2">Products:</h4>
               <ul className="space-y-3">
                 {order.items.map((item: any, idx: number) => {
-                  const product = products.find((p) => p._id === item.product);
+                  const product = products.find((p) => p.id === item.product);
                   return (
                     <li key={idx} className="flex gap-4 items-center">
                       <img
@@ -234,7 +235,7 @@ const AdminOrders: React.FC = () => {
                                 .map((ing) =>
                                   ing.percentage
                                     ? `${ing.name} (${(ing as any).percentage})`
-                                    : ing.name
+                                    : ing.name,
                                 )
                                 .join(", ")
                             : "N/A"}

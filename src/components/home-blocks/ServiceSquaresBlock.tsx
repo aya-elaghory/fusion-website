@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 // --- Type Definitions ---
 export interface ServiceObj {
-  _id: string;
+  id: string;
   name: string;
   category: string;
   imageUrl?: string;
@@ -204,7 +204,7 @@ const ServiceSquaresBlock: React.FC<ServiceSquaresBlockProps> = ({
                 >
                   {allServices.map((service) => (
                     <ServiceCard
-                      key={service._id}
+                      key={service.id}
                       service={service}
                       imageUrl={concernImages[service.name]}
                       onClick={() =>

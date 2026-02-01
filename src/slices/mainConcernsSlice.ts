@@ -9,7 +9,7 @@ export interface SubConcern {
 }
 
 export interface MainConcern {
-  _id?: string;
+  id?: string;
   main_concern_name: string;
   subConcerns: SubConcern[];
 }

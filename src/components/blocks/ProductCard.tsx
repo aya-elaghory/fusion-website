@@ -47,20 +47,25 @@ const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated && !!state.auth.token,
+  );
 
   const cartItems = useSelector((state: RootState) => state.cart?.items || []);
 
   const isInCart =
-    addedToCart !== undefined ? addedToCart : cartItems.some((item) => item.id === id);
+    addedToCart !== undefined
+      ? addedToCart
+      : cartItems.some((item) => item.id === id);
 
   const allSubConcerns = useSelector(
     (state: RootState) =>
-      state.mainConcerns.concerns?.flatMap((main) => main.subConcerns) || []
+      state.mainConcerns.concerns?.flatMap((main) => main.subConcerns) || [],
   );
 
   const getConcernImage = (concern: string) => {
     const found = allSubConcerns.find(
-      (sub: any) => (sub?.name || "").toLowerCase() === concern.toLowerCase()
+      (sub: any) => (sub?.name || "").toLowerCase() === concern.toLowerCase(),
     );
     return found?.imageUrl || "/assets/default.jpg";
   };
@@ -68,35 +73,52 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const formatIngredients = () => {
     if (typeof ingredients === "string") return ingredients;
     const names = ingredients.map((ing) => ing.name).filter(Boolean);
-    return names.length > 3 ? `${names.slice(0, 3).join(", ")} & more` : names.join(", ");
+    return names.length > 3
+      ? `${names.slice(0, 3).join(", ")} & more`
+      : names.join(", ");
   };
 
   const handleAddToCart = async () => {
     if (isInCart) return;
 
+    if (!isAuthenticated) {
+      navigate("/login", { replace: true, state: { redirectTo: "/cart" } });
+      return;
+    }
+
     try {
+      // ✅ FIX: Validate productId before sending
+      if (!id || id.trim() === "") {
+        console.error("Product ID is missing or invalid");
+        return;
+      }
+
+      console.log("Adding to cart - Product ID:", id, "Type:", typeof id);
+
       // ✅ Send to backend
       await dispatch(
         addToCartThunk({
           productId: id,
           quantity: 1,
           purchaseOption: "ONE_TIME",
-        })
+        }),
       ).unwrap();
 
       // ✅ Refresh cart from backend so UI updates
       await dispatch(fetchCart()).unwrap();
 
       toggleCart();
-    } catch (e) {
+    } catch (e: any) {
       console.error("Add to cart failed:", e);
+      // Optional: surface a non-blocking UI toast here instead of alert
     }
   };
 
   const layoutStyles = {
-    treatments: "bg-green-50 w-full max-w-sm mx-auto flex flex-col border h-auto",
+    treatments:
+      "bg-green-50 w-full max-w-sm mx-auto flex flex-col border h-full",
     concerns:
-      "bg-green-50 border shadow-sm w-full max-w-[500px] flex flex-col min-h-[600px]",
+      "bg-green-50 border shadow-sm w-full max-w-[500px] flex flex-col min-h-[600px] h-full",
     recommend: "p-8 grid grid-cols-1 lg:grid-cols-2 gap-8 w-full",
   } as const;
 
@@ -106,22 +128,24 @@ const ProductCard: React.FC<ProductCardProps> = ({
     recommend: "w-full h-full object-cover rounded-br-[50px]",
   } as const;
 
-  const renderButtons = () => {
+  const renderButtons = (wrapperClass = "") => {
+    const baseClass = wrapperClass || "mt-2";
+
     if (layout === "treatments") {
       return (
-        <div className="pt-2 flex items-center space-x-2">
+        <div className={`pt-2 flex items-center space-x-3 ${baseClass} w-full`}>
           {learnLink && (
             <button
               onClick={() => navigate(learnLink)}
-              className="text-sm font-bold underline text-gray-900 hover:text-gray-600"
+              className="flex-1 bg-black text-white px-4 py-2 hover:bg-gray-800 transition-colors text-base font-medium"
             >
-              Learn
+              Learn More
             </button>
           )}
           <button
             onClick={handleAddToCart}
             disabled={isInCart}
-            className="text-sm font-bold underline text-gray-900 hover:text-gray-600 disabled:opacity-60"
+            className="text-sm font-bold underline text-gray-900 hover:text-gray-600 disabled:opacity-60 whitespace-nowrap"
           >
             {isInCart ? "In Cart" : "Order"}
           </button>
@@ -130,7 +154,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     }
 
     return (
-      <div className="mt-2 flex items-center space-x-3">
+      <div className={`flex items-center space-x-3 ${baseClass}`}>
         {learnLink && (
           <button
             onClick={() => navigate(learnLink)}
@@ -161,7 +185,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
         )}
         {sideIcon && (
           <div className="absolute bottom-2 right-2">
-            <img src={sideIcon} alt="Side Icon" className="w-10 h-10 object-contain" />
+            <img
+              src={sideIcon}
+              alt="Side Icon"
+              className="w-10 h-10 object-contain"
+            />
           </div>
         )}
       </div>
@@ -172,17 +200,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
             <h3 className="font-semibold text-gray-900 text-[32px]">{name}</h3>
             <div className="flex items-center">
               <span className="text-green-600">★</span>
-              <span className="ml-1 text-lg text-gray-600">
-                {rating}/5
-              </span>
+              <span className="ml-1 text-lg text-gray-600">{rating}/5</span>
             </div>
           </div>
 
           <p className="text-gray-600 text-base">{description}</p>
 
-          <div className="mt-2 flex items-center space-x-2 bg-white p-1">
-            <img src={ingredientsLogo} alt="Ingredients" className="w-5 h-5 object-contain" />
-            <p className="text-sm text-gray-700 font-bold text-[16px]">{formatIngredients()}</p>
+          <div className="mt-2 ingredient-badge">
+            <img src={ingredientsLogo} alt="Ingredients" />
+            <p>{formatIngredients()}</p>
           </div>
 
           <div className="flex space-x-3 mt-6">
@@ -210,7 +236,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           {renderConcerns()}
         </div>
       ) : (
-        <div className="flex-grow grid grid-rows-[auto,auto,auto,1fr] gap-3 p-4">
+        <div className="flex-grow flex flex-col gap-3 p-4">
           <div className="flex items-start justify-between">
             <div>
               <h3
@@ -233,47 +259,51 @@ const ProductCard: React.FC<ProductCardProps> = ({
             </div>
           </div>
 
-          <div>
-            <p className={`text-gray-600 ${layout === "treatments" ? "text-sm" : "text-base"}`}>
-              {description}
-            </p>
-            <div className="mt-2 flex items-center space-x-2 bg-white p-1">
-              <img src={ingredientsLogo} alt="Ingredients" className="w-5 h-5 object-contain" />
-              <p className="text-sm text-gray-700 font-bold">{formatIngredients()}</p>
-            </div>
+          <p
+            className={`text-gray-600 ${layout === "treatments" ? "text-sm" : "text-base"}`}
+          >
+            {description}
+          </p>
+
+          <div className="ingredient-badge">
+            <img src={ingredientsLogo} alt="Ingredients" />
+            <p>{formatIngredients()}</p>
           </div>
 
-          <div>{renderButtons()}</div>
+          {concerns.length > 0 && layout === "concerns" ? (
+            <div className="mt-2 flex-1 flex flex-col">
+              <p className="text-sm font-semibold text-gray-900 text-center">
+                Treats the following concerns:
+              </p>
 
-          <div>
-            {concerns.length > 0 && layout === "concerns" && (
-              <div className="mt-4">
-                <p className="text-sm font-semibold text-gray-900 text-center">
-                  Treats the following concerns:
-                </p>
-
-                <div className="grid grid-cols-3 gap-4 mt-3">
-                  {concerns.map((concern) => (
-                    <div key={concern} className="flex flex-col border bg-white divide-y divide-gray-200">
-                      <div className="w-full h-[70px] overflow-hidden">
-                        <img
-                          src={getConcernImage(concern)}
-                          alt={concern}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <span
-                        className="block w-full px-2 py-2 text-center text-xs font-medium text-gray-700 whitespace-normal break-words leading-tight"
-                        style={{ overflowWrap: "anywhere" }}
-                      >
-                        {concern}
-                      </span>
+              <div className="grid grid-cols-3 gap-4 mt-3 flex-1 content-start">
+                {concerns.map((concern) => (
+                  <div
+                    key={concern}
+                    className="flex flex-col border bg-white divide-y divide-gray-200"
+                  >
+                    <div className="w-full h-[70px] overflow-hidden">
+                      <img
+                        src={getConcernImage(concern)}
+                        alt={concern}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
-                  ))}
-                </div>
+                    <span
+                      className="block w-full px-2 py-2 text-center text-xs font-medium text-gray-700 whitespace-normal break-words leading-tight"
+                      style={{ overflowWrap: "anywhere" }}
+                    >
+                      {concern}
+                    </span>
+                  </div>
+                ))}
               </div>
-            )}
-          </div>
+            </div>
+          ) : (
+            <div className="flex-1" />
+          )}
+
+          <div className="w-full">{renderButtons("mt-auto w-full")}</div>
         </div>
       )}
     </div>

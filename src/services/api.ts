@@ -1,8 +1,103 @@
 import axios from "axios";
 
-const rawBase =
-  (import.meta.env.VITE_API_URL as string) || "http://localhost:4001";
-const baseURL = rawBase.replace(/\/+$/, "");
+const defaultProdUrl = "https://fusionbackend-production.up.railway.app";
+const defaultDevProxyTarget = defaultProdUrl;
+
+// Prevent preflight redirects (e.g., http -> https on Railway) that break CORS
+const coerceHttpsForRailway = (url: string) => {
+  if (!url) return url;
+
+  const trimmed = url.trim();
+  // Keep relative paths (e.g. /api) untouched
+  if (trimmed.startsWith("/")) return trimmed;
+
+  // Allow bare hosts like "fusionbackend-production.up.railway.app"
+  const candidate = /^https?:\/\//i.test(trimmed)
+    ? trimmed
+    : `https://${trimmed}`;
+
+  try {
+    const parsed = new URL(candidate);
+    const needsHttps =
+      parsed.protocol === "http:" &&
+      /\.up\.railway\.app$/i.test(parsed.hostname);
+
+    if (needsHttps) {
+      parsed.protocol = "https:";
+    }
+
+    return parsed.toString().replace(/\/+$/, "");
+  } catch (e) {
+    // fall through to raw url
+  }
+
+  return candidate.replace(/\/+$/, "");
+};
+
+const isDev = !!import.meta.env.DEV;
+
+const disableDevProxy =
+  (import.meta.env.VITE_DISABLE_PROXY as string) === "true";
+
+// In production builds, ignore a dev-only value of "/api" (used for the Vite
+// proxy) so the client calls the real backend instead of the static host.
+const envApiUrlRaw = (() => {
+  const raw = (import.meta.env.VITE_API_URL as string) || "";
+  if (isDev && !disableDevProxy) return "/api"; // prefer proxy in dev
+  if (!isDev && raw.trim() === "/api") {
+    // eslint-disable-next-line no-console
+    console.warn(
+      "VITE_API_URL was '/api' in production; falling back to backend URL to avoid same-origin /api calls.",
+    );
+    return "";
+  }
+  return raw;
+})();
+
+// Default to the production backend as a proxy target in dev so CORS is avoided
+// even when no env vars are set locally.
+const envProxyTarget =
+  ((import.meta.env as any).VITE_PROXY_TARGET as string | undefined) ??
+  (isDev ? defaultDevProxyTarget : undefined);
+
+// Resolution rules (dev prefers proxy to avoid CORS):
+// 1) If VITE_API_URL is a full URL, use it (coerced to https for Railway).
+// 2) In dev ALWAYS force baseURL to '/api' so Vite proxy handles CORS (even if a URL is set).
+// 3) Otherwise fall back to production URL.
+const isFullUrl = /^https?:\/\//i.test(envApiUrlRaw);
+const hasProxyTarget = !!envProxyTarget;
+
+// In dev, force the Vite proxy (/api) unless explicitly disabled
+// In production builds (including `vite preview`), avoid forcing the proxy so
+// we don't hit a missing /api handler. Use the proxy only in dev unless
+// explicitly disabled via VITE_DISABLE_PROXY.
+const shouldUseDevProxy = isDev && !disableDevProxy;
+
+// If we should use the proxy (dev or localhost runtime), force base to /api.
+// This avoids hitting the remote backend directly and side-steps CORS.
+const rawBase = shouldUseDevProxy ? "/api" : envApiUrlRaw || defaultProdUrl;
+const proxyTarget = coerceHttpsForRailway(
+  envProxyTarget || (isFullUrl ? envApiUrlRaw : undefined) || defaultProdUrl,
+);
+
+let baseURL = coerceHttpsForRailway(rawBase || defaultProdUrl);
+
+// Defensive: never talk to Railway over http (avoids 301/307 preflight failures)
+if (/^http:\/\/[^/]*\.up\.railway\.app/i.test(baseURL)) {
+  baseURL = baseURL.replace(/^http:/i, "https:");
+}
+
+// Dev-time hint: when using the default '/api' base, ensure the dev server
+// proxy is configured or set VITE_API_URL to the backend full URL.
+if (import.meta.env.DEV && baseURL === "/api") {
+  const target = proxyTarget || null;
+  // eslint-disable-next-line no-console
+  console.warn(
+    target
+      ? `VITE_API_URL='/api' — dev server should proxy '/api' to ${target}`
+      : "VITE_API_URL is '/api'. Configure VITE_PROXY_TARGET or set VITE_API_URL to your backend URL.",
+  );
+}
 
 const api = axios.create({
   baseURL,
@@ -10,18 +105,45 @@ const api = axios.create({
   withCredentials: true,
 });
 
-// ✅ Attach JWT automatically
+// Upgrade accidental http calls to Railway to https to avoid 301/307 preflight failures
+const upgradeRailwayToHttps = (config: any) => {
+  const base = config.baseURL;
+  // Skip relative bases (proxy paths) so dev /api continues to work
+  if (!base || base.startsWith("/")) return config;
+
+  try {
+    const resolved = new URL(config.url || "", base);
+    const isRailwayHost = /\.up\.railway\.app$/i.test(resolved.hostname);
+    if (isRailwayHost && resolved.protocol === "http:") {
+      resolved.protocol = "https:";
+      config.baseURL = resolved.origin;
+      config.url = `${resolved.pathname}${resolved.search}`;
+    }
+  } catch (err) {
+    // ignore URL resolution errors; fall back to original config
+  }
+
+  return config;
+};
+
+// ✅ Attach JWT automatically and harden protocol for Railway
 api.interceptors.request.use((config) => {
-  const token =
-    localStorage.getItem("token") ||
-    localStorage.getItem("access_token") ||
-    "";
+  const storedToken =
+    localStorage.getItem("token") || localStorage.getItem("access_token") || "";
+
+  // Strip surrounding quotes/whitespace that some storages may add
+  const token = storedToken.replace(/^"+|"+$/g, "").trim();
 
   if (token) {
     config.headers = config.headers ?? {};
+    // Send multiple auth header variants to satisfy differing backends
     (config.headers as any).Authorization = `Bearer ${token}`;
+    (config.headers as any)["X-Access-Token"] = token;
+    // Some APIs expect `Token <jwt>` instead of Bearer
+    (config.headers as any)["Authorization-Alt"] = `Token ${token}`;
   }
-  return config;
+
+  return upgradeRailwayToHttps(config);
 });
 
 export default api;

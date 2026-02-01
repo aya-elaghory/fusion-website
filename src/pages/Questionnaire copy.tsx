@@ -140,7 +140,7 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({ onSubmit, onBack }) => {
           const grouped: Record<string, Record<string, string>> = {};
           reduxSections.forEach((sec) => {
             sec.questions.forEach((q) => {
-              const found = existing.find((e) => e.question === q._id);
+              const found = existing.find((e) => e.question === q.id);
               if (found) {
                 grouped[sec.name] = grouped[sec.name] || {};
                 grouped[sec.name][q.questionId] = found.answer;
@@ -215,7 +215,7 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({ onSubmit, onBack }) => {
         const grouped: Record<string, Record<string, string>> = {};
         secs.forEach((sec) => {
           sec.questions.forEach((q) => {
-            const found = existing.find((e) => e.question === q._id);
+            const found = existing.find((e) => e.question === q.id);
             if (found) {
               grouped[sec.name] = grouped[sec.name] || {};
               grouped[sec.name][q.questionId] = found.answer;
@@ -288,7 +288,7 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({ onSubmit, onBack }) => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json", ...authHeader },
-          body: JSON.stringify([{ questionId: question._id, answer: value }]),
+          body: JSON.stringify([{ questionId: question.id, answer: value }]),
         }
       );
       if (!res.ok) throw new Error();

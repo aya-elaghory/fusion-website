@@ -13,7 +13,7 @@ interface ProductPageProps {
 function getConcernImage(subConcern: string, mainConcerns: any[]) {
   for (const main of mainConcerns) {
     const match = main.subConcerns?.find(
-      (sub: any) => sub.name?.toLowerCase() === subConcern.toLowerCase()
+      (sub: any) => sub.name?.toLowerCase() === subConcern.toLowerCase(),
     );
     if (match && match.imageUrl) return match.imageUrl;
   }
@@ -27,14 +27,14 @@ const ProductPage: React.FC<ProductPageProps> = ({ toggleCart }) => {
 
   const cartItems = useSelector((state: RootState) => state.cart?.items || []);
   const mainConcerns = useSelector(
-    (state: RootState) => state.mainConcerns.concerns || []
+    (state: RootState) => state.mainConcerns.concerns || [],
   );
   const products = useSelector(
-    (state: RootState) => state.products.products || []
+    (state: RootState) => state.products.products || [],
   );
 
   const product = products.find(
-    (p) => p.name.toLowerCase().replace(/ /g, "-") === urlName
+    (p) => p.name.toLowerCase().replace(/ /g, "-") === urlName,
   );
 
   if (!product)
@@ -51,6 +51,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ toggleCart }) => {
     concerns = [],
     howWhy,
     howToUse,
+    faqs = [],
     // pairsWith can be array of {name, description} (new) or string[] (legacy)
     pairsWith = [],
   } = product as any;
@@ -59,11 +60,11 @@ const ProductPage: React.FC<ProductPageProps> = ({ toggleCart }) => {
   const rating = 4.8;
 
   const matchedMainConcern = mainConcerns.find((main: any) =>
-    main.subConcerns?.some((sub: any) => concerns.includes(sub.name))
+    main.subConcerns?.some((sub: any) => concerns.includes(sub.name)),
   );
 
   const [activeConcern, setActiveConcern] = useState<string>(
-    matchedMainConcern?.main_concern_name || "Select Your Concern"
+    matchedMainConcern?.main_concern_name || "Select Your Concern",
   );
   const handleBannerClick = (concernName: string, path: string) => {
     setActiveConcern(concernName);
@@ -74,8 +75,10 @@ const ProductPage: React.FC<ProductPageProps> = ({ toggleCart }) => {
     formula: false,
     howWhy: false,
     howToUse: false,
+    faqs: false,
     pairsWell: false,
   });
+  const [expandedFaqs, setExpandedFaqs] = useState<Record<number, boolean>>({});
   const [expandedFormulas, setExpandedFormulas] = useState<
     Record<string, boolean>
   >({});
@@ -89,6 +92,9 @@ const ProductPage: React.FC<ProductPageProps> = ({ toggleCart }) => {
       [formulaName]: !prev[formulaName],
     }));
   };
+  const toggleFaq = (idx: number) => {
+    setExpandedFaqs((prev) => ({ ...prev, [idx]: !prev[idx] }));
+  };
 
   const handleAddToCart = () => {
     if (!isInCart && id && name && typeof price === "number") {
@@ -99,7 +105,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ toggleCart }) => {
           name,
           price: `$${price}`,
           quantity: 1,
-        })
+        }),
       );
       toggleCart();
     }
@@ -112,12 +118,12 @@ const ProductPage: React.FC<ProductPageProps> = ({ toggleCart }) => {
     const hasHalfStar = rating % 1 !== 0;
     for (let i = 0; i < fullStars; i++) {
       stars.push(
-        <Star key={i} className="h-5 w-5 text-green-600 fill-current" />
+        <Star key={i} className="h-5 w-5 text-green-600 fill-current" />,
       );
     }
     if (hasHalfStar)
       stars.push(
-        <Star key="half" className="h-5 w-5 text-green-600 fill-current" />
+        <Star key="half" className="h-5 w-5 text-green-600 fill-current" />,
       );
     while (stars.length < 5)
       stars.push(<Star key={stars.length} className="h-5 w-5 text-gray-300" />);
@@ -245,8 +251,8 @@ const ProductPage: React.FC<ProductPageProps> = ({ toggleCart }) => {
                 {isInCart
                   ? "Added to Cart"
                   : typeof price === "number"
-                  ? "Add to Cart"
-                  : "Price shown after consult"}
+                    ? "Add to Cart"
+                    : "Price shown after consult"}
               </button>
 
               <button
@@ -296,7 +302,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ toggleCart }) => {
                                   percentage?: string;
                                 }[];
                               },
-                              index: number
+                              index: number,
                             ) => (
                               <div
                                 key={`${f.formulaName}-${index}`}
@@ -334,7 +340,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ toggleCart }) => {
                                   </div>
                                 )}
                               </div>
-                            )
+                            ),
                           )}
                         </div>
                       ) : (
@@ -344,13 +350,13 @@ const ProductPage: React.FC<ProductPageProps> = ({ toggleCart }) => {
                             {ingredients.map(
                               (
                                 ing: { name: string; percentage?: string },
-                                idx: number
+                                idx: number,
                               ) => (
                                 <li key={idx} className="leading-6">
                                   {ing.name}
                                   {ing.percentage ? ` – ${ing.percentage}` : ""}
                                 </li>
-                              )
+                              ),
                             )}
                           </ul>
                         </div>
@@ -406,6 +412,59 @@ const ProductPage: React.FC<ProductPageProps> = ({ toggleCart }) => {
                   )}
                 </div>
 
+                {/* --- FAQs --- */}
+                {Array.isArray(faqs) && faqs.length > 0 && (
+                  <div className="border-b border-gray-200">
+                    <button
+                      className="w-full flex justify-between items-center py-4 text-left"
+                      onClick={() => toggleSection("faqs")}
+                    >
+                      <h2 className="text-xl font-semibold text-gray-900">
+                        FAQs
+                      </h2>
+                      {expandedSections.faqs ? (
+                        <ChevronUp className="h-6 w-6 text-gray-600" />
+                      ) : (
+                        <ChevronDown className="h-6 w-6 text-gray-600" />
+                      )}
+                    </button>
+                    {expandedSections.faqs && (
+                      <div className="pb-4 text-gray-700 space-y-4">
+                        {faqs.map(
+                          (
+                            faq: { question: string; answer: string },
+                            idx: number,
+                          ) => {
+                            const open = !!expandedFaqs[idx];
+                            return (
+                              <div key={idx} className="border border-gray-200">
+                                <button
+                                  className="w-full flex justify-between items-center px-3 py-3 text-left"
+                                  onClick={() => toggleFaq(idx)}
+                                >
+                                  <span className="font-semibold text-gray-900 mr-3">
+                                    {faq.question}
+                                  </span>
+                                  {open ? (
+                                    <ChevronUp className="h-5 w-5 text-gray-600" />
+                                  ) : (
+                                    <ChevronDown className="h-5 w-5 text-gray-600" />
+                                  )}
+                                </button>
+                                {open && (
+                                  <div className="px-4 pb-4 text-gray-700 whitespace-pre-line">
+                                    {faq.answer}
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          },
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 {/* --- PAIRS WELL WITH --- */}
                 <div className="border-b border-gray-200">
                   <button
@@ -432,7 +491,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ toggleCart }) => {
                         <div className="grid grid-cols-1 gap-4">
                           {pairsWellData.map((item, index) => {
                             const isPairedInCart = cartItems.some(
-                              (cartItem) => cartItem.id === item.id
+                              (cartItem) => cartItem.id === item.id,
                             );
                             const canAdd = typeof item.price === "number";
 
@@ -462,7 +521,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ toggleCart }) => {
                                         navigate(
                                           `/product/${item.name
                                             .replace(/ /g, "-")
-                                            .toLowerCase()}`
+                                            .toLowerCase()}`,
                                         )
                                       }
                                     >
@@ -483,7 +542,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ toggleCart }) => {
                                               name: item.name,
                                               price: `$${item.price}`,
                                               quantity: 1,
-                                            })
+                                            }),
                                           );
                                           toggleCart();
                                         }
@@ -493,8 +552,8 @@ const ProductPage: React.FC<ProductPageProps> = ({ toggleCart }) => {
                                       {isPairedInCart
                                         ? "Added to Cart"
                                         : canAdd
-                                        ? `Add for $${item.price}`
-                                        : "Add Unavailable"}
+                                          ? `Add for $${item.price}`
+                                          : "Add Unavailable"}
                                     </button>
                                   </div>
                                 </div>

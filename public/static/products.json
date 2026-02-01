@@ -54,7 +54,10 @@
         "ingredients": [
           { "ingredientName": "Hydroquinone", "percentage": "12%" },
           { "ingredientName": "Niacinamide", "percentage": "2%" },
-          { "ingredientName": "Hydrocortisone", "percentage": "1% (initial 2-month only)" }
+          {
+            "ingredientName": "Hydrocortisone",
+            "percentage": "1% (initial 2-month only)"
+          }
         ]
       },
       {
@@ -79,7 +82,10 @@
           { "ingredientName": "Hydroquinone", "percentage": "12%" },
           { "ingredientName": "Tretinoin", "percentage": "0.05%" },
           { "ingredientName": "Niacinamide", "percentage": "2%" },
-          { "ingredientName": "Hydrocortisone", "percentage": "2.5% (initial 2-month only)" }
+          {
+            "ingredientName": "Hydrocortisone",
+            "percentage": "2.5% (initial 2-month only)"
+          }
         ]
       }
     ],
@@ -95,9 +101,36 @@
     "howWhy": "Prevents the formation of excess melanin. Reduces inflammation. Improves skin structure. Dermatologist-formulated with concentrated prescription ingredients. Freshly compounded at the pharmacy, ensuring maximum efficacy.",
     "howToUse": "After cleansing skin, apply one pump to the hyperpigmented area and gently massage. It can be used as a spot treatment, all over face, or as directed by your doctor. Our dermatologists suggest using a gentle hydrating moisturizer after applying. Be sure to wear a mineral-based sunscreen with minimum SPF 30 daily, as your skin will be extra sensitive to sun exposure. Results typically seen in 6-8 weeks with consistent use. One bottle contains approximately a 2-month supply.",
     "pairsWith": [
-      { "name": "The Spot Peel", "description": "One-time fast acting facial dark spot treatment" },
-      { "name": "The Spot Pill with Tranexamic Acid", "description": "Oral dark spot medication that treats from within" },
-      { "name": "The Anti-Aging Cream", "description": "Topical tretinoin cream to treat fine lines and wrinkles." }
+      {
+        "name": "The Spot Peel",
+        "description": "One-time fast acting facial dark spot treatment"
+      },
+      {
+        "name": "The Spot Pill with Tranexamic Acid",
+        "description": "Oral dark spot medication that treats from within"
+      },
+      {
+        "name": "The Anti-Aging Cream",
+        "description": "Topical tretinoin cream to treat fine lines and wrinkles."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What is the difference between spot cream for treating melasma versus laser treatment?",
+        "answer": "Both can help melasma and dark spots. Lasers are costly and have downtime, while The Spot Cream is prescription-strength, used at home, and relies on hydroquinone, azelaic acid, tretinoin, and niacinamide to fade discoloration without recovery time."
+      },
+      {
+        "question": "What are the melasma treatment protocols?",
+        "answer": "Melasma plans usually pair hydroquinone, tretinoin, and niacinamide with daily SPF. The Spot Cream already combines these ingredients; consistent nightly use plus morning mineral SPF 30+ is key."
+      },
+      {
+        "question": "How to get rid of sunspots?",
+        "answer": "Use The Spot Cream as a prescription topical to lighten sun and age spots. Apply as directed and pair with daily high-quality sunscreen to prevent new spots."
+      },
+      {
+        "question": "How to treat dark spots on the face?",
+        "answer": "Apply The Spot Cream nightly to even tone and fade dark spots. Follow the prescribed routine and wear SPF to stop further darkening."
+      }
     ]
   },
   {
@@ -150,15 +183,49 @@
         ]
       }
     ],
-    "concerns": ["Acne (Face)", "Large Pores", "Dull Skin", "Uneven Texture", "Wrinkles (Face)"],
+    "concerns": [
+      "Acne (Face)",
+      "Large Pores",
+      "Dull Skin",
+      "Uneven Texture",
+      "Wrinkles (Face)"
+    ],
     "photos": ["frontFace", "rightSideFace", "leftSideFace"],
     "topIcon": "Most Prescribed",
     "sideIcon": "/assets/logo4.png",
     "howWhy": "Speeds up skin cell turnover. Treats wrinkles, fine lines & acne. Reduces hyperpigmentation while hydrating the skin. Promotes a smoother, more even texture. Dermatologist-formulated with concentrated prescription ingredients. Freshly compounded for maximum efficacy.",
     "howToUse": "After cleansing skin, apply one pump to your fingertips and gently massage onto your face—or as directed by your doctor. Use a gentle moisturizer after applying. Wear a mineral-based sunscreen (SPF 30+) daily. Results typically seen in 6-8 weeks with consistent use. One bottle ≈ 2-month supply.",
     "pairsWith": [
-      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" },
-      { "name": "The Eye Serum", "description": "Topical eye serum for signs of aging" }
+      {
+        "name": "The Spot Cream",
+        "description": "Topical cream to treat dark spots on the face"
+      },
+      {
+        "name": "The Eye Serum",
+        "description": "Topical eye serum for signs of aging"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What signs of aging can this treat?",
+        "answer": "Tretinoin with niacinamide and hyaluronic acid addresses fine lines, wrinkles, uneven tone/texture, enlarged pores, and dryness by speeding cell turnover, boosting collagen, and hydrating."
+      },
+      {
+        "question": "What makes this tretinoin cream stand out?",
+        "answer": "It combines up to 0.1% tretinoin with 4% niacinamide and 0.5% hyaluronic acid in tailored strengths, delivered via telehealth with dermatologist guidance."
+      },
+      {
+        "question": "How does tretinoin help reverse aging?",
+        "answer": "It increases cell turnover and collagen production, improving texture, softening wrinkles, and evening tone while restoring a more radiant complexion."
+      },
+      {
+        "question": "Is this safe for my skin type?",
+        "answer": "Yes—formulas are available for sensitive or dry skin. Your dermatologist will match the strength to your tolerance and routine."
+      },
+      {
+        "question": "Is this an eye cream or mask?",
+        "answer": "No. Apply a pump to the face as directed; for eye-area concerns use The Eye Serum instead."
+      }
     ]
   },
   {
@@ -217,15 +284,48 @@
         ]
       }
     ],
-    "concerns": ["Acne Scars (Body)", "Sun/Age Spots (Body)", "Freckles (Body)", "Wrinkles (Body)"],
+    "concerns": [
+      "Acne Scars (Body)",
+      "Sun/Age Spots (Body)",
+      "Freckles (Body)",
+      "Wrinkles (Body)"
+    ],
     "photos": ["frontBody", "leftArm", "rightArm"],
     "topIcon": "Most Prescribed",
     "sideIcon": "/assets/logo4.png",
     "howWhy": "Fusion Micro Base enhances penetration through thicker body skin. Blocks melanin formation, lifts away dark spots, and increases cell turnover to smooth texture. Dermatologist-formulated and freshly compounded.",
     "howToUse": "Gently massage one full pump onto clean, dry skin (mix with moisturizer initially to reduce irritation), or as directed by your doctor. Use a hydrating moisturizer and SPF 30+ daily. Results in ~6–8 weeks. One bottle ≈ 2-month supply.",
     "pairsWith": [
-      { "name": "The Private Cream", "description": "Topical dark spot treatment for intimate areas" },
-      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" }
+      {
+        "name": "The Private Cream",
+        "description": "Topical dark spot treatment for intimate areas"
+      },
+      {
+        "name": "The Spot Cream",
+        "description": "Topical cream to treat dark spots on the face"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How will this affect my specific skin type?",
+        "answer": "The Body Cream is formulated for all skin tones and types. A board-certified dermatologist reviews your questionnaire before prescribing to confirm it is appropriate."
+      },
+      {
+        "question": "Can I also use this on my face?",
+        "answer": "No. It is not formulated for facial skin. Use The Spot Cream for facial dark spots and uneven tone."
+      },
+      {
+        "question": "Should I stop my regular body lotion?",
+        "answer": "You can keep using body lotion. Apply moisturizer about 5 minutes after The Body Cream to aid spreadability and comfort (CeraVe Cream or Aquaphor are good options)."
+      },
+      {
+        "question": "Does this contain kojic, azelaic, or salicylic acid?",
+        "answer": "This formula does not include those; The Spot Cream contains azelaic acid for facial use, and salicylic acid is part of The KP Cream for keratosis pilaris."
+      },
+      {
+        "question": "Can I use this as an eye cream?",
+        "answer": "No. It is not recommended for the eye area. Use The Eye Serum for eye-specific concerns."
+      }
     ]
   },
   {
@@ -282,14 +382,43 @@
         ]
       }
     ],
-    "concerns": ["Private Area Dark Spots", "Underarm Dark Spots", "Inner Thigh Dark Spots"],
+    "concerns": [
+      "Private Area Dark Spots",
+      "Underarm Dark Spots",
+      "Inner Thigh Dark Spots"
+    ],
     "photos": ["underarm", "groin", "innerThigh"],
     "topIcon": "",
     "sideIcon": "/assets/logo4.png",
     "howWhy": "Combines gold-standard hyperpigmentation fighters to fade intimate area dark spots. Dermatologist-formulated and freshly compounded for potency.",
     "howToUse": "Massage one full pump onto clean, dry skin in the treatment area, or as directed by your doctor. Use a gentle moisturizer after applying. External use only. Results in ~6–8 weeks. One bottle ≈ 2-month supply.",
     "pairsWith": [
-      { "name": "The Body Cream", "description": "Topical cream to treat dark spots on the body" }
+      {
+        "name": "The Body Cream",
+        "description": "Topical cream to treat dark spots on the body"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Is anal and vaginal lightening safe?",
+        "answer": "The Private Cream is formulated for external intimate areas and is considered safe when used as directed. Consult your dermatologist to confirm it is right for you."
+      },
+      {
+        "question": "What causes dark spots on private parts?",
+        "answer": "Hormonal changes, friction, and hair-removal trauma can trigger melanocyte activity and darkening. A clinician should evaluate persistent discoloration."
+      },
+      {
+        "question": "Is this a bleaching cream?",
+        "answer": "No. It does not contain bleach. It uses dermatologist-formulated actives like hydroquinone and tranexamic acid to fade hyperpigmentation."
+      },
+      {
+        "question": "Will this work for my skin tone or type?",
+        "answer": "Yes. The Private Cream is designed to lighten dark spots in intimate areas for all skin tones and types."
+      },
+      {
+        "question": "Can I use this on my face?",
+        "answer": "No. It is not formulated for facial use. Choose The Spot Cream for facial dark spots."
+      }
     ]
   },
   {
@@ -368,8 +497,36 @@
     "howWhy": "Fusion base enhances penetration through body skin. Increases cell turnover, helps remove excess keratin, moisturizes, and reduces redness. Dermatologist-formulated and freshly compounded.",
     "howToUse": "At night, massage 1 full pump onto KP areas after cleansing and drying the skin, or as directed by your doctor. Results typically in ~4 weeks. One bottle ≈ 2-month supply.",
     "pairsWith": [
-      { "name": "The Private Cream", "description": "Topical dark spot treatment for intimate areas" },
-      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" }
+      {
+        "name": "The Private Cream",
+        "description": "Topical dark spot treatment for intimate areas"
+      },
+      {
+        "name": "The Spot Cream",
+        "description": "Topical cream to treat dark spots on the face"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How quickly will KP bumps smooth out?",
+        "answer": "Most people see softer, flatter bumps in about 4 weeks with nightly use; stick with it for full results."
+      },
+      {
+        "question": "Can I use this with other exfoliants?",
+        "answer": "Avoid layering additional scrubs or acids on KP areas to prevent irritation; pair with a bland moisturizer instead."
+      },
+      {
+        "question": "Is this safe for sensitive skin?",
+        "answer": "Yes, but start every other night and patch test first. Reduce frequency if you notice excess dryness or burning."
+      },
+      {
+        "question": "Do I need sunscreen with this treatment?",
+        "answer": "Yes. KP areas can become more sun-sensitive; apply broad-spectrum SPF 30+ on exposed skin daily."
+      },
+      {
+        "question": "Can I use this while pregnant or breastfeeding?",
+        "answer": "Topical tretinoin is generally avoided in pregnancy. Consult your clinician before using during pregnancy or breastfeeding."
+      }
     ]
   },
   {
@@ -401,8 +558,36 @@
     "howWhy": "Penetrates to the follicle level to slow hair growth by inhibiting ODC enzyme activity. Freshly compounded for potency.",
     "howToUse": "After cleansing, apply one pump to affected facial areas up to twice daily, or as directed. Moisturize after applying and wear SPF 30+ daily. Results in ~6–8 weeks. One bottle ≈ 2-month supply.",
     "pairsWith": [
-      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" },
-      { "name": "The Anti-Aging Cream", "description": "Topical tretinoin cream to treat fine lines and wrinkles." }
+      {
+        "name": "The Spot Cream",
+        "description": "Topical cream to treat dark spots on the face"
+      },
+      {
+        "name": "The Anti-Aging Cream",
+        "description": "Topical tretinoin cream to treat fine lines and wrinkles."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What are common options to get rid of facial hair?",
+        "answer": "Shaving, tweezing, waxing, depilatory creams, laser, electrolysis, and prescription topicals like this eflornithine cream are common options; choice depends on skin sensitivity, hair type, and desired permanence."
+      },
+      {
+        "question": "Does The Facial Hair Cream work?",
+        "answer": "Yes. Patient reviews report reduced growth within weeks, especially for hormonally driven hair. Consistent use is required to maintain results."
+      },
+      {
+        "question": "What should I know before getting prescription facial hair cream?",
+        "answer": "Expect potential mild irritation. Results are gradual over weeks. Disclose other medications to your dermatologist and follow directions closely."
+      },
+      {
+        "question": "What is eflornithine cream?",
+        "answer": "A prescription topical that blocks ornithine decarboxylase to slow facial hair growth over time."
+      },
+      {
+        "question": "Can this be used on dry or sensitive skin?",
+        "answer": "Yes. Fusion formulations are designed for sensitive skin; share any conditions with your dermatologist for guidance."
+      }
     ]
   },
   {
@@ -428,14 +613,20 @@
       {
         "formulaName": "X",
         "ingredients": [
-          { "ingredientName": "iPSC Exosomes", "percentage": "250 million/bottle" },
+          {
+            "ingredientName": "iPSC Exosomes",
+            "percentage": "250 million/bottle"
+          },
           { "ingredientName": "Rapamycin", "percentage": "0.0125%" }
         ]
       },
       {
         "formulaName": "X++",
         "ingredients": [
-          { "ingredientName": "iPSC Exosomes", "percentage": "1 billion/bottle" },
+          {
+            "ingredientName": "iPSC Exosomes",
+            "percentage": "1 billion/bottle"
+          },
           { "ingredientName": "Rapamycin", "percentage": "0.0125%" }
         ]
       }
@@ -447,9 +638,36 @@
     "howWhy": "Exosomes signal collagen renewal; rapamycin helps prevent collagen breakdown by limiting inflammation/oxidative stress. Freshly compounded for maximum efficacy.",
     "howToUse": "At night on clean, dry skin, massage 1 full pump using upward motions, or as directed by your doctor.",
     "pairsWith": [
-      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" },
-      { "name": "The Anti-Aging Cream", "description": "Topical tretinoin cream to treat fine lines and wrinkles." },
-      { "name": "The Aging Repair Cream (Women)", "description": "Topical treatment that plumps the skin and restores elasticity" }
+      {
+        "name": "The Spot Cream",
+        "description": "Topical cream to treat dark spots on the face"
+      },
+      {
+        "name": "The Anti-Aging Cream",
+        "description": "Topical tretinoin cream to treat fine lines and wrinkles."
+      },
+      {
+        "name": "The Aging Repair Cream (Women)",
+        "description": "Topical treatment that plumps the skin and restores elasticity"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What are exosomes?",
+        "answer": "Tiny, naturally occurring messengers that signal cells to repair and regenerate. In skin care they support collagen production, hydration, and healing for smoother, healthier skin."
+      },
+      {
+        "question": "Why are exosomes in my treatment?",
+        "answer": "They boost results by signaling repair: supporting collagen, hydration, and cell renewal for skin; and creating a healthier environment for hair follicles when used in hair care."
+      },
+      {
+        "question": "Are Fusion's exosomes ethically sourced?",
+        "answer": "Yes. They are derived from ethically consented adult tissue and produced from iPSCs. There are no live stem cells or genetic material—only purified proteins."
+      },
+      {
+        "question": "Can they change DNA or cause illness?",
+        "answer": "No. They are free of DNA, mRNA, and oncogenes and are thoroughly purified; they do not pass donor genetic material."
+      }
     ]
   },
   {
@@ -499,8 +717,40 @@
     "howWhy": "Combines retinoid, antibacterial, anti-inflammatory, and keratolytic actions to clear and prevent breakouts. Freshly compounded.",
     "howToUse": "At night on clean, dry skin, massage 1 pump onto treatment areas, or as directed. Moisturize after applying and wear SPF 30+ daily. Results ~6–8 weeks. One bottle ≈ 2-month supply.",
     "pairsWith": [
-      { "name": "The Red Set", "description": "Pair for redness and rosacea-prone skin" },
-      { "name": "The Rosacea Pill", "description": "Oral medication intended to treat severe rosacea flare-ups" }
+      {
+        "name": "The Red Set",
+        "description": "Pair for redness and rosacea-prone skin"
+      },
+      {
+        "name": "The Rosacea Pill",
+        "description": "Oral medication intended to treat severe rosacea flare-ups"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How do tretinoin and azelaic acid help with acne?",
+        "answer": "Tretinoin speeds cell turnover to clear clogged pores and improve texture; azelaic acid is antimicrobial and anti-inflammatory to calm redness and fade post-acne marks."
+      },
+      {
+        "question": "How should I apply the acne treatment cream?",
+        "answer": "Apply a pea-sized amount to clean, dry skin (typically nightly) as directed. Avoid eye and mouth areas unless instructed."
+      },
+      {
+        "question": "What are common side effects?",
+        "answer": "Early dryness, peeling, or redness can occur as skin adjusts; these usually ease with continued use and moisturizer. Contact your dermatologist if irritation persists."
+      },
+      {
+        "question": "How long until I see clearer skin?",
+        "answer": "Most patients see improvement in 6–8 weeks of consistent use."
+      },
+      {
+        "question": "Is there increased sun sensitivity?",
+        "answer": "Yes. Tretinoin can increase sun sensitivity; wear SPF 30+ daily and limit direct sun."
+      },
+      {
+        "question": "Can I use moisturizer with this treatment?",
+        "answer": "Yes. A gentle hydrator after application helps offset dryness and irritation."
+      }
     ]
   },
   {
@@ -543,16 +793,50 @@
         ]
       }
     ],
-    "concerns": ["Loss of Skin Elasticity", "Menopausal Skin", "Wrinkles (Face)", "Large Pores", "Dull Skin", "Uneven Texture"],
+    "concerns": [
+      "Loss of Skin Elasticity",
+      "Menopausal Skin",
+      "Wrinkles (Face)",
+      "Large Pores",
+      "Dull Skin",
+      "Uneven Texture"
+    ],
     "photos": ["frontFace", "rightSideFace", "leftSideFace"],
     "topIcon": "",
     "sideIcon": "/assets/logo4.png",
     "howWhy": "Plumps the skin, restores elasticity, reduces wrinkles and pore appearance, and improves dryness and dullness. OBGYN & dermatologist formulated; freshly compounded.",
     "howToUse": "After cleansing, apply 1 pump to the face and gently massage. Moisturize and use SPF 30+ daily. Results ~6–8 weeks. One bottle ≈ 2-month supply.",
     "pairsWith": [
-      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" },
-      { "name": "The Red Rescue", "description": "Topical treatment that reduces redness and flushing" },
-      { "name": "The Anti-Aging Cream", "description": "Topical tretinoin cream to treat fine lines and wrinkles." }
+      {
+        "name": "The Spot Cream",
+        "description": "Topical cream to treat dark spots on the face"
+      },
+      {
+        "name": "The Red Rescue",
+        "description": "Topical treatment that reduces redness and flushing"
+      },
+      {
+        "name": "The Anti-Aging Cream",
+        "description": "Topical tretinoin cream to treat fine lines and wrinkles."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Does The Aging Repair Cream help with collagen production?",
+        "answer": "Yes. As a bioidentical estrogen (estriol), it replenishes diminished estrogen signaling, supporting collagen production, elasticity, and hydration during peri/menopause."
+      },
+      {
+        "question": "Can this be used as an eye cream?",
+        "answer": "No. It is not formulated for the eye area. Use The Eye Serum for eye-specific fine lines and wrinkles."
+      },
+      {
+        "question": "Is this safe for sensitive or dry skin?",
+        "answer": "Yes. It is safe for sensitive or dry skin; your dermatologist will tailor your plan to your skin needs."
+      },
+      {
+        "question": "Can I use this as a night cream?",
+        "answer": "Yes. Apply as directed in your nightly routine and follow with moisturizer and daily SPF."
+      }
     ]
   },
   {
@@ -583,16 +867,52 @@
         ]
       }
     ],
-    "concerns": ["Skin Redness", "Blushing", "Pustules", "Visible Blood Vessels"],
+    "concerns": [
+      "Skin Redness",
+      "Blushing",
+      "Pustules",
+      "Visible Blood Vessels"
+    ],
     "photos": ["cheeks", "nose", "chin"],
     "topIcon": "",
     "sideIcon": "/assets/logo4.png",
     "howWhy": "Soothes redness quickly and reduces inflammation to improve skin appearance. Freshly compounded.",
     "howToUse": "Apply one pump to affected facial areas and gently massage. Moisturize after applying and wear SPF 30+ daily. Visible effect in ~30–60 minutes; max effect ~6 hours. One bottle ≈ 2-month supply.",
     "pairsWith": [
-      { "name": "The Red Set", "description": "Pair of topical treatments for rosacea and redness" },
-      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" },
-      { "name": "The Anti-Aging Cream", "description": "Topical tretinoin cream to treat fine lines and wrinkles." }
+      {
+        "name": "The Red Set",
+        "description": "Pair of topical treatments for rosacea and redness"
+      },
+      {
+        "name": "The Spot Cream",
+        "description": "Topical cream to treat dark spots on the face"
+      },
+      {
+        "name": "The Anti-Aging Cream",
+        "description": "Topical tretinoin cream to treat fine lines and wrinkles."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How fast does redness improve?",
+        "answer": "You should see a noticeable calming effect within 30–60 minutes; peak effect is around 6 hours."
+      },
+      {
+        "question": "How often can I apply it?",
+        "answer": "Use as directed by your clinician, typically once daily on flare areas. Do not overuse because it contains a mild steroid."
+      },
+      {
+        "question": "Can I combine this with The Rosacea Cream?",
+        "answer": "Yes. The Red Rescue calms fast, while The Rosacea Cream treats underlying rosacea; apply them at different times if sensitivity occurs."
+      },
+      {
+        "question": "Should I wear sunscreen?",
+        "answer": "Yes. Daily SPF 30+ helps prevent flare triggers and protects sensitized skin."
+      },
+      {
+        "question": "Is it safe for sensitive skin?",
+        "answer": "It is formulated for rosacea-prone skin, but patch test first and use a moisturizer if your skin feels tight or dry."
+      }
     ]
   },
   {
@@ -646,15 +966,48 @@
         ]
       }
     ],
-    "concerns": ["Skin Redness", "Blushing", "Pustules", "Visible Blood Vessels"],
+    "concerns": [
+      "Skin Redness",
+      "Blushing",
+      "Pustules",
+      "Visible Blood Vessels"
+    ],
     "photos": ["cheeks", "nose", "chin"],
     "topIcon": "",
     "sideIcon": "/assets/logo4.png",
     "howWhy": "Dermatologist-formulated with targeted anti-inflammatory, antibacterial, and barrier-supporting actives; freshly compounded.",
     "howToUse": "After cleansing, apply one pump and gently massage onto clean skin, or as directed. Moisturize and use SPF 30+ daily. The Red Set is recommended for best results.",
     "pairsWith": [
-      { "name": "The Rosacea Pill", "description": "Oral medication intended to treat severe rosacea flare-ups" },
-      { "name": "The Red Rescue", "description": "Topical treatment that reduces redness and flushing" }
+      {
+        "name": "The Rosacea Pill",
+        "description": "Oral medication intended to treat severe rosacea flare-ups"
+      },
+      {
+        "name": "The Red Rescue",
+        "description": "Topical treatment that reduces redness and flushing"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "When will I see results?",
+        "answer": "Expect calmer redness and fewer bumps in about 4–8 weeks of consistent use."
+      },
+      {
+        "question": "Can I use this with The Red Rescue?",
+        "answer": "Yes. Use The Rosacea Cream for daily control and The Red Rescue for quick flare calming as directed by your clinician."
+      },
+      {
+        "question": "Do I need sunscreen?",
+        "answer": "Yes. Daily SPF 30+ reduces rosacea triggers and protects skin treated with active prescriptions."
+      },
+      {
+        "question": "What if I get irritation?",
+        "answer": "Apply every other night initially, moisturize after, and avoid harsh scrubs. If irritation persists, pause and contact your provider."
+      },
+      {
+        "question": "Is it safe during pregnancy or breastfeeding?",
+        "answer": "Talk to your clinician before use; they will advise based on your specific situation."
+      }
     ]
   },
   {
@@ -705,15 +1058,47 @@
         ]
       }
     ],
-    "concerns": ["Sun/Age Spots (Neck/Chest)", "Wrinkles (Neck/Chest)", "Turkey Neck"],
+    "concerns": [
+      "Sun/Age Spots (Neck/Chest)",
+      "Wrinkles (Neck/Chest)",
+      "Turkey Neck"
+    ],
     "photos": ["frontNeck", "chest", "profileNeck"],
     "topIcon": "",
     "sideIcon": "/assets/logo4.png",
     "howWhy": "Pairs gold-standard tretinoin with brighteners and hydrators to reduce lines, discoloration, and laxity. Freshly compounded.",
     "howToUse": "Apply one pump to neck or chest after cleansing. Moisturize and use SPF 30+ daily. Results ~6–8 weeks. One bottle ≈ 2-month supply.",
     "pairsWith": [
-      { "name": "The Anti-Aging Cream", "description": "Topical tretinoin cream to treat fine lines and wrinkles." },
-      { "name": "The Body Cream", "description": "Topical cream to treat dark spots on the body" }
+      {
+        "name": "The Anti-Aging Cream",
+        "description": "Topical tretinoin cream to treat fine lines and wrinkles."
+      },
+      {
+        "name": "The Body Cream",
+        "description": "Topical cream to treat dark spots on the body"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "When will I see results on my neck and chest?",
+        "answer": "Most users notice smoother texture and brighter tone in about 6–8 weeks with daily use."
+      },
+      {
+        "question": "Can I use this on my face too?",
+        "answer": "It is formulated for neck and chest skin. For facial use, choose The Anti-Aging Cream."
+      },
+      {
+        "question": "Do I need sunscreen with this treatment?",
+        "answer": "Yes. Apply SPF 30+ to neck and chest every morning to protect against sun damage and support fading of discoloration."
+      },
+      {
+        "question": "Is hydroquinone safe for the chest formula?",
+        "answer": "It is prescription-strength and meant for targeted use. Follow your provider’s directions and limit use to prescribed areas."
+      },
+      {
+        "question": "Can I use this while pregnant or breastfeeding?",
+        "answer": "Topical tretinoin and hydroquinone are generally avoided during pregnancy. Consult your clinician before use while pregnant or breastfeeding."
+      }
     ]
   },
   {
@@ -777,15 +1162,26 @@
         ]
       }
     ],
-    "concerns": ["Melasma", "Sun/Age Spots (Face)", "Acne Scars (Face)", "Freckles (Face)"],
+    "concerns": [
+      "Melasma",
+      "Sun/Age Spots (Face)",
+      "Acne Scars (Face)",
+      "Freckles (Face)"
+    ],
     "photos": ["frontFace", "rightSideFace", "leftSideFace"],
     "topIcon": "",
     "sideIcon": "/assets/logo4.png",
     "howWhy": "Prevents excess melanin, reduces inflammation, and improves skin structure. Most effective when paired with The Spot Cream for continued treatment. Freshly compounded.",
     "howToUse": "Patch test first. Apply a thin, even layer to the entire face (≈1/4 of medication). After 1–2 hours, apply another layer for a thick coat. After 8–12 hours, wipe off and cleanse; then apply a thick moisturizer. One-time treatment; results typically within 30 days. Maintain with The Spot Cream.",
     "pairsWith": [
-      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" },
-      { "name": "The Spot Pill with Tranexamic Acid", "description": "Oral dark spot medication that treats from within" }
+      {
+        "name": "The Spot Cream",
+        "description": "Topical cream to treat dark spots on the face"
+      },
+      {
+        "name": "The Spot Pill with Tranexamic Acid",
+        "description": "Oral dark spot medication that treats from within"
+      }
     ]
   },
   {
@@ -829,15 +1225,28 @@
         ]
       }
     ],
-    "concerns": ["Hair Changes", "Skin Changes", "Nail Changes", "Hot Flashes", "Low Energy", "Night Sweat"],
+    "concerns": [
+      "Hair Changes",
+      "Skin Changes",
+      "Nail Changes",
+      "Hot Flashes",
+      "Low Energy",
+      "Night Sweat"
+    ],
     "photos": ["applicationSites1", "applicationSites2"],
     "topIcon": "",
     "sideIcon": "/assets/logo4.png",
     "howWhy": "Bioidentical hormones restore estrogen loss due to aging to rebalance symptoms and support skin, hair, and nails. Developed by board-certified physician experts; freshly compounded.",
     "howToUse": "Apply two pumps to one defined site (rotate sites) or as directed. Avoid breasts/face or broken skin. Avoid intense exercise or close contact within 1 hour. Use SPF 30+ daily. Results ~6–8 weeks. One bottle ≈ 2-month supply.",
     "pairsWith": [
-      { "name": "The Aging Repair Cream (Women)", "description": "Topical treatment that plumps the skin and restores elasticity" },
-      { "name": "The Anti-Aging Cream", "description": "Topical tretinoin cream to treat fine lines and wrinkles." }
+      {
+        "name": "The Aging Repair Cream (Women)",
+        "description": "Topical treatment that plumps the skin and restores elasticity"
+      },
+      {
+        "name": "The Anti-Aging Cream",
+        "description": "Topical tretinoin cream to treat fine lines and wrinkles."
+      }
     ]
   },
   {
@@ -869,8 +1278,14 @@
     "howWhy": "Prevents enzymes that drive excess pigmentation—ideal alongside The Spot Cream or during topical breaks. Freshly compounded.",
     "howToUse": "Take one dose in the evening with food and a full glass of water. Some regimens include an initial AM boost as directed. Use SPF 30+ daily. Results ~8–12 weeks. One bottle ≈ 3-month supply.",
     "pairsWith": [
-      { "name": "The Spot Peel", "description": "One-time fast acting facial dark spot treatment" },
-      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" }
+      {
+        "name": "The Spot Peel",
+        "description": "One-time fast acting facial dark spot treatment"
+      },
+      {
+        "name": "The Spot Cream",
+        "description": "Topical cream to treat dark spots on the face"
+      }
     ]
   },
   {
@@ -926,25 +1341,29 @@
       },
       {
         "formulaName": "Growth",
-        "ingredients": [
-          { "ingredientName": "Minoxidil", "percentage": "1 mg" }
-        ]
+        "ingredients": [{ "ingredientName": "Minoxidil", "percentage": "1 mg" }]
       },
       {
         "formulaName": "Growth+",
-        "ingredients": [
-          { "ingredientName": "Minoxidil", "percentage": "2 mg" }
-        ]
+        "ingredients": [{ "ingredientName": "Minoxidil", "percentage": "2 mg" }]
       }
     ],
-    "concerns": ["Thinning (Women)", "Widening Part (Women)", "Bald Spots (Women)", "Receding Hairline (Women)"],
+    "concerns": [
+      "Thinning (Women)",
+      "Widening Part (Women)",
+      "Bald Spots (Women)",
+      "Receding Hairline (Women)"
+    ],
     "photos": ["frontScalp", "crown", "temples"],
     "topIcon": "",
     "sideIcon": "/assets/logo4.png",
     "howWhy": "Improves follicle blood flow, inhibits DHT, and blocks androgen signaling; includes supportive nutrients. Freshly compounded.",
     "howToUse": "Take once nightly with water, or as directed. Reduced shedding in 3–6 months; regrowth 6–12 months. One bottle ≈ 3-month supply.",
     "pairsWith": [
-      { "name": "The Hair Solution Classic Formula (Women)", "description": "Topical treatment for hair loss & thinning" }
+      {
+        "name": "The Hair Solution Classic Formula (Women)",
+        "description": "Topical treatment for hair loss & thinning"
+      }
     ]
   },
   {
@@ -983,25 +1402,29 @@
       },
       {
         "formulaName": "Growth",
-        "ingredients": [
-          { "ingredientName": "Minoxidil", "percentage": "1 mg" }
-        ]
+        "ingredients": [{ "ingredientName": "Minoxidil", "percentage": "1 mg" }]
       },
       {
         "formulaName": "Growth+",
-        "ingredients": [
-          { "ingredientName": "Minoxidil", "percentage": "2 mg" }
-        ]
+        "ingredients": [{ "ingredientName": "Minoxidil", "percentage": "2 mg" }]
       }
     ],
-    "concerns": ["Thinning (Men)", "Widening Part (Men)", "Bald Spots (Men)", "Receding Hairline (Men)"],
+    "concerns": [
+      "Thinning (Men)",
+      "Widening Part (Men)",
+      "Bald Spots (Men)",
+      "Receding Hairline (Men)"
+    ],
     "photos": ["frontScalp", "crown", "temples"],
     "topIcon": "",
     "sideIcon": "/assets/logo4.png",
     "howWhy": "Targets hair loss from multiple angles: vascular support and DHT inhibition. Freshly compounded.",
     "howToUse": "Take once nightly with water. Reduced shedding in 3–6 months; regrowth 6–12 months. One bottle ≈ 3-month supply.",
     "pairsWith": [
-      { "name": "The Hair Solution Classic Formula (Men)", "description": "Topical treatment for hair loss & thinning" }
+      {
+        "name": "The Hair Solution Classic Formula (Men)",
+        "description": "Topical treatment for hair loss & thinning"
+      }
     ]
   },
   {
@@ -1012,12 +1435,36 @@
     "type": "RX",
     "imageUrl": "/assets/HairSolutionClassicWomen.png",
     "ingredients": [
-      { "name": "Minoxidil", "description": "Widens vessels to nourish follicles.", "howItWorks": "Increases blood flow and prolongs growth phase." },
-      { "name": "Dutasteride", "description": "Reduces DHT at the follicle.", "howItWorks": "Inhibits conversion to DHT to combat miniaturization." },
-      { "name": "Spironolactone", "description": "Anti-androgen topical support.", "howItWorks": "Blocks androgen receptors on follicles." },
-      { "name": "Tretinoin", "description": "Supports penetration and follicle turnover.", "howItWorks": "Speeds turnover and can enhance minoxidil uptake." },
-      { "name": "Ketoconazole", "description": "Anti-inflammatory, anti-DHT at scalp.", "howItWorks": "Disrupts DHT pathway and lowers inflammation." },
-      { "name": "Hydrocortisone", "description": "Soothes irritation/redness.", "howItWorks": "Calms inflammatory response to improve tolerance." }
+      {
+        "name": "Minoxidil",
+        "description": "Widens vessels to nourish follicles.",
+        "howItWorks": "Increases blood flow and prolongs growth phase."
+      },
+      {
+        "name": "Dutasteride",
+        "description": "Reduces DHT at the follicle.",
+        "howItWorks": "Inhibits conversion to DHT to combat miniaturization."
+      },
+      {
+        "name": "Spironolactone",
+        "description": "Anti-androgen topical support.",
+        "howItWorks": "Blocks androgen receptors on follicles."
+      },
+      {
+        "name": "Tretinoin",
+        "description": "Supports penetration and follicle turnover.",
+        "howItWorks": "Speeds turnover and can enhance minoxidil uptake."
+      },
+      {
+        "name": "Ketoconazole",
+        "description": "Anti-inflammatory, anti-DHT at scalp.",
+        "howItWorks": "Disrupts DHT pathway and lowers inflammation."
+      },
+      {
+        "name": "Hydrocortisone",
+        "description": "Soothes irritation/redness.",
+        "howItWorks": "Calms inflammatory response to improve tolerance."
+      }
     ],
     "formulations": [
       {
@@ -1032,14 +1479,22 @@
         ]
       }
     ],
-    "concerns": ["Thinning (Women)", "Widening Part (Women)", "Bald Spots (Women)", "Receding Hairline (Women)"],
+    "concerns": [
+      "Thinning (Women)",
+      "Widening Part (Women)",
+      "Bald Spots (Women)",
+      "Receding Hairline (Women)"
+    ],
     "photos": ["frontScalp", "crown", "temples"],
     "topIcon": "",
     "sideIcon": "/assets/logo4.png",
     "howWhy": "Improves follicular blood flow, counters DHT, reduces inflammation, and supports healthy turnover. Freshly compounded.",
     "howToUse": "Apply 0.5–1 dropperful nightly to scalp; massage in. Do not wet hair for 4 hours. Apply only to scalp. Results: shedding ↓ in 3–6 months; regrowth 6–12 months. One bottle ≈ 3-month supply.",
     "pairsWith": [
-      { "name": "The Hair Pill (Women)", "description": "Oral medication for hair loss & thinning" }
+      {
+        "name": "The Hair Pill (Women)",
+        "description": "Oral medication for hair loss & thinning"
+      }
     ]
   },
   {
@@ -1050,11 +1505,31 @@
     "type": "RX",
     "imageUrl": "/assets/HairSolutionClassicMen.png",
     "ingredients": [
-      { "name": "Minoxidil", "description": "Widens vessels to nourish follicles.", "howItWorks": "Increases blood flow and prolongs growth phase." },
-      { "name": "Dutasteride", "description": "Reduces DHT at the follicle.", "howItWorks": "Inhibits conversion to DHT to combat miniaturization." },
-      { "name": "Tretinoin", "description": "Supports penetration and turnover.", "howItWorks": "Speeds turnover and can enhance minoxidil uptake." },
-      { "name": "Ketoconazole", "description": "Anti-inflammatory, anti-DHT at scalp.", "howItWorks": "Disrupts DHT pathway and lowers inflammation." },
-      { "name": "Hydrocortisone", "description": "Soothes irritation/redness.", "howItWorks": "Calms inflammatory response to improve tolerance." }
+      {
+        "name": "Minoxidil",
+        "description": "Widens vessels to nourish follicles.",
+        "howItWorks": "Increases blood flow and prolongs growth phase."
+      },
+      {
+        "name": "Dutasteride",
+        "description": "Reduces DHT at the follicle.",
+        "howItWorks": "Inhibits conversion to DHT to combat miniaturization."
+      },
+      {
+        "name": "Tretinoin",
+        "description": "Supports penetration and turnover.",
+        "howItWorks": "Speeds turnover and can enhance minoxidil uptake."
+      },
+      {
+        "name": "Ketoconazole",
+        "description": "Anti-inflammatory, anti-DHT at scalp.",
+        "howItWorks": "Disrupts DHT pathway and lowers inflammation."
+      },
+      {
+        "name": "Hydrocortisone",
+        "description": "Soothes irritation/redness.",
+        "howItWorks": "Calms inflammatory response to improve tolerance."
+      }
     ],
     "formulations": [
       {
@@ -1068,14 +1543,22 @@
         ]
       }
     ],
-    "concerns": ["Thinning (Men)", "Widening Part (Men)", "Bald Spots (Men)", "Receding Hairline (Men)"],
+    "concerns": [
+      "Thinning (Men)",
+      "Widening Part (Men)",
+      "Bald Spots (Men)",
+      "Receding Hairline (Men)"
+    ],
     "photos": ["frontScalp", "crown", "temples"],
     "topIcon": "",
     "sideIcon": "/assets/logo4.png",
     "howWhy": "Targets hair loss with complementary mechanisms: vascular support, DHT inhibition, anti-inflammatory action. Freshly compounded.",
     "howToUse": "Apply 0.5–1 dropperful nightly to scalp; massage in. Do not wet hair for 4 hours. Apply only to scalp. Results: shedding ↓ in 3–6 months; regrowth 6–12 months. One bottle ≈ 3-month supply.",
     "pairsWith": [
-      { "name": "The Hair Pill (Men)", "description": "Oral medication for hair loss & thinning" }
+      {
+        "name": "The Hair Pill (Men)",
+        "description": "Oral medication for hair loss & thinning"
+      }
     ]
   },
   {
@@ -1086,17 +1569,40 @@
     "type": "RX",
     "imageUrl": "/assets/HairSolutionExosomesWomen.png",
     "ingredients": [
-      { "name": "iPSC Exosomes", "description": "Nourish follicles and scalp.", "howItWorks": "Revitalize follicles and signal growth-supportive activity." },
-      { "name": "Latanoprost", "description": "Prolongs hair growth phase.", "howItWorks": "Extends anagen to promote longer, thicker strands." },
-      { "name": "Caffeine", "description": "Stimulates roots and circulation.", "howItWorks": "Boosts microcirculation and counteracts DHT effects at the follicle." },
-      { "name": "Cetirizine", "description": "Soothes follicular inflammation.", "howItWorks": "Calms inflammation around follicles to support stronger growth." },
-      { "name": "Melatonin", "description": "Antioxidant protection for follicles.", "howItWorks": "Shields follicles from oxidative stress and environmental damage." }
+      {
+        "name": "iPSC Exosomes",
+        "description": "Nourish follicles and scalp.",
+        "howItWorks": "Revitalize follicles and signal growth-supportive activity."
+      },
+      {
+        "name": "Latanoprost",
+        "description": "Prolongs hair growth phase.",
+        "howItWorks": "Extends anagen to promote longer, thicker strands."
+      },
+      {
+        "name": "Caffeine",
+        "description": "Stimulates roots and circulation.",
+        "howItWorks": "Boosts microcirculation and counteracts DHT effects at the follicle."
+      },
+      {
+        "name": "Cetirizine",
+        "description": "Soothes follicular inflammation.",
+        "howItWorks": "Calms inflammation around follicles to support stronger growth."
+      },
+      {
+        "name": "Melatonin",
+        "description": "Antioxidant protection for follicles.",
+        "howItWorks": "Shields follicles from oxidative stress and environmental damage."
+      }
     ],
     "formulations": [
       {
         "formulaName": "Full",
         "ingredients": [
-          { "ingredientName": "iPSC Exosomes", "percentage": "250 million/bottle" },
+          {
+            "ingredientName": "iPSC Exosomes",
+            "percentage": "250 million/bottle"
+          },
           { "ingredientName": "Latanoprost", "percentage": "0.004%" },
           { "ingredientName": "Caffeine", "percentage": "0.5%" },
           { "ingredientName": "Cetirizine", "percentage": "1%" },
@@ -1104,15 +1610,26 @@
         ]
       }
     ],
-    "concerns": ["Thinning (Women)", "Widening Part (Women)", "Bald Spots (Women)", "Receding Hairline (Women)"],
+    "concerns": [
+      "Thinning (Women)",
+      "Widening Part (Women)",
+      "Bald Spots (Women)",
+      "Receding Hairline (Women)"
+    ],
     "photos": ["frontScalp", "crown", "temples"],
     "topIcon": "",
     "sideIcon": "/assets/logo4.png",
     "howWhy": "Exosomes condition the scalp and follicles; latanoprost extends growth phase; caffeine, cetirizine, and melatonin support thicker, stronger hair.",
     "howToUse": "Apply 0.5–1 dropperful nightly to scalp. Do not wet hair for 4 hours. Apply only to scalp. Results 3–6 months for shedding ↓; 6–12 months for density ↑. One bottle ≈ 3-month supply.",
     "pairsWith": [
-      { "name": "The Hair Solution Classic Formula (Women)", "description": "Topical treatment for hair loss & thinning" },
-      { "name": "The Hair Pill (Women)", "description": "Oral medication for hair loss & thinning" }
+      {
+        "name": "The Hair Solution Classic Formula (Women)",
+        "description": "Topical treatment for hair loss & thinning"
+      },
+      {
+        "name": "The Hair Pill (Women)",
+        "description": "Oral medication for hair loss & thinning"
+      }
     ]
   },
   {
@@ -1123,17 +1640,40 @@
     "type": "RX",
     "imageUrl": "/assets/HairSolutionExosomesMen.png",
     "ingredients": [
-      { "name": "iPSC Exosomes", "description": "Nourish follicles and scalp.", "howItWorks": "Revitalize follicles and signal growth-supportive activity." },
-      { "name": "Latanoprost", "description": "Prolongs hair growth phase.", "howItWorks": "Extends anagen to promote longer, thicker strands." },
-      { "name": "Caffeine", "description": "Stimulates roots and circulation.", "howItWorks": "Boosts microcirculation and counteracts DHT effects at the follicle." },
-      { "name": "Cetirizine", "description": "Soothes follicular inflammation.", "howItWorks": "Calms inflammation around follicles to support stronger growth." },
-      { "name": "Melatonin", "description": "Antioxidant protection for follicles.", "howItWorks": "Shields follicles from oxidative stress and environmental damage." }
+      {
+        "name": "iPSC Exosomes",
+        "description": "Nourish follicles and scalp.",
+        "howItWorks": "Revitalize follicles and signal growth-supportive activity."
+      },
+      {
+        "name": "Latanoprost",
+        "description": "Prolongs hair growth phase.",
+        "howItWorks": "Extends anagen to promote longer, thicker strands."
+      },
+      {
+        "name": "Caffeine",
+        "description": "Stimulates roots and circulation.",
+        "howItWorks": "Boosts microcirculation and counteracts DHT effects at the follicle."
+      },
+      {
+        "name": "Cetirizine",
+        "description": "Soothes follicular inflammation.",
+        "howItWorks": "Calms inflammation around follicles to support stronger growth."
+      },
+      {
+        "name": "Melatonin",
+        "description": "Antioxidant protection for follicles.",
+        "howItWorks": "Shields follicles from oxidative stress and environmental damage."
+      }
     ],
     "formulations": [
       {
         "formulaName": "Full",
         "ingredients": [
-          { "ingredientName": "iPSC Exosomes", "percentage": "250 million/bottle" },
+          {
+            "ingredientName": "iPSC Exosomes",
+            "percentage": "250 million/bottle"
+          },
           { "ingredientName": "Latanoprost", "percentage": "0.004%" },
           { "ingredientName": "Caffeine", "percentage": "0.5%" },
           { "ingredientName": "Cetirizine", "percentage": "1%" },
@@ -1141,15 +1681,26 @@
         ]
       }
     ],
-    "concerns": ["Thinning (Men)", "Widening Part (Men)", "Bald Spots (Men)", "Receding Hairline (Men)"],
+    "concerns": [
+      "Thinning (Men)",
+      "Widening Part (Men)",
+      "Bald Spots (Men)",
+      "Receding Hairline (Men)"
+    ],
     "photos": ["frontScalp", "crown", "temples"],
     "topIcon": "",
     "sideIcon": "/assets/logo4.png",
     "howWhy": "Exosomes condition the scalp and follicles; latanoprost extends growth phase; caffeine, cetirizine, and melatonin support thicker, stronger hair.",
     "howToUse": "Apply 0.5–1 dropperful nightly to scalp. Do not wet hair for 4 hours. Apply only to scalp. Results 3–6 months for shedding ↓; 6–12 months for density ↑. One bottle ≈ 3-month supply.",
     "pairsWith": [
-      { "name": "The Hair Solution Classic Formula (Men)", "description": "Topical treatment for hair loss & thinning" },
-      { "name": "The Hair Pill (Men)", "description": "Oral medication for hair loss & thinning" }
+      {
+        "name": "The Hair Solution Classic Formula (Men)",
+        "description": "Topical treatment for hair loss & thinning"
+      },
+      {
+        "name": "The Hair Pill (Men)",
+        "description": "Oral medication for hair loss & thinning"
+      }
     ]
   },
   {
@@ -1160,17 +1711,61 @@
     "type": "RX",
     "imageUrl": "/assets/HairSolutionBundleWomen.png",
     "ingredients": [
-      { "name": "Minoxidil", "description": "Vasodilator that nourishes follicles.", "howItWorks": "Widens vessels and prolongs anagen." },
-      { "name": "Dutasteride", "description": "DHT pathway inhibitor.", "howItWorks": "Reduces follicular miniaturization via DHT blockade." },
-      { "name": "Spironolactone", "description": "Anti-androgen support.", "howItWorks": "Blocks androgen receptors on follicles." },
-      { "name": "Tretinoin", "description": "Supports penetration and turnover.", "howItWorks": "Speeds turnover; may enhance minoxidil uptake." },
-      { "name": "Ketoconazole", "description": "Anti-inflammatory, anti-DHT.", "howItWorks": "Lowers inflammation and DHT signaling." },
-      { "name": "Hydrocortisone", "description": "Soothes irritation.", "howItWorks": "Calms redness to improve tolerance." },
-      { "name": "iPSC Exosomes", "description": "Follicle & scalp conditioning.", "howItWorks": "Signals growth-supportive activity." },
-      { "name": "Latanoprost", "description": "Extends growth phase.", "howItWorks": "Prolongs anagen for thicker strands." },
-      { "name": "Caffeine", "description": "Stimulates roots.", "howItWorks": "Boosts microcirculation; counters DHT effects." },
-      { "name": "Cetirizine", "description": "Soothes follicles.", "howItWorks": "Reduces inflammation around follicles." },
-      { "name": "Melatonin", "description": "Antioxidant support.", "howItWorks": "Protects follicles from oxidative stress." }
+      {
+        "name": "Minoxidil",
+        "description": "Vasodilator that nourishes follicles.",
+        "howItWorks": "Widens vessels and prolongs anagen."
+      },
+      {
+        "name": "Dutasteride",
+        "description": "DHT pathway inhibitor.",
+        "howItWorks": "Reduces follicular miniaturization via DHT blockade."
+      },
+      {
+        "name": "Spironolactone",
+        "description": "Anti-androgen support.",
+        "howItWorks": "Blocks androgen receptors on follicles."
+      },
+      {
+        "name": "Tretinoin",
+        "description": "Supports penetration and turnover.",
+        "howItWorks": "Speeds turnover; may enhance minoxidil uptake."
+      },
+      {
+        "name": "Ketoconazole",
+        "description": "Anti-inflammatory, anti-DHT.",
+        "howItWorks": "Lowers inflammation and DHT signaling."
+      },
+      {
+        "name": "Hydrocortisone",
+        "description": "Soothes irritation.",
+        "howItWorks": "Calms redness to improve tolerance."
+      },
+      {
+        "name": "iPSC Exosomes",
+        "description": "Follicle & scalp conditioning.",
+        "howItWorks": "Signals growth-supportive activity."
+      },
+      {
+        "name": "Latanoprost",
+        "description": "Extends growth phase.",
+        "howItWorks": "Prolongs anagen for thicker strands."
+      },
+      {
+        "name": "Caffeine",
+        "description": "Stimulates roots.",
+        "howItWorks": "Boosts microcirculation; counters DHT effects."
+      },
+      {
+        "name": "Cetirizine",
+        "description": "Soothes follicles.",
+        "howItWorks": "Reduces inflammation around follicles."
+      },
+      {
+        "name": "Melatonin",
+        "description": "Antioxidant support.",
+        "howItWorks": "Protects follicles from oxidative stress."
+      }
     ],
     "formulations": [
       {
@@ -1187,7 +1782,10 @@
       {
         "formulaName": "2. Exosomes",
         "ingredients": [
-          { "ingredientName": "iPSC Exosomes", "percentage": "250 million/bottle" },
+          {
+            "ingredientName": "iPSC Exosomes",
+            "percentage": "250 million/bottle"
+          },
           { "ingredientName": "Latanoprost", "percentage": "0.004%" },
           { "ingredientName": "Caffeine", "percentage": "0.5%" },
           { "ingredientName": "Cetirizine", "percentage": "1%" },
@@ -1195,14 +1793,22 @@
         ]
       }
     ],
-    "concerns": ["Thinning (Women)", "Widening Part (Women)", "Bald Spots (Women)", "Receding Hairline (Women)"],
+    "concerns": [
+      "Thinning (Women)",
+      "Widening Part (Women)",
+      "Bald Spots (Women)",
+      "Receding Hairline (Women)"
+    ],
     "photos": ["frontScalp", "crown", "temples"],
     "topIcon": "",
     "sideIcon": "/assets/logo4.png",
     "howWhy": "Classic boosts blood flow and blocks DHT; Exosomes conditions follicles and extends growth phase. Layering supports complementary mechanisms.",
     "howToUse": "Apply Exosomes first, then Classic after a few minutes (or per doctor). 0.5–1 dropperful of each nightly. Do not wet hair 4 hours. Results 3–6 months for shedding ↓; 6–12 months for density ↑. One bottle each ≈ 3-month supply.",
     "pairsWith": [
-      { "name": "The Hair Pill (Women)", "description": "Oral medication for hair loss & thinning" }
+      {
+        "name": "The Hair Pill (Women)",
+        "description": "Oral medication for hair loss & thinning"
+      }
     ]
   },
   {
@@ -1213,16 +1819,56 @@
     "type": "RX",
     "imageUrl": "/assets/HairSolutionBundleMen.png",
     "ingredients": [
-      { "name": "Minoxidil", "description": "Vasodilator that nourishes follicles.", "howItWorks": "Widens vessels and prolongs anagen." },
-      { "name": "Dutasteride", "description": "DHT pathway inhibitor.", "howItWorks": "Reduces follicular miniaturization via DHT blockade." },
-      { "name": "Tretinoin", "description": "Supports penetration and turnover.", "howItWorks": "Speeds turnover; may enhance minoxidil uptake." },
-      { "name": "Ketoconazole", "description": "Anti-inflammatory, anti-DHT.", "howItWorks": "Lowers inflammation and DHT signaling." },
-      { "name": "Hydrocortisone", "description": "Soothes irritation.", "howItWorks": "Calms redness to improve tolerance." },
-      { "name": "iPSC Exosomes", "description": "Follicle & scalp conditioning.", "howItWorks": "Signals growth-supportive activity." },
-      { "name": "Latanoprost", "description": "Extends growth phase.", "howItWorks": "Prolongs anagen for thicker strands." },
-      { "name": "Caffeine", "description": "Stimulates roots.", "howItWorks": "Boosts microcirculation; counters DHT effects." },
-      { "name": "Cetirizine", "description": "Soothes follicles.", "howItWorks": "Reduces inflammation around follicles." },
-      { "name": "Melatonin", "description": "Antioxidant support.", "howItWorks": "Protects follicles from oxidative stress." }
+      {
+        "name": "Minoxidil",
+        "description": "Vasodilator that nourishes follicles.",
+        "howItWorks": "Widens vessels and prolongs anagen."
+      },
+      {
+        "name": "Dutasteride",
+        "description": "DHT pathway inhibitor.",
+        "howItWorks": "Reduces follicular miniaturization via DHT blockade."
+      },
+      {
+        "name": "Tretinoin",
+        "description": "Supports penetration and turnover.",
+        "howItWorks": "Speeds turnover; may enhance minoxidil uptake."
+      },
+      {
+        "name": "Ketoconazole",
+        "description": "Anti-inflammatory, anti-DHT.",
+        "howItWorks": "Lowers inflammation and DHT signaling."
+      },
+      {
+        "name": "Hydrocortisone",
+        "description": "Soothes irritation.",
+        "howItWorks": "Calms redness to improve tolerance."
+      },
+      {
+        "name": "iPSC Exosomes",
+        "description": "Follicle & scalp conditioning.",
+        "howItWorks": "Signals growth-supportive activity."
+      },
+      {
+        "name": "Latanoprost",
+        "description": "Extends growth phase.",
+        "howItWorks": "Prolongs anagen for thicker strands."
+      },
+      {
+        "name": "Caffeine",
+        "description": "Stimulates roots.",
+        "howItWorks": "Boosts microcirculation; counters DHT effects."
+      },
+      {
+        "name": "Cetirizine",
+        "description": "Soothes follicles.",
+        "howItWorks": "Reduces inflammation around follicles."
+      },
+      {
+        "name": "Melatonin",
+        "description": "Antioxidant support.",
+        "howItWorks": "Protects follicles from oxidative stress."
+      }
     ],
     "formulations": [
       {
@@ -1238,7 +1884,10 @@
       {
         "formulaName": "2. Exosomes",
         "ingredients": [
-          { "ingredientName": "iPSC Exosomes", "percentage": "250 million/bottle" },
+          {
+            "ingredientName": "iPSC Exosomes",
+            "percentage": "250 million/bottle"
+          },
           { "ingredientName": "Latanoprost", "percentage": "0.004%" },
           { "ingredientName": "Caffeine", "percentage": "0.5%" },
           { "ingredientName": "Cetirizine", "percentage": "1%" },
@@ -1246,14 +1895,22 @@
         ]
       }
     ],
-    "concerns": ["Thinning (Men)", "Widening Part (Men)", "Bald Spots (Men)", "Receding Hairline (Men)"],
+    "concerns": [
+      "Thinning (Men)",
+      "Widening Part (Men)",
+      "Bald Spots (Men)",
+      "Receding Hairline (Men)"
+    ],
     "photos": ["frontScalp", "crown", "temples"],
     "topIcon": "",
     "sideIcon": "/assets/logo4.png",
     "howWhy": "Classic improves blood flow and counters DHT; Exosomes condition follicles and extend growth phase. Synergistic when layered.",
     "howToUse": "Apply Exosomes first, then Classic after a few minutes (or per doctor). 0.5–1 dropperful of each nightly. Don’t wet hair for 4 hours. Results 3–6 months shedding ↓; 6–12 months density ↑. One bottle each ≈ 3-month supply.",
     "pairsWith": [
-      { "name": "The Hair Pill (Men)", "description": "Oral medication for hair loss & thinning" }
+      {
+        "name": "The Hair Pill (Men)",
+        "description": "Oral medication for hair loss & thinning"
+      }
     ]
   },
   {
@@ -1264,13 +1921,41 @@
     "type": "RX",
     "imageUrl": "/assets/TheRedSet.png",
     "ingredients": [
-      { "name": "Sulfur", "description": "Keeps pores unblocked and combats bacteria.", "howItWorks": "Prevents pore blockages and suppresses bacteria that contribute to pustules." },
-      { "name": "Sodium Sulfacetamide", "description": "Topical antibiotic to reduce bacteria.", "howItWorks": "Inhibits bacterial growth linked to rosacea and acne." },
-      { "name": "Ivermectin", "description": "Anti-inflammatory agent.", "howItWorks": "Calms underlying inflammation to reduce persistent redness." },
-      { "name": "Metronidazole", "description": "Topical antibiotic.", "howItWorks": "Reduces inflammatory lesions and erythema." },
-      { "name": "Niacinamide", "description": "Anti-inflammatory/Barrier support.", "howItWorks": "Strengthens barrier and reduces redness." },
-      { "name": "Azelaic Acid", "description": "Exfoliates and antibacterial.", "howItWorks": "Accelerates shedding and reduces bacteria to ease bumps/flushing." },
-      { "name": "Doxycycline (add-on pill)", "description": "Oral antibiotic for severe flare-ups.", "howItWorks": "Decreases inflammatory lesions and bacterial overgrowth in severe cases." }
+      {
+        "name": "Sulfur",
+        "description": "Keeps pores unblocked and combats bacteria.",
+        "howItWorks": "Prevents pore blockages and suppresses bacteria that contribute to pustules."
+      },
+      {
+        "name": "Sodium Sulfacetamide",
+        "description": "Topical antibiotic to reduce bacteria.",
+        "howItWorks": "Inhibits bacterial growth linked to rosacea and acne."
+      },
+      {
+        "name": "Ivermectin",
+        "description": "Anti-inflammatory agent.",
+        "howItWorks": "Calms underlying inflammation to reduce persistent redness."
+      },
+      {
+        "name": "Metronidazole",
+        "description": "Topical antibiotic.",
+        "howItWorks": "Reduces inflammatory lesions and erythema."
+      },
+      {
+        "name": "Niacinamide",
+        "description": "Anti-inflammatory/Barrier support.",
+        "howItWorks": "Strengthens barrier and reduces redness."
+      },
+      {
+        "name": "Azelaic Acid",
+        "description": "Exfoliates and antibacterial.",
+        "howItWorks": "Accelerates shedding and reduces bacteria to ease bumps/flushing."
+      },
+      {
+        "name": "Doxycycline (add-on pill)",
+        "description": "Oral antibiotic for severe flare-ups.",
+        "howItWorks": "Decreases inflammatory lesions and bacterial overgrowth in severe cases."
+      }
     ],
     "formulations": [
       {
@@ -1302,14 +1987,22 @@
         ]
       }
     ],
-    "concerns": ["Skin Redness", "Blushing", "Pustules", "Visible Blood Vessels"],
+    "concerns": [
+      "Skin Redness",
+      "Blushing",
+      "Pustules",
+      "Visible Blood Vessels"
+    ],
     "photos": ["cheeks", "nose", "chin"],
     "topIcon": "",
     "sideIcon": "/assets/logo4.png",
     "howWhy": "A three-step regimen to gently cleanse, calm inflammation, reduce bacteria, and control severe flares when needed.",
     "howToUse": "Mask: leave on 5–10 minutes and rinse. Cream: apply 1 pump and massage in. Add-on Pill: for severe cases per doctor. Use SPF 30+ daily.",
     "pairsWith": [
-      { "name": "The Red Rescue", "description": "Topical treatment that reduces redness and flushing" }
+      {
+        "name": "The Red Rescue",
+        "description": "Topical treatment that reduces redness and flushing"
+      }
     ]
   },
   {
@@ -1320,20 +2013,55 @@
     "type": "RX",
     "imageUrl": "/assets/TheEyeSerum.png",
     "ingredients": [
-      { "name": "iPSC Exosomes", "description": "Signals renewal for smoother eye skin.", "howItWorks": "Encourages collagen production and cell turnover for firmer, smoother texture." },
-      { "name": "Tretinoin", "description": "Speeds cell turnover and supports collagen.", "howItWorks": "Promotes renewal and elasticity in delicate periocular skin." },
-      { "name": "Caffeine", "description": "Anti-inflammatory that reduces puffiness.", "howItWorks": "Stimulates microcirculation to reduce fluid retention and under-eye bags." },
-      { "name": "Hyaluronic Acid", "description": "Hydrates and plumps fine lines.", "howItWorks": "Attracts moisture to improve elasticity and smoothness." },
-      { "name": "Hydroquinone", "description": "Targets dark pigment under the eyes.", "howItWorks": "Inhibits melanin overproduction to brighten dark circles." },
-      { "name": "Niacinamide", "description": "Soothes and strengthens barrier.", "howItWorks": "Reduces redness and supports smoother texture." },
-      { "name": "Vitamin C", "description": "Antioxidant brightener.", "howItWorks": "Helps repair UV damage and boost radiance." },
-      { "name": "Bisabolol", "description": "Calming antioxidant support.", "howItWorks": "Soothes delicate eye area and supports recovery." }
+      {
+        "name": "iPSC Exosomes",
+        "description": "Signals renewal for smoother eye skin.",
+        "howItWorks": "Encourages collagen production and cell turnover for firmer, smoother texture."
+      },
+      {
+        "name": "Tretinoin",
+        "description": "Speeds cell turnover and supports collagen.",
+        "howItWorks": "Promotes renewal and elasticity in delicate periocular skin."
+      },
+      {
+        "name": "Caffeine",
+        "description": "Anti-inflammatory that reduces puffiness.",
+        "howItWorks": "Stimulates microcirculation to reduce fluid retention and under-eye bags."
+      },
+      {
+        "name": "Hyaluronic Acid",
+        "description": "Hydrates and plumps fine lines.",
+        "howItWorks": "Attracts moisture to improve elasticity and smoothness."
+      },
+      {
+        "name": "Hydroquinone",
+        "description": "Targets dark pigment under the eyes.",
+        "howItWorks": "Inhibits melanin overproduction to brighten dark circles."
+      },
+      {
+        "name": "Niacinamide",
+        "description": "Soothes and strengthens barrier.",
+        "howItWorks": "Reduces redness and supports smoother texture."
+      },
+      {
+        "name": "Vitamin C",
+        "description": "Antioxidant brightener.",
+        "howItWorks": "Helps repair UV damage and boost radiance."
+      },
+      {
+        "name": "Bisabolol",
+        "description": "Calming antioxidant support.",
+        "howItWorks": "Soothes delicate eye area and supports recovery."
+      }
     ],
     "formulations": [
       {
         "formulaName": "Smooth 2.0",
         "ingredients": [
-          { "ingredientName": "iPSC Exosomes", "percentage": "100 million/bottle" },
+          {
+            "ingredientName": "iPSC Exosomes",
+            "percentage": "100 million/bottle"
+          },
           { "ingredientName": "Tretinoin", "percentage": "0.001%" },
           { "ingredientName": "Caffeine", "percentage": "1%" },
           { "ingredientName": "Hyaluronic Acid", "percentage": "2%" }
@@ -1342,7 +2070,10 @@
       {
         "formulaName": "Smooth+Bright 2.0",
         "ingredients": [
-          { "ingredientName": "iPSC Exosomes", "percentage": "100 million/bottle" },
+          {
+            "ingredientName": "iPSC Exosomes",
+            "percentage": "100 million/bottle"
+          },
           { "ingredientName": "Hydroquinone", "percentage": "3%" },
           { "ingredientName": "Tretinoin", "percentage": "0.001%" },
           { "ingredientName": "Caffeine", "percentage": "1%" },
@@ -1357,8 +2088,14 @@
     "howWhy": "Increases collagen, speeds turnover, stimulates microcirculation, hydrates, and targets pigment for a brighter, smoother eye area. Freshly compounded.",
     "howToUse": "Gently tap one pump around the orbital bone on clean, dry skin, or as directed. Moisturize after applying and wear SPF 30+ daily. Results ~6–8 weeks. One bottle ≈ 2-month supply.",
     "pairsWith": [
-      { "name": "The Anti-Aging Cream", "description": "Topical tretinoin cream to treat fine lines and wrinkles." },
-      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" }
+      {
+        "name": "The Anti-Aging Cream",
+        "description": "Topical tretinoin cream to treat fine lines and wrinkles."
+      },
+      {
+        "name": "The Spot Cream",
+        "description": "Topical cream to treat dark spots on the face"
+      }
     ]
   },
   {
@@ -1390,9 +2127,18 @@
     "howWhy": "Triggers and extends the anagen hair cycle for fuller, longer lashes.",
     "howToUse": "At night on clean, dry skin remove contact lenses. Apply 1 drop to a sterile applicator and swipe along upper lash line; repeat with a new applicator for the other eye. Visible improvements ~8 weeks; full results ~16 weeks. Two bottles ≈ 3-month supply.",
     "pairsWith": [
-      { "name": "The Spot Cream", "description": "Topical cream to treat dark spots on the face" },
-      { "name": "The Anti-Aging Cream", "description": "Topical tretinoin cream to treat fine lines and wrinkles." },
-      { "name": "The Aging Repair Cream (Women)", "description": "Topical treatment that plumps the skin and restores elasticity" }
+      {
+        "name": "The Spot Cream",
+        "description": "Topical cream to treat dark spots on the face"
+      },
+      {
+        "name": "The Anti-Aging Cream",
+        "description": "Topical tretinoin cream to treat fine lines and wrinkles."
+      },
+      {
+        "name": "The Aging Repair Cream (Women)",
+        "description": "Topical treatment that plumps the skin and restores elasticity"
+      }
     ]
   }
 ]

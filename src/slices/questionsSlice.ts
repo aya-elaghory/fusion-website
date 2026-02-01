@@ -9,7 +9,7 @@ export interface DetailsQuestion {
 }
 
 export interface Question {
-  _id?: string;
+  id?: string;
   questionId: string;
   questionText: string;
   type: "radio" | "text";

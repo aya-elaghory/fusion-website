@@ -3,7 +3,7 @@ import api from "@/services/api";
 
 // --- Types ---
 export interface Answer {
-  _id?: string;
+  id?: string;
   user?: string;
   question: string;
   answer: string;

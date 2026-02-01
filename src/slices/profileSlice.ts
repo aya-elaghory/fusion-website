@@ -21,7 +21,7 @@ export interface PaymentMethod {
 }
 
 export interface ProfileData {
-  _id?: string;
+  id?: string;
   user?: string;
   userId?: string;
   email?: string;
@@ -51,31 +51,44 @@ const initialState: ProfileState = {
 };
 
 // --- Thunks ---
-export const fetchProfile = createAsyncThunk<ProfileData>(
-  "profile/fetchProfile",
-  async (_, { rejectWithValue }) => {
-    try {
-      const res = await api.get("/profile");
-      return res.data as ProfileData;
-    } catch (err: any) {
-      return rejectWithValue(
-        err.response?.data?.message || err.message || "Unknown error"
-      );
-    }
+export const fetchProfile = createAsyncThunk<
+  ProfileData,
+  void,
+  { rejectValue: { status?: number; message: string } }
+>("profile/fetchProfile", async (_, { rejectWithValue }) => {
+  const token =
+    localStorage.getItem("token") || localStorage.getItem("access_token");
+
+  // If there's no auth token, skip the request to avoid 401/500 noise
+  if (!token) {
+    return rejectWithValue({ status: 401, message: "Not authenticated" });
   }
-);
+
+  try {
+    // Trailing slash avoids backend redirects that can trigger CORS on dev.
+    const res = await api.get("/profile/");
+    return res.data as ProfileData;
+  } catch (err: any) {
+    const status = err?.response?.status;
+    const message =
+      err.response?.data?.message || err.message || "Unknown error";
+    return rejectWithValue({ status, message });
+  }
+});
 
 export const updateProfile = createAsyncThunk<
   ProfileData,
-  Partial<ProfileData>
+  Partial<ProfileData>,
+  { rejectValue: { status?: number; message: string } }
 >("profile/updateProfile", async (updateData, { rejectWithValue }) => {
   try {
-    const res = await api.put("/profile", updateData);
+    const res = await api.put("/profile/", updateData);
     return res.data as ProfileData;
   } catch (err: any) {
-    return rejectWithValue(
-      err.response?.data?.message || err.message || "Unknown error"
-    );
+    const status = err?.response?.status;
+    const message =
+      err.response?.data?.message || err.message || "Unknown error";
+    return rejectWithValue({ status, message });
   }
 });
 
@@ -124,7 +137,14 @@ const profileSlice = createSlice({
       .addCase(fetchProfile.rejected, (state, action) => {
         state.loading = false;
         state.hasFetched = true; // ✅ NEW (we tried)
-        state.error = (action.payload as string) || "Failed to fetch profile";
+
+        if (action.payload?.status === 401) {
+          // Logged-out or no token: silence the error
+          state.error = null;
+          return;
+        }
+
+        state.error = action.payload?.message || "Failed to fetch profile";
       })
       .addCase(updateProfile.pending, (state) => {
         state.loading = true;
@@ -137,7 +157,7 @@ const profileSlice = createSlice({
       })
       .addCase(updateProfile.rejected, (state, action) => {
         state.loading = false;
-        state.error = (action.payload as string) || "Failed to update profile";
+        state.error = action.payload?.message || "Failed to update profile";
       });
   },
 });

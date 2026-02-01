@@ -29,13 +29,39 @@ const Signup: React.FC = () => {
     e.preventDefault();
     setLocalError(null);
 
-    if (password !== confirmPassword) {
+    const pwd = password.trim();
+    const confirmed = confirmPassword.trim();
+
+    if (pwd !== confirmed) {
       setLocalError("Passwords do not match");
       return;
     }
 
+    if (pwd.length < 8) {
+      setLocalError("Password must be at least 8 characters");
+      return;
+    }
+
+    const trimmedEmail = email.trim();
+    const trimmedFirst = firstName.trim();
+    const trimmedLast = lastName.trim();
+
+    // Normalize birth date to YYYY-MM-DD if user typed dd/mm/yyyy
+    let normalizedBirth = birthDate.trim();
+    if (/^\d{2}\/\d{2}\/\d{4}$/.test(normalizedBirth)) {
+      const [d, m, y] = normalizedBirth.split("/");
+      normalizedBirth = `${y}-${m}-${d}`; // backend usually expects ISO-style date
+    }
+
     const result = await dispatch(
-      signupUser({ email, password, firstName, lastName, birthDate })
+      signupUser({
+        email: trimmedEmail,
+        password: pwd,
+        firstName: trimmedFirst,
+        lastName: trimmedLast,
+        birthDate: normalizedBirth,
+        confirmPassword: confirmed,
+      }),
     );
 
     if (signupUser.fulfilled.match(result)) {

@@ -59,7 +59,7 @@ export function updateCartPhotoRequirements() {
 
     cartItems.forEach((item) => {
       const product =
-        products.find((p) => p._id === item.id || p._id === item.id) || {};
+        products.find((p) => p.id === item.id || p.id === item.id) || {};
       const photoKeys: string[] = Array.isArray((product as any).photos)
         ? (product as any).photos
         : [];

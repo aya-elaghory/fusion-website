@@ -12,7 +12,7 @@ import {
   CartItem,
   PurchaseOption,
 } from "@/slices/cartSlice";
-import { X, Loader2 } from "lucide-react";
+import { X, Loader2, ChevronUp, ChevronDown } from "lucide-react";
 import { setIncompleteVisit, updateProfile } from "@/slices/profileSlice";
 import api from "@/services/api";
 
@@ -22,6 +22,7 @@ interface SlidingCartProps {
 }
 
 const BUSY_TIMEOUT_MS = 15000; // auto-unlock if sync takes too long
+const DEFAULT_PURCHASE_OPTION: PurchaseOption = "ONE_TIME";
 
 const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -29,7 +30,9 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
 
   const items = useSelector((s: RootState) => s.cart.items);
   const { isAuthenticated } = useSelector((s: RootState) => s.auth);
-  const { hasFetched, loading } = useSelector((s: RootState) => s.cart);
+  const { hasFetched: _hasFetched, loading } = useSelector(
+    (s: RootState) => s.cart,
+  );
 
   const [error, setError] = useState<string | null>(null);
 
@@ -126,7 +129,9 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
           const local = items.map((it) => ({ ...it }));
           await syncCartToServer(local, { refreshRedux: true });
         } catch {
-          setError("Couldn't merge your cart after login. Some items may be missing.");
+          setError(
+            "Couldn't merge your cart after login. Some items may be missing.",
+          );
         } finally {
           setMerging(false);
           mergeInFlightRef.current = false;
@@ -142,18 +147,43 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
 
   // Read server cart WITHOUT touching Redux (prevents flicker)
   const readServerCartNoRedux = async (): Promise<
-    Array<{ key: string; id: string; purchaseOption: PurchaseOption; quantity: number }>
+    Array<{
+      key: string;
+      id: string;
+      productId: string;
+      lineId?: string;
+      purchaseOption: PurchaseOption;
+      quantity: number;
+    }>
   > => {
-    const res = await api.get("/cart");
+    const res = await api.get("/cart/");
     const raw = res?.data?.items ?? [];
 
     return raw.map((row: any) => {
       const prod = row?.product ?? row ?? {};
-      const id = String(prod.id ?? row.productId ?? row.id ?? "");
-      const purchaseOption: PurchaseOption = (row.purchaseOption as PurchaseOption) ?? "ONE_TIME";
-      const quantity = typeof row.quantity === "number" && row.quantity > 0 ? row.quantity : 1;
-      const key = `${id}::${purchaseOption}`;
-      return { key, id, purchaseOption, quantity };
+      const lineId = String(row.id ?? row.cart_item_id ?? "");
+      const productId = String(
+        row.product_id ?? row.productId ?? prod.product_id ?? prod.id ?? "",
+      );
+      const id = String((prod.id ?? productId) || lineId);
+      const purchaseOptionRaw = String(
+        row.purchase_option ?? row.purchaseOption ?? "",
+      ).toUpperCase();
+      const purchaseOption: PurchaseOption =
+        purchaseOptionRaw === "REFILL_2M"
+          ? "REFILL_2M"
+          : DEFAULT_PURCHASE_OPTION;
+      const quantity =
+        typeof row.quantity === "number" && row.quantity > 0 ? row.quantity : 1;
+      const key = lineId || productId || id;
+      return {
+        key,
+        id,
+        productId: productId || id,
+        lineId: lineId || undefined,
+        purchaseOption,
+        quantity,
+      };
     });
   };
 
@@ -165,7 +195,7 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
    */
   const syncCartToServer = async (
     localItems: CartItem[],
-    { refreshRedux }: { refreshRedux: boolean }
+    { refreshRedux }: { refreshRedux: boolean },
   ) => {
     const serverItems = await readServerCartNoRedux();
 
@@ -173,25 +203,27 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
     for (const it of serverItems) serverQty.set(it.key, it.quantity);
 
     for (const it of localItems) {
-      const purchaseOption: PurchaseOption = it.purchaseOption ?? "ONE_TIME";
-      const key = `${it.id}::${purchaseOption}`;
+      const purchaseOption: PurchaseOption =
+        it.purchaseOption || DEFAULT_PURCHASE_OPTION;
+      const key = it.lineId || it.productId || it.id;
       const srv = serverQty.get(key) ?? 0;
 
       if (srv === 0) {
         await dispatch(
           addToCartThunk({
-            productId: it.id,
+            productId: it.productId || it.id,
             quantity: it.quantity,
             purchaseOption,
-          })
+          }),
         ).unwrap();
       } else if (srv !== it.quantity) {
         await dispatch(
           updateCartQuantityThunk({
-            productId: it.id,
+            productId: it.productId || it.id,
+            lineId: it.lineId,
             quantity: it.quantity,
             purchaseOption,
-          })
+          }),
         ).unwrap();
       }
     }
@@ -215,9 +247,10 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
     try {
       await dispatch(
         removeFromCartThunk({
-          productId: item.id,
-          purchaseOption: item.purchaseOption ?? "ONE_TIME",
-        })
+          productId: item.productId || item.id,
+          lineId: item.lineId,
+          purchaseOption: item.purchaseOption || DEFAULT_PURCHASE_OPTION,
+        }),
       ).unwrap();
 
       // ✅ Refresh from server so UI updates reliably
@@ -241,10 +274,11 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
     try {
       await dispatch(
         updateCartQuantityThunk({
-          productId: item.id,
+          productId: item.productId || item.id,
+          lineId: item.lineId,
           quantity,
-          purchaseOption: item.purchaseOption ?? "ONE_TIME",
-        })
+          purchaseOption: item.purchaseOption || DEFAULT_PURCHASE_OPTION,
+        }),
       ).unwrap();
 
       // ✅ Refresh from server so UI updates reliably
@@ -288,6 +322,72 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
   const isBusy = merging || blocking;
   const disableCheckout = items.length === 0 || isBusy;
   const showSpinnerOnly = items.length === 0 && (loading || merging);
+
+  const handlePurchaseOptionChange = async (
+    item: CartItem,
+    option: PurchaseOption,
+  ) => {
+    if (!isAuthenticated) {
+      onClose();
+      navigate("/login", { state: { from: "/cart" } });
+      return;
+    }
+    if (blocking || merging) return;
+
+    try {
+      await dispatch(
+        updateCartQuantityThunk({
+          productId: item.productId || item.id,
+          lineId: item.lineId,
+          quantity: item.quantity,
+          purchaseOption: option,
+        }),
+      ).unwrap();
+      await dispatch(fetchCart()).unwrap();
+    } catch (e: any) {
+      const status = e?.status || e?.response?.status;
+      const messageRaw =
+        typeof e === "string"
+          ? e
+          : e?.message ||
+            e?.response?.data?.detail ||
+            e?.response?.data?.message;
+
+      // If backend can't find the cart line with the new option, recreate it
+      if (status === 404 || /not found/i.test(String(messageRaw || ""))) {
+        try {
+          await dispatch(
+            removeFromCartThunk({
+              productId: item.productId || item.id,
+              lineId: item.lineId,
+              purchaseOption: item.purchaseOption || DEFAULT_PURCHASE_OPTION,
+            }),
+          ).unwrap();
+
+          await dispatch(
+            addToCartThunk({
+              productId: item.productId || item.id,
+              quantity: item.quantity,
+              purchaseOption: option,
+            }),
+          ).unwrap();
+
+          await dispatch(fetchCart()).unwrap();
+          return;
+        } catch (err: any) {
+          setError(
+            err?.message ||
+              err?.response?.data?.detail ||
+              err?.response?.data?.message ||
+              "Failed to recreate item with new option.",
+          );
+          return;
+        }
+      }
+
+      setError(messageRaw || "Failed to update option.");
+    }
+  };
 
   // ---------- Render ----------
   if (!isOpen) return null;
@@ -339,37 +439,88 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
           ) : items.length ? (
             items.map((item) => (
               <div
-                key={`${item.id}-${item.purchaseOption ?? "ONE_TIME"}`}
+                key={item.id}
                 className="flex items-center bg-gray-100 p-4 rounded shadow-sm hover:shadow-md transition"
               >
                 <img
-                  src={item.imageSrc}
+                  src={item.imageSrc || "/assets/default.jpg"}
                   alt={item.name}
                   className="h-14 w-14 object-cover mr-4 rounded"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = "/assets/default.jpg";
+                  }}
                 />
 
                 <div className="flex-1">
                   <p className="font-medium text-gray-800">{item.name}</p>
                   <p className="text-sm text-gray-500">{item.price}</p>
-                  <p className="text-xs text-gray-500 mt-1">
-                    {item.purchaseOption === "REFILL_2M" ? "Refill (2M)" : "One-time"}
-                  </p>
 
                   <div className="mt-2 flex items-center space-x-2">
-                    <input
-                      type="number"
-                      min={1}
-                      value={item.quantity}
-                      disabled={isBusy}
-                      onChange={(e) => handleQuantityChange(item, +e.target.value)}
-                      className="w-20 border border-gray-300 p-1 text-sm rounded focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 focus:ring-offset-1 disabled:opacity-60"
-                    />
+                    <div className="flex items-stretch border border-gray-300 rounded overflow-hidden">
+                      <input
+                        type="number"
+                        min={1}
+                        value={item.quantity}
+                        disabled={isBusy}
+                        onChange={(e) =>
+                          handleQuantityChange(item, +e.target.value)
+                        }
+                        className="w-16 px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 focus:ring-offset-1 disabled:opacity-60"
+                      />
+                      <div className="flex flex-col divide-y divide-gray-300">
+                        <button
+                          type="button"
+                          aria-label="Increase quantity"
+                          disabled={isBusy}
+                          onClick={() =>
+                            handleQuantityChange(item, item.quantity + 1)
+                          }
+                          className="flex items-center justify-center px-2 py-1 hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 disabled:opacity-60"
+                        >
+                          <ChevronUp className="h-4 w-4" />
+                        </button>
+                        <button
+                          type="button"
+                          aria-label="Decrease quantity"
+                          disabled={isBusy || item.quantity <= 1}
+                          onClick={() =>
+                            handleQuantityChange(item, item.quantity - 1)
+                          }
+                          className="flex items-center justify-center px-2 py-1 hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 disabled:opacity-60"
+                        >
+                          <ChevronDown className="h-4 w-4" />
+                        </button>
+                      </div>
+                    </div>
                     <button
                       onClick={() => handleRemove(item)}
                       disabled={isBusy}
                       className="text-red-500 hover:text-red-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 rounded disabled:opacity-60"
                     >
                       Remove
+                    </button>
+                  </div>
+
+                  <div className="mt-2 flex flex-wrap gap-2 text-xs">
+                    <button
+                      type="button"
+                      disabled={isBusy}
+                      onClick={() =>
+                        handlePurchaseOptionChange(item, "ONE_TIME")
+                      }
+                      className={`px-3 py-2 rounded border transition-colors ${item.purchaseOption === "ONE_TIME" ? "bg-green-600 text-white border-green-600" : "border-gray-300 text-gray-700 hover:border-green-500"}`}
+                    >
+                      One-time {item.oneTimePrice ?? item.price}
+                    </button>
+                    <button
+                      type="button"
+                      disabled={isBusy}
+                      onClick={() =>
+                        handlePurchaseOptionChange(item, "REFILL_2M")
+                      }
+                      className={`px-3 py-2 rounded border transition-colors ${item.purchaseOption === "REFILL_2M" ? "bg-green-600 text-white border-green-600" : "border-gray-300 text-gray-700 hover:border-green-500"}`}
+                    >
+                      Refill (2 mo) {item.refillPrice ?? item.price}
                     </button>
                   </div>
                 </div>
@@ -404,7 +555,7 @@ const SlidingCart: React.FC<SlidingCartProps> = ({ isOpen, onClose }) => {
         </footer>
       </div>
     </>,
-    document.body
+    document.body,
   );
 };
 

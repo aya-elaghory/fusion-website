@@ -62,7 +62,7 @@ const OrderHistory: React.FC = () => {
   // Memoize product map for lookup
   const productMap = useMemo(() => {
     const map = new Map();
-    products.forEach((p) => map.set(p._id, p));
+    products.forEach((p) => map.set(p.id, p));
     return map;
   }, [products]);
 
@@ -109,14 +109,14 @@ const OrderHistory: React.FC = () => {
           )
           .map((order) => (
             <div
-              key={order._id}
+              key={order.id}
               className="bg-white shadow-lg rounded-xl p-6 border border-gray-200 relative"
             >
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
                 <h2 className="text-lg font-semibold text-gray-800">
                   Order{" "}
                   <span className="text-green-800">
-                    #{order._id.slice(-6).toUpperCase()}
+                    #{order.id.slice(-6).toUpperCase()}
                   </span>
                 </h2>
                 <div className="flex items-center text-gray-500 text-sm gap-2 mt-1 sm:mt-0">

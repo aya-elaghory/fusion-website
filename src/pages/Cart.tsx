@@ -2,24 +2,37 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { RootState } from "@/store";
-import { removeFromCart, updateQuantity, toggleConsultation } from "@/slices/cartSlice";
+import { RootState, AppDispatch } from "@/store";
+import {
+  removeFromCartThunk,
+  updateCartQuantityThunk,
+  toggleConsultation,
+  PurchaseOption,
+} from "@/slices/cartSlice";
 import LoginSlice from "./Login";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 
+const CONSULTATION_PRICE = 25;
+
 const Cart: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const cartItems = useSelector((state: RootState) => state.cart?.items || []);
-  const addConsultation = useSelector((state: RootState) => state.cart.addConsultation);
+  const addConsultation = useSelector(
+    (state: RootState) => state.cart.addConsultation,
+  );
 
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 
   const profile = useSelector((state: RootState) => state.profile.profile);
-  const profileLoading = useSelector((state: RootState) => state.profile.loading);
-  const profileHasFetched = useSelector((state: RootState) => state.profile.hasFetched);
+  const profileLoading = useSelector(
+    (state: RootState) => state.profile.loading,
+  );
+  const profileHasFetched = useSelector(
+    (state: RootState) => state.profile.hasFetched,
+  );
 
   const [showLoginModal, setShowLoginModal] = useState(false);
 
@@ -35,15 +48,37 @@ const Cart: React.FC = () => {
     }
   }, [profileHasFetched, isFirstTimeBuyer, addConsultation, dispatch]);
 
-  const handleRemove = (id: string) => {
-    dispatch(removeFromCart(id));
+  // ✅ FIX: Use thunk for remove
+  const handleRemove = (id: string, purchaseOption?: PurchaseOption) => {
+    dispatch(
+      removeFromCartThunk({
+        productId: id,
+        purchaseOption,
+      }),
+    );
   };
 
-  const handleQuantityChange = (id: string, quantity: number) => {
+  // ✅ FIX: Use thunk for update
+  const handleQuantityChange = (
+    id: string,
+    quantity: number,
+    purchaseOption?: PurchaseOption,
+  ) => {
     if (quantity < 1) {
-      dispatch(removeFromCart(id));
+      dispatch(
+        removeFromCartThunk({
+          productId: id,
+          purchaseOption,
+        }),
+      );
     } else {
-      dispatch(updateQuantity({ id, quantity }));
+      dispatch(
+        updateCartQuantityThunk({
+          productId: id,
+          quantity,
+          purchaseOption,
+        }),
+      );
     }
   };
 
@@ -56,6 +91,9 @@ const Cart: React.FC = () => {
       return total + priceNumber * (Number(item.quantity) || 1);
     }, 0);
   }, [cartItems]);
+
+  const consultationTotal = addConsultation ? CONSULTATION_PRICE : 0;
+  const grandTotal = totalPrice + consultationTotal;
 
   const handleCheckout = () => {
     if (!isAuthenticated) {
@@ -71,6 +109,12 @@ const Cart: React.FC = () => {
     // ✅ Safety check (first-time must have consultation)
     if (isFirstTimeBuyer && !addConsultation) {
       dispatch(toggleConsultation(true));
+      return;
+    }
+
+    // ✅ PREVENT CHECKOUT IF CART IS EMPTY
+    if (cartItems.length === 0) {
+      alert("Your cart is empty. Please add items before checkout.");
       return;
     }
 
@@ -92,21 +136,35 @@ const Cart: React.FC = () => {
                 <input
                   type="checkbox"
                   className="mt-1 h-4 w-4"
-                  checked={profileHasFetched && isFirstTimeBuyer ? true : addConsultation}
+                  checked={
+                    profileHasFetched && isFirstTimeBuyer
+                      ? true
+                      : addConsultation
+                  }
                   disabled={!profileHasFetched || isFirstTimeBuyer}
-                  onChange={(e) => dispatch(toggleConsultation(e.target.checked))}
+                  onChange={(e) =>
+                    dispatch(toggleConsultation(e.target.checked))
+                  }
                 />
 
                 <div>
-                  <p className="font-semibold text-gray-900">Add Consultation</p>
+                  <p className="font-semibold text-gray-900">
+                    Add Consultation
+                  </p>
+
+                  <p className="text-sm text-gray-700 mt-1">
+                    ${CONSULTATION_PRICE.toFixed(2)}
+                  </p>
 
                   {!profileHasFetched ? (
                     <p className="text-sm text-gray-600 mt-1">
-                      Loading your profile to confirm if consultation is required...
+                      Loading your profile to confirm if consultation is
+                      required...
                     </p>
                   ) : isFirstTimeBuyer ? (
                     <p className="text-sm text-red-600 mt-1">
-                      First-time buyers must include a consultation to complete the order.
+                      First-time buyers must include a consultation to complete
+                      the order.
                     </p>
                   ) : (
                     <p className="text-sm text-gray-600 mt-1">
@@ -138,7 +196,11 @@ const Cart: React.FC = () => {
                     <div className="flex items-center mt-2">
                       <button
                         onClick={() =>
-                          handleQuantityChange(item.id, item.quantity - 1)
+                          handleQuantityChange(
+                            item.lineId || item.productId || item.id,
+                            item.quantity - 1,
+                            item.purchaseOption,
+                          )
                         }
                         className="bg-gray-200 px-2 py-1 rounded-l-md"
                       >
@@ -149,7 +211,11 @@ const Cart: React.FC = () => {
                       </span>
                       <button
                         onClick={() =>
-                          handleQuantityChange(item.id, item.quantity + 1)
+                          handleQuantityChange(
+                            item.lineId || item.productId || item.id,
+                            item.quantity + 1,
+                            item.purchaseOption,
+                          )
                         }
                         className="bg-gray-200 px-2 py-1 rounded-r-md"
                       >
@@ -159,7 +225,12 @@ const Cart: React.FC = () => {
                   </div>
 
                   <button
-                    onClick={() => handleRemove(item.id)}
+                    onClick={() =>
+                      handleRemove(
+                        item.lineId || item.productId || item.id,
+                        item.purchaseOption,
+                      )
+                    }
                     className="text-red-500 hover:text-red-700"
                   >
                     Remove
@@ -171,17 +242,27 @@ const Cart: React.FC = () => {
             {/* TOTAL */}
             <div className="mt-8">
               <h2 className="text-xl font-semibold text-gray-900">
-                Total: ${totalPrice.toFixed(2)}/mo.
+                Total: ${grandTotal.toFixed(2)}
               </h2>
+
+              {addConsultation ? (
+                <p className="text-sm text-gray-600 mt-1">
+                  Includes consultation (${CONSULTATION_PRICE.toFixed(2)})
+                </p>
+              ) : null}
 
               <button
                 onClick={handleCheckout}
-                disabled={profileLoading || !profileHasFetched}
-                className="mt-4 bg-primary text-white px-6 py-3 rounded-md hover:bg-primary/90 disabled:opacity-60"
+                disabled={
+                  profileLoading || !profileHasFetched || cartItems.length === 0
+                }
+                className="mt-4 bg-primary text-white px-6 py-3 rounded-md hover:bg-primary/90 disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {profileLoading || !profileHasFetched
                   ? "Loading..."
-                  : "Proceed to Checkout"}
+                  : cartItems.length === 0
+                    ? "Cart is Empty"
+                    : "Proceed to Checkout"}
               </button>
             </div>
           </>

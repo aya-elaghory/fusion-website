@@ -20,11 +20,13 @@ const slugify = (s: string) =>
 const Treatments: React.FC<TreatmentsProps> = ({ toggleCart }) => {
   const cartItems = useSelector((state: RootState) => state.cart?.items ?? []);
   const loading = useSelector(
-    (state: RootState) => state.products?.loading ?? false
+    (state: RootState) => state.products?.loading ?? false,
   );
-  const error = useSelector((state: RootState) => state.products?.error ?? null);
+  const error = useSelector(
+    (state: RootState) => state.products?.error ?? null,
+  );
   const allProducts = useSelector(
-    (state: RootState) => state.products?.products ?? []
+    (state: RootState) => state.products?.products ?? [],
   ) as any[];
 
   const treatments = useMemo(() => {
@@ -33,16 +35,15 @@ const Treatments: React.FC<TreatmentsProps> = ({ toggleCart }) => {
 
       const monthly = centsToDollars(product.priceOneTimeCents);
 
-      const ingredientsStr =
-        Array.isArray(product.ingredients)
-          ? (() => {
-              const names = product.ingredients
-                .map((i: any) => i?.name)
-                .filter(Boolean);
-              const topThree = names.slice(0, 3);
-              return topThree.join(", ") + (names.length > 3 ? " & more" : "");
-            })()
-          : String(product.ingredients ?? "");
+      const ingredientsStr = Array.isArray(product.ingredients)
+        ? (() => {
+            const names = product.ingredients
+              .map((i: any) => i?.name)
+              .filter(Boolean);
+            const topThree = names.slice(0, 3);
+            return topThree.join(", ") + (names.length > 3 ? " & more" : "");
+          })()
+        : String(product.ingredients ?? "");
 
       return {
         id,
@@ -72,7 +73,7 @@ const Treatments: React.FC<TreatmentsProps> = ({ toggleCart }) => {
         ) : error ? (
           <p className="text-center text-red-500">{String(error)}</p>
         ) : treatments.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-stretch">
             {treatments.map((t) => {
               const isInCart = cartItems.some((i) => i.id === t.id);
 

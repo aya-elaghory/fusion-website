@@ -120,7 +120,7 @@ const AppRoutes: React.FC<AppRoutesProps> = ({ toggleCart }) => {
 
         {mainConcerns.map((mainConcern) => (
           <Route
-            key={mainConcern._id || mainConcern.main_concern_name}
+            key={mainConcern.id || mainConcern.main_concern_name}
             path={`/${String(mainConcern.main_concern_name).toLowerCase().replace(/ /g, "-")}`}
             element={<ConcernTreatments toggleCart={toggleCart} />}
           />

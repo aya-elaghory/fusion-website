@@ -173,12 +173,12 @@ const Footer: React.FC = () => {
           <p className="order-1 md:order-3 text-center md:text-right">
             Designed &amp; Developed by{" "}
             <a
-              href="https://aiglobalcore.com"
+              href="https://revezy.com"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-gray-900 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
             >
-              AI Globalcore
+              RevEZY Marketing
             </a>
           </p>
         </div>

@@ -38,7 +38,8 @@ const extractPrice = (raw: any): number => {
     if ("value" in raw) return extractPrice(raw.value);
     if ("price" in raw) return extractPrice(raw.price);
     if ("unitAmount" in raw) return extractPrice(raw.unitAmount);
-    if ("unit_amount" in raw) return extractPrice(Number(raw.unit_amount) / 100);
+    if ("unit_amount" in raw)
+      return extractPrice(Number(raw.unit_amount) / 100);
     if ("priceCents" in raw) return extractPrice(Number(raw.priceCents) / 100);
   }
   return 0;
@@ -50,6 +51,8 @@ const fmtUSD = (n: number) =>
 const isValidEmail = (email: string) =>
   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 
+const CONSULTATION_PRICE = 25;
+
 type Step = "shipping" | "payment";
 
 const Checkout: React.FC = () => {
@@ -60,20 +63,20 @@ const Checkout: React.FC = () => {
   // Cart (single source of truth)
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const addConsultation = useSelector(
-    (state: RootState) => state.cart.addConsultation
+    (state: RootState) => state.cart.addConsultation,
   );
 
   // Profile/Auth
   const { profile } = useSelector((state: RootState) => state.profile);
   const isAuthenticated = useSelector(
-    (state: RootState) => state.auth.isAuthenticated
+    (state: RootState) => state.auth.isAuthenticated,
   );
   const authUser = useSelector((state: RootState) => state.auth.user);
 
   // Products (to resolve IDs/prices if cart stored strings)
   const products = useSelector((state: RootState) => state.products.products);
   const productsLoading = useSelector(
-    (state: RootState) => state.products.loading
+    (state: RootState) => state.products.loading,
   );
 
   const isFirstTime = profile?.incompleteVisit === true;
@@ -115,6 +118,7 @@ const Checkout: React.FC = () => {
       address: addr?.line1 || "",
       city: addr?.city || "",
       country: addr?.country || "",
+      state: addr?.state || "",
       zipCode: addr?.postalCode || "",
     };
   }, [profile]);
@@ -124,10 +128,13 @@ const Checkout: React.FC = () => {
   const computedName = profile
     ? `${profile.firstName ?? ""} ${profile.lastName ?? ""}`.trim()
     : "";
+  const computedPhone =
+    (profile as any)?.phone || (profile as any)?.phoneNumber || "";
 
   const [formData, setFormData] = useState(() => ({
     email: computedEmail,
     name: computedName,
+    phone: String(computedPhone || ""),
     ...defaultAddress,
   }));
 
@@ -137,9 +144,11 @@ const Checkout: React.FC = () => {
       ...prev,
       email: prev.email?.trim() ? prev.email : computedEmail,
       name: prev.name?.trim() ? prev.name : computedName,
+      phone: prev.phone?.trim() ? prev.phone : String(computedPhone || ""),
       address: prev.address?.trim() ? prev.address : defaultAddress.address,
       city: prev.city?.trim() ? prev.city : defaultAddress.city,
       country: prev.country?.trim() ? prev.country : defaultAddress.country,
+      state: prev.state?.trim() ? prev.state : defaultAddress.state,
       zipCode: prev.zipCode?.trim() ? prev.zipCode : defaultAddress.zipCode,
     }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -147,6 +156,26 @@ const Checkout: React.FC = () => {
 
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+
+  const toErrorMessage = (input: unknown): string => {
+    if (!input) return "";
+    if (typeof input === "string") return input;
+    if (Array.isArray(input)) {
+      const msgs = input
+        .map((item) =>
+          typeof item === "object" && item
+            ? (item as any).msg || (item as any).message || JSON.stringify(item)
+            : String(item),
+        )
+        .filter(Boolean);
+      return msgs.join("; ");
+    }
+    if (typeof input === "object") {
+      const obj = input as any;
+      return obj?.message || obj?.detail || obj?.error || JSON.stringify(obj);
+    }
+    return String(input);
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -159,8 +188,10 @@ const Checkout: React.FC = () => {
 
     if (!email || !isValidEmail(email)) return "Please enter a valid email.";
     if (!name) return "Please enter your full name.";
+    if (!formData.phone?.trim()) return "Please enter your phone number.";
     if (!formData.address?.trim()) return "Please enter your address.";
     if (!formData.city?.trim()) return "Please enter your city.";
+    if (!formData.state?.trim()) return "Please enter your state/region.";
     if (!formData.country?.trim()) return "Please enter your country.";
     if (!formData.zipCode?.trim()) return "Please enter your ZIP code.";
     return null;
@@ -173,19 +204,19 @@ const Checkout: React.FC = () => {
         const product =
           products.find(
             (p: any) =>
-              p._id === ci.id ||
               p.id === ci.id ||
-              p._id === ci.productId ||
-              p.id === ci.productId
+              p.id === ci.id ||
+              p.id === ci.productId ||
+              p.id === ci.productId,
           ) || null;
 
         const productId =
-          product?._id || product?.id || ci.productId || ci.id || "";
+          product?.id || product?.id || ci.productId || ci.id || "";
 
         return {
           productId,
           quantity: Number(ci.quantity) || 1,
-          ...(ci.purchaseOption ? { purchaseOption: ci.purchaseOption } : {}),
+          purchaseOption: "ONE_TIME",
           __ui: {
             name: product?.name || ci.name || "Product",
             unit: extractPrice(product?.price ?? ci.price ?? 0),
@@ -206,8 +237,9 @@ const Checkout: React.FC = () => {
   }, [itemsDto]);
 
   const orderTotal = useMemo(() => {
-    return summaryItems.reduce((acc, it) => acc + it.line, 0);
-  }, [summaryItems]);
+    const itemsTotal = summaryItems.reduce((acc, it) => acc + it.line, 0);
+    return itemsTotal + (addConsultation ? CONSULTATION_PRICE : 0);
+  }, [summaryItems, addConsultation]);
 
   const handleShippingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -236,12 +268,13 @@ const Checkout: React.FC = () => {
               line1: formData.address.trim(),
               line2: "",
               city: formData.city.trim(),
-              state: "",
+              state: formData.state.trim(),
               postalCode: formData.zipCode.trim(),
               country: formData.country.trim(),
+              phone: formData.phone.trim(),
             },
           ],
-        } as any)
+        } as any),
       ).unwrap?.();
 
       setStep("payment");
@@ -263,7 +296,7 @@ const Checkout: React.FC = () => {
       // Enforce consultation rule (backend will also enforce ideally)
       if (profile && isFirstTime && !addConsultation) {
         setError(
-          "First-time buyers must include a consultation. Please go back to cart."
+          "First-time buyers must include a consultation. Please go back to cart.",
         );
         navigate("/cart");
         return;
@@ -287,37 +320,43 @@ const Checkout: React.FC = () => {
 
       // ✅ single, backend-friendly payload
       const finalOrder = {
+        // Backend expects snake_case keys
         items: itemsDto.map(({ productId, quantity, purchaseOption }: any) => ({
-          productId,
+          product_id: productId,
           quantity,
-          ...(purchaseOption ? { purchaseOption } : {}),
+          ...(purchaseOption ? { purchase_option: purchaseOption } : {}),
         })),
         shippingInfo: {
           email: formData.email.trim(),
           name: formData.name.trim(),
+          phone: formData.phone.trim(),
           address: formData.address.trim(),
           city: formData.city.trim(),
+          state: formData.state.trim(),
           country: formData.country.trim(),
           zipCode: formData.zipCode.trim(),
+          postalCode: formData.zipCode.trim(),
         },
         addConsultation,
+        totalAmount: orderTotal,
         status: "PENDING",
       };
 
       // 1) create order
-      const orderRes = await api.post("/orders", finalOrder);
-      const orderId = orderRes.data?.id || orderRes.data?._id;
+      // Hit Django-style endpoints with trailing slash to avoid preflight redirects
+      const orderRes = await api.post("/orders/", finalOrder);
+      const orderId = orderRes.data?.id || orderRes.data?.id;
       if (!orderId) throw new Error("Order created but no orderId returned.");
 
       // 2) stripe checkout session
       const origin = window.location.origin;
       const sessionRes = await api.post(
-        `/payments/orders/${orderId}/checkout`,
+        `/payments/orders/${orderId}/checkout/`,
         {
           addConsultation,
           successUrl: `${origin}/payment-success`,
           cancelUrl: `${origin}/payment-cancel`,
-        }
+        },
       );
 
       const url = sessionRes.data?.url;
@@ -331,9 +370,11 @@ const Checkout: React.FC = () => {
         navigate("/login");
         return;
       }
+      const payload = err?.response?.data;
+      const backendMsg = payload?.message || payload?.detail || payload;
       const msg =
-        err?.response?.data?.message ||
-        err?.message ||
+        toErrorMessage(backendMsg) ||
+        toErrorMessage(err?.message) ||
         "Payment failed. Check backend logs.";
       setError(msg);
     } finally {
@@ -400,6 +441,21 @@ const Checkout: React.FC = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700">
+                    Phone
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    required
+                    className="mt-1 block w-full border-gray-300 shadow-sm"
+                    autoComplete="tel"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
                     Address
                   </label>
                   <input
@@ -431,6 +487,23 @@ const Checkout: React.FC = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700">
+                      State / Province
+                    </label>
+                    <input
+                      type="text"
+                      name="state"
+                      value={formData.state}
+                      onChange={handleInputChange}
+                      required
+                      className="mt-1 block w-full border-gray-300 shadow-sm"
+                      autoComplete="address-level1"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">
                       ZIP Code
                     </label>
                     <input
@@ -443,21 +516,21 @@ const Checkout: React.FC = () => {
                       autoComplete="postal-code"
                     />
                   </div>
-                </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Country
-                  </label>
-                  <input
-                    type="text"
-                    name="country"
-                    value={formData.country}
-                    onChange={handleInputChange}
-                    required
-                    className="mt-1 block w-full border-gray-300 shadow-sm"
-                    autoComplete="country-name"
-                  />
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">
+                      Country
+                    </label>
+                    <input
+                      type="text"
+                      name="country"
+                      value={formData.country}
+                      onChange={handleInputChange}
+                      required
+                      className="mt-1 block w-full border-gray-300 shadow-sm"
+                      autoComplete="country-name"
+                    />
+                  </div>
                 </div>
 
                 <MagnetizeButton
@@ -539,30 +612,20 @@ const Checkout: React.FC = () => {
               )}
             </div>
 
-            {summaryItems.length > 0 && (
-              <div className="mt-4 pt-4 border-t border-gray-200 flex justify-between">
-                <span className="font-medium">Total</span>
-                <span className="font-bold">{fmtUSD(orderTotal)}</span>
+            <div className="mt-4 border-t border-gray-200 pt-4 space-y-2 text-sm text-gray-700">
+              <div className="flex items-center justify-between">
+                <span className="font-medium">Consultation status</span>
+                <span className="font-medium">
+                  {addConsultation ? "Included" : "Not included"}
+                </span>
               </div>
-            )}
-
-            {/* show consultation selection (read-only) */}
-            {profile && (
-              <div className="mt-4 text-sm text-gray-700">
-                <div className="flex items-center justify-between">
-                  <span>Consultation</span>
-                  <span className="font-medium">
-                    {addConsultation ? "Included" : "Not included"}
-                  </span>
-                </div>
-                {isFirstTime && !addConsultation ? (
-                  <p className="text-red-600 mt-1">
-                    First-time buyers must include consultation (choose it in
-                    cart).
-                  </p>
-                ) : null}
-              </div>
-            )}
+              {isFirstTime && !addConsultation ? (
+                <p className="text-red-600">
+                  First-time buyers must include consultation (choose it in
+                  cart).
+                </p>
+              ) : null}
+            </div>
           </div>
         </div>
       </div>

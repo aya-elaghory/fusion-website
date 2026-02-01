@@ -49,16 +49,20 @@ const ProductCardConcerns: React.FC<ProductCardConcernsProps> = ({
 
   const cartItems = useSelector((state: RootState) => state.cart?.items || []);
   const isAuthenticated = useSelector(
-    (state: RootState) => state.auth.isAuthenticated
+    (state: RootState) => state.auth.isAuthenticated,
   );
 
   const isInCart = cartItems.some(
-    (item) => item.id === id && (item.purchaseOption ?? "ONE_TIME") === "ONE_TIME"
+    (item) =>
+      item.id === id && (item.purchaseOption ?? "ONE_TIME") === "ONE_TIME",
   );
 
   const formattedIngredients =
     ingredients.length > 3
-      ? `${ingredients.slice(0, 3).map((ing) => ing.name).join(", ")} & more`
+      ? `${ingredients
+          .slice(0, 3)
+          .map((ing) => ing.name)
+          .join(", ")} & more`
       : ingredients.map((ing) => ing.name).join(", ");
 
   const handleAddToCart = async () => {
@@ -77,7 +81,7 @@ const ProductCardConcerns: React.FC<ProductCardConcernsProps> = ({
         price: price != null ? `$${Number(price).toFixed(2)}` : "$0.00",
         quantity: 1,
         purchaseOption,
-      })
+      }),
     );
 
     toggleCart();
@@ -90,7 +94,7 @@ const ProductCardConcerns: React.FC<ProductCardConcernsProps> = ({
             productId: id,
             quantity: 1,
             purchaseOption,
-          })
+          }),
         ).unwrap();
 
         // ✅ Pull server cart back (keeps UI in sync with backend)
@@ -140,20 +144,12 @@ const ProductCardConcerns: React.FC<ProductCardConcernsProps> = ({
 
         <p className="text-gray-600 mt-3 text-base">{description}</p>
 
-        <div className="mt-3 flex items-center space-x-2 bg-white p-2">
-          <img
-            src={ingredientsLogo}
-            alt="Ingredients Icon"
-            className="w-5 h-5 object-contain"
-          />
-          <p className="text-sm text-gray-700 font-bold">
-            {formattedIngredients || "No ingredients listed"}
-          </p>
+        <div className="mt-3 ingredient-badge">
+          <img src={ingredientsLogo} alt="Ingredients Icon" />
+          <p>{formattedIngredients || "No ingredients listed"}</p>
         </div>
 
-        {error ? (
-          <p className="mt-3 text-sm text-red-600">{error}</p>
-        ) : null}
+        {error ? <p className="mt-3 text-sm text-red-600">{error}</p> : null}
 
         <div className="mt-6 flex items-center space-x-3">
           {learnLink && (

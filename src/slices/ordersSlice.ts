@@ -9,7 +9,7 @@ export interface OrderItem {
 }
 
 export interface Order {
-  _id: string;
+  id: string;
   items: OrderItem[];
   totalAmount: number;
   paymentDetails?: any;
@@ -43,48 +43,50 @@ const initialState: OrdersState = {
 };
 
 // -- Thunks --
-export const addOrder = createAsyncThunk<Order, void, { state: { orders: OrdersState } }>(
-  "orders/addOrder",
-  async (_, { getState, rejectWithValue }) => {
-    try {
-      const draft = getState().orders.currentOrderDraft;
-      if (!draft || !draft.items?.length) throw new Error("Order draft is empty");
-      const res = await api.post("/orders", draft);
-      return res.data as Order;
-    } catch (err: any) {
-      return rejectWithValue(
-        err.response?.data?.message || err.message || "Failed to create order"
-      );
-    }
+export const addOrder = createAsyncThunk<
+  Order,
+  void,
+  { state: { orders: OrdersState } }
+>("orders/addOrder", async (_, { getState, rejectWithValue }) => {
+  try {
+    const draft = getState().orders.currentOrderDraft;
+    if (!draft || !draft.items?.length) throw new Error("Order draft is empty");
+    // Use trailing slash to avoid backend redirects that break CORS preflight
+    const res = await api.post("/orders/", draft);
+    return res.data as Order;
+  } catch (err: any) {
+    return rejectWithValue(
+      err.response?.data?.message || err.message || "Failed to create order",
+    );
   }
-);
+});
 
 export const fetchOrders = createAsyncThunk<Order[]>(
   "orders/fetchOrders",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await api.get("/orders");
+      const res = await api.get("/orders/");
       return res.data as Order[];
     } catch (err: any) {
       return rejectWithValue(
-        err.response?.data?.message || err.message || "Failed to fetch orders"
+        err.response?.data?.message || err.message || "Failed to fetch orders",
       );
     }
-  }
+  },
 );
 
 export const cancelOrder = createAsyncThunk<string, string>(
   "orders/cancelOrder",
   async (orderId, { rejectWithValue }) => {
     try {
-      await api.delete(`/orders/${orderId}`);
+      await api.delete(`/orders/${orderId}/`);
       return orderId;
     } catch (err: any) {
       return rejectWithValue(
-        err.response?.data?.message || err.message || "Failed to cancel order"
+        err.response?.data?.message || err.message || "Failed to cancel order",
       );
     }
-  }
+  },
 );
 
 // -- Slice --
@@ -110,9 +112,11 @@ const ordersSlice = createSlice({
     },
     setOrderPhotos(
       state,
-      action: PayloadAction<{ orderId: string; photos: string[] }>
+      action: PayloadAction<{ orderId: string; photos: string[] }>,
     ) {
-      const idx = state.orders.findIndex((o) => o._id === action.payload.orderId);
+      const idx = state.orders.findIndex(
+        (o) => o.id === action.payload.orderId,
+      );
       if (idx !== -1) {
         state.orders[idx].photos = action.payload.photos;
       }
@@ -146,7 +150,7 @@ const ordersSlice = createSlice({
         state.error = action.payload as string;
       })
       .addCase(cancelOrder.fulfilled, (state, action) => {
-        state.orders = state.orders.filter((o) => o._id !== action.payload);
+        state.orders = state.orders.filter((o) => o.id !== action.payload);
       });
   },
 });

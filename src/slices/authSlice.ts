@@ -17,7 +17,9 @@ interface AuthState {
   error: string | null;
 }
 
-const rawToken = localStorage.getItem("token");
+// Accept either key; some backends return `access_token`
+const rawToken =
+  localStorage.getItem("token") || localStorage.getItem("access_token");
 const storedToken =
   rawToken && rawToken !== "undefined" && rawToken !== "null" ? rawToken : null;
 
@@ -35,15 +37,31 @@ export const loginUser = createAsyncThunk<
   { email: string; password: string },
   { rejectValue: string }
 >("auth/loginUser", async ({ email, password }, { rejectWithValue }) => {
-  try {
-    const res = await api.post("/auth/login", { email, password });
+  const emailClean = email.trim().toLowerCase();
+  const passwordClean = password.trim();
 
-    const token = res.data?.token;
+  if (!emailClean || !passwordClean) {
+    return rejectWithValue("Email and password are required");
+  }
+
+  try {
+    // Use trailing slash to avoid 301/308 redirects that break CORS preflight
+    const res = await api.post("/auth/login/", {
+      email: emailClean,
+      password: passwordClean,
+    });
+
+    // Accept multiple token shapes from backend
+    const token =
+      res.data?.token ||
+      res.data?.access_token ||
+      res.data?.accessToken ||
+      res.data?.jwt;
     if (!token) return rejectWithValue("Login response is missing token");
 
     return {
       user: {
-        email: res.data.user?.email || email,
+        email: res.data.user?.email || emailClean,
         firstName: res.data.user?.firstName || "",
         lastName: res.data.user?.lastName,
         role: res.data.user?.role,
@@ -51,9 +69,21 @@ export const loginUser = createAsyncThunk<
       token,
     };
   } catch (err: any) {
-    return rejectWithValue(
-      err?.response?.data?.message || err?.message || "Login failed"
-    );
+    const data = err?.response?.data;
+    const messageFromArray =
+      Array.isArray(data?.errors) && data.errors.length
+        ? data.errors[0]?.message || data.errors[0]
+        : null;
+
+    const message =
+      messageFromArray ||
+      data?.message ||
+      data?.detail ||
+      (typeof data === "string" ? data : undefined) ||
+      err?.message ||
+      "Login failed";
+
+    return rejectWithValue(message);
   }
 });
 
@@ -66,11 +96,40 @@ export const signupUser = createAsyncThunk<
     firstName: string;
     lastName?: string;
     birthDate?: string;
+    confirmPassword?: string;
   },
   { rejectValue: string }
 >("auth/signupUser", async (payload, { rejectWithValue }) => {
   try {
-    const res = await api.post("/auth/signup", payload);
+    const email = payload.email.trim();
+    const password = payload.password.trim();
+    const confirm = (payload.confirmPassword ?? payload.password).trim();
+    const firstName = payload.firstName.trim();
+    const lastName = payload.lastName?.trim();
+    const birthDate = payload.birthDate?.trim();
+
+    const body: Record<string, any> = {
+      email,
+      password,
+      confirmPassword: confirm,
+      confirm_password: confirm,
+      passwordConfirmation: confirm,
+      password_confirmation: confirm,
+      firstName,
+      first_name: firstName,
+    };
+
+    if (lastName) {
+      body.lastName = lastName;
+      body.last_name = lastName;
+    }
+    if (birthDate) {
+      body.birthDate = birthDate;
+      body.birth_date = birthDate;
+    }
+
+    // Use trailing slash to avoid 301/308 redirects during preflight
+    const res = await api.post("/auth/signup/", body);
 
     return {
       user: {
@@ -82,9 +141,21 @@ export const signupUser = createAsyncThunk<
       token: res.data?.token, // may exist (your backend sends it)
     };
   } catch (err: any) {
-    return rejectWithValue(
-      err?.response?.data?.message || err?.message || "Signup failed"
-    );
+    const data = err?.response?.data;
+    const messageFromArray =
+      Array.isArray(data?.errors) && data.errors.length
+        ? data.errors[0]?.message || data.errors[0]
+        : null;
+
+    const message =
+      messageFromArray ||
+      data?.message ||
+      data?.error ||
+      data?.detail ||
+      (typeof data === "string" ? data : undefined) ||
+      err?.message ||
+      "Signup failed";
+    return rejectWithValue(message);
   }
 });
 
@@ -94,7 +165,7 @@ const authSlice = createSlice({
   reducers: {
     setCredentials: (
       state,
-      action: PayloadAction<{ user: UserInfo; token?: string | null }>
+      action: PayloadAction<{ user: UserInfo; token?: string | null }>,
     ) => {
       const token = action.payload.token;
 
@@ -104,8 +175,13 @@ const authSlice = createSlice({
       state.error = null;
       state.loading = false;
 
-      if (token) localStorage.setItem("token", token);
-      else localStorage.removeItem("token");
+      if (token) {
+        localStorage.setItem("token", token);
+        localStorage.setItem("access_token", token);
+      } else {
+        localStorage.removeItem("token");
+        localStorage.removeItem("access_token");
+      }
     },
     logout: (state) => {
       state.isAuthenticated = false;
@@ -114,10 +190,12 @@ const authSlice = createSlice({
       state.error = null;
       state.loading = false;
       localStorage.removeItem("token");
+      localStorage.removeItem("access_token");
     },
     resetAuth: (state) => {
       Object.assign(state, initialState);
       localStorage.removeItem("token");
+      localStorage.removeItem("access_token");
     },
   },
   extraReducers: (builder) => {
@@ -134,6 +212,7 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.isAuthenticated = true;
         localStorage.setItem("token", action.payload.token);
+        localStorage.setItem("access_token", action.payload.token);
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;

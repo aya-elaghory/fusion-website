@@ -32,7 +32,6 @@
 }
 
 @keyframes move1 {
-
   0%,
   100% {
     transform: translate(0, 0);
@@ -52,7 +51,6 @@
 }
 
 @keyframes move2 {
-
   0%,
   100% {
     transform: translate(0, 0);
@@ -72,7 +70,6 @@
 }
 
 @keyframes move3 {
-
   0%,
   100% {
     transform: translate(0, 0);
@@ -318,6 +315,36 @@
     animation: marquee-loop 20s linear infinite;
   }
 
+  /* Ingredient badge shared styling for consistent alignment */
+  .ingredient-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    height: 40px;
+    padding: 8px 10px;
+    background: #fff;
+    border-radius: 8px;
+  }
+
+  .ingredient-badge img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .ingredient-badge p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: #374151;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   @keyframes marquee-loop {
     0% {
       transform: translateX(0);
@@ -327,5 +354,4 @@
       transform: translateX(-50%);
     }
   }
-
 }
