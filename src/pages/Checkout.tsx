@@ -236,10 +236,12 @@ const Checkout: React.FC = () => {
     }));
   }, [itemsDto]);
 
+  const consultationFee = addConsultation ? CONSULTATION_PRICE : 0;
+
   const orderTotal = useMemo(() => {
     const itemsTotal = summaryItems.reduce((acc, it) => acc + it.line, 0);
-    return itemsTotal + (addConsultation ? CONSULTATION_PRICE : 0);
-  }, [summaryItems, addConsultation]);
+    return itemsTotal + consultationFee;
+  }, [summaryItems, consultationFee]);
 
   const handleShippingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -338,6 +340,7 @@ const Checkout: React.FC = () => {
           postalCode: formData.zipCode.trim(),
         },
         addConsultation,
+        consultationFee,
         totalAmount: orderTotal,
         status: "PENDING",
       };
@@ -354,6 +357,7 @@ const Checkout: React.FC = () => {
         `/payments/orders/${orderId}/checkout/`,
         {
           addConsultation,
+          consultationFee,
           successUrl: `${origin}/payment-success`,
           cancelUrl: `${origin}/payment-cancel`,
         },
@@ -610,10 +614,26 @@ const Checkout: React.FC = () => {
                   </div>
                 ))
               )}
+
+              {addConsultation ? (
+                <div className="flex justify-between items-center border-t border-gray-200 pt-3 mt-3">
+                  <div>
+                    <p className="font-medium">Consultation</p>
+                    <p className="text-xs text-gray-500">
+                      Required for first-time checkout
+                    </p>
+                  </div>
+                  <p className="font-medium">{fmtUSD(CONSULTATION_PRICE)}</p>
+                </div>
+              ) : null}
             </div>
 
             <div className="mt-4 border-t border-gray-200 pt-4 space-y-2 text-sm text-gray-700">
               <div className="flex items-center justify-between">
+                <span className="font-semibold">Total</span>
+                <span className="font-semibold">{fmtUSD(orderTotal)}</span>
+              </div>
+              <div className="flex items-center justify-between text-sm">
                 <span className="font-medium">Consultation status</span>
                 <span className="font-medium">
                   {addConsultation ? "Included" : "Not included"}
