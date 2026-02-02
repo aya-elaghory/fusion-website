@@ -1,6 +1,6 @@
 {
   "builds": [
-    { "src": "api/[...path].js", "use": "@vercel/node" },
+    { "src": "api/[...path].cjs", "use": "@vercel/node" },
     {
       "src": "package.json",
       "use": "@vercel/static-build",
