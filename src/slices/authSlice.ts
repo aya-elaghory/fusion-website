@@ -46,7 +46,8 @@ export const loginUser = createAsyncThunk<
 
   try {
     // Use trailing slash to avoid 301/308 redirects that break CORS preflight
-    const res = await api.post("/auth/login/", {
+    // Use stable, slash-normalized paths to avoid backend 404s on strict routers
+    const res = await api.post("/auth/login", {
       email: emailClean,
       password: passwordClean,
     });
@@ -129,7 +130,7 @@ export const signupUser = createAsyncThunk<
     }
 
     // Use trailing slash to avoid 301/308 redirects during preflight
-    const res = await api.post("/auth/signup/", body);
+    const res = await api.post("/auth/signup", body);
 
     return {
       user: {
