@@ -45,7 +45,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const init: RequestInit = {
       method: req.method,
       headers: incomingHeaders,
-      redirect: "follow",
+      redirect: "manual", // handle redirects ourselves to avoid surfacing 30x to browser
     };
 
     if (bodyAllowed && req.body) {
@@ -57,7 +57,22 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       init.body = buf;
     }
 
-    const upstreamResp = await fetch(targetUrl, init);
+    let upstreamResp = await fetch(targetUrl, init);
+
+    // If backend responds with a redirect to http, upgrade to https and retry
+    const isRedirect = upstreamResp.status >= 300 && upstreamResp.status < 400;
+    const location = upstreamResp.headers.get("location") || "";
+    const httpRailway = /^http:\/\/[^/]*\.up\.railway\.app/i;
+
+    if (isRedirect && location && httpRailway.test(location)) {
+      const upgraded = location.replace(/^http:/i, "https:");
+      upstreamResp = await fetch(upgraded, {
+        method: req.method,
+        headers: incomingHeaders,
+        redirect: "follow",
+        body: init.body,
+      });
+    }
 
     // Copy response headers, excluding hop-by-hop
     upstreamResp.headers.forEach((value, key) => {
