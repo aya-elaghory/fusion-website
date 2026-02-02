@@ -89,20 +89,12 @@ const hasProxyTarget = !!envProxyTarget;
 // explicitly disabled via VITE_DISABLE_PROXY.
 const shouldUseDevProxy = isDev && !disableDevProxy;
 
-// If we should use the proxy (dev or localhost runtime), force base to /api.
-// This avoids hitting the remote backend directly and side-steps CORS.
-let rawBase = shouldUseDevProxy ? "/api" : envApiUrlRaw || defaultProdUrl;
-
-// Fallback for Vercel deployments: prefer /api so the vercel.json rewrite
-// handles CORS and avoids 301/307 during preflight. Allow explicit override
-// only when a non-empty, non-default URL is provided.
-const shouldForcePlatformRewrite =
-  !isDev &&
-  isLikelyVercel &&
-  (!envApiUrlRaw || envApiUrlRaw === defaultProdUrl || envApiUrlRaw === "/api");
-
-if (shouldForcePlatformRewrite) {
-  rawBase = "/api";
+// Always use /api in production so calls stay same-origin and hit the Vercel
+// serverless proxy. This avoids CORS/redirect issues entirely. If you truly
+// need to bypass, set VITE_API_URL to a full URL and VITE_ALLOW_API_PATH_IN_PROD=false.
+let rawBase = "/api";
+if (isDev && disableDevProxy) {
+  rawBase = envApiUrlRaw || defaultProdUrl;
 }
 const proxyTarget = coerceHttpsForRailway(
   envProxyTarget || (isFullUrl ? envApiUrlRaw : undefined) || defaultProdUrl,

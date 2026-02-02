@@ -19,11 +19,26 @@ const hopByHopHeaders = new Set([
 ]);
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // Handle CORS preflight quickly (same-origin in practice, but safe fallback)
+  if (req.method === "OPTIONS") {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader(
+      "Access-Control-Allow-Methods",
+      "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+    );
+    res.setHeader(
+      "Access-Control-Allow-Headers",
+      "Content-Type, Authorization, X-Access-Token, Authorization-Alt",
+    );
+    return res.status(200).end();
+  }
   const path = Array.isArray(req.query.path)
     ? req.query.path.join("/")
     : req.query.path || "";
 
-  const targetUrl = `${backendBase}/${path}`.replace(/(?<!:)\/+/g, "/");
+  // Force https for Railway hosts to prevent mixed-content or 307 redirects
+  const coercedBase = backendBase.replace(/^http:/i, "https:");
+  const targetUrl = `${coercedBase}/${path}`.replace(/(?<!:)\/+/g, "/");
 
   try {
     const incomingHeaders = new Headers();
