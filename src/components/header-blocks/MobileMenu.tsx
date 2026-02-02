@@ -33,8 +33,10 @@ const MobileMenu = ({
   setOpenMenu,
   resetMenus,
   isAuthenticated,
-  user,
+  isAdmin,
+  accountLabel,
   onLoginClick,
+  onAccountClick,
   isOpen,
   onClose,
 }: any) => {
@@ -89,13 +91,16 @@ const MobileMenu = ({
             </div>
             {/* LOGIN/ACCOUNT SECTION */}
             <div className="flex flex-col px-4 pb-2 border-b mb-4">
-              {isAuthenticated && user?.firstName ? (
+              {isAuthenticated ? (
                 <Link
-                  to="/account"
+                  to={isAdmin ? "/admin-orders" : "/account"}
                   className="block w-full text-center bg-gray-100 py-3 px-4 font-semibold text-gray-700"
-                  onClick={resetMenus}
+                  onClick={() => {
+                    onAccountClick?.();
+                    resetMenus();
+                  }}
                 >
-                  My Account
+                  {accountLabel || (isAdmin ? "Admin" : "My Account")}
                 </Link>
               ) : (
                 <button
@@ -117,7 +122,7 @@ const MobileMenu = ({
                     <button
                       onClick={() =>
                         setOpenMenu(
-                          openMenu === navItem.label ? null : navItem.label
+                          openMenu === navItem.label ? null : navItem.label,
                         )
                       }
                       className="text-gray-800 text-lg font-semibold flex items-center w-full py-2 px-2 hover:bg-green-50 whitespace-nowrap"
@@ -180,7 +185,7 @@ const MobileMenu = ({
                                                 >
                                                   {renderIcon(
                                                     sub.icon || sub.imageUrl,
-                                                    sub.label
+                                                    sub.label,
                                                   )}
                                                   <span>{sub.label}</span>
                                                 </Link>
@@ -232,7 +237,7 @@ const MobileMenu = ({
                                     >
                                       {renderIcon(
                                         item.icon || item.imageUrl,
-                                        item.label
+                                        item.label,
                                       )}
                                       <span>{item.label}</span>
                                     </Link>
@@ -251,7 +256,7 @@ const MobileMenu = ({
                   >
                     {navItem.label}
                   </Link>
-                ) : null
+                ) : null,
               )}
             </div>
           </motion.div>

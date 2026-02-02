@@ -21,24 +21,25 @@ const Header: React.FC<HeaderProps> = ({ toggleCart }) => {
 
   // Redux selectors
   const products = useSelector(
-    (state: RootState) => state.products?.products ?? []
+    (state: RootState) => state.products?.products ?? [],
   ) as Product[];
   const mainConcerns = useSelector(
-    (state: RootState) => state.mainConcerns?.concerns ?? []
+    (state: RootState) => state.mainConcerns?.concerns ?? [],
   );
   const newPipelines = useSelector(
-    (state: RootState) => state.newPipelines?.pipelines ?? []
+    (state: RootState) => state.newPipelines?.pipelines ?? [],
   );
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+  const authUser = useSelector((state: RootState) => state.auth.user);
   const { profile, loading: profileLoading } = useSelector(
-    (state: RootState) => state.profile
+    (state: RootState) => state.profile,
   );
   const cartItemCount = useSelector(
     (state: RootState) =>
       state.cart?.items.reduce(
         (sum: number, item: any) => sum + item.quantity,
-        0
-      ) || 0
+        0,
+      ) || 0,
   );
 
   const locations = [
@@ -194,7 +195,7 @@ const Header: React.FC<HeaderProps> = ({ toggleCart }) => {
         products.map((product) => ({
           text: `Explore ${product.name}`,
           name: product.name.replace(/ /g, "-").toLowerCase(),
-        }))
+        })),
       );
     }
   };
@@ -212,7 +213,7 @@ const Header: React.FC<HeaderProps> = ({ toggleCart }) => {
     if (query.length > 0) {
       const filtered = products
         .filter((product) =>
-          product.name.toLowerCase().includes(query.toLowerCase())
+          product.name.toLowerCase().includes(query.toLowerCase()),
         )
         .map((product) => ({
           text: `Explore ${product.name}`,
@@ -221,14 +222,14 @@ const Header: React.FC<HeaderProps> = ({ toggleCart }) => {
       setFilteredSuggestions(
         filtered.length > 0
           ? filtered
-          : [{ text: "No results found", name: "" }]
+          : [{ text: "No results found", name: "" }],
       );
     } else if (isSearchFocused) {
       setFilteredSuggestions(
         products.map((product) => ({
           text: `Explore ${product.name}`,
           name: product.name.replace(/ /g, "-").toLowerCase(),
-        }))
+        })),
       );
     } else {
       setFilteredSuggestions([]);
@@ -257,7 +258,7 @@ const Header: React.FC<HeaderProps> = ({ toggleCart }) => {
   const handleAccountClick = () => {
     setIsMobileMenuOpen(false);
     setOpenMenu(null);
-    navigate("/account");
+    navigate(profile?.role === "admin" ? "/admin-orders" : "/account");
   };
 
   const handleAdminClick = () => {
@@ -464,8 +465,14 @@ const Header: React.FC<HeaderProps> = ({ toggleCart }) => {
             setOpenMenu(null);
           }}
           isAuthenticated={isAuthenticated}
-          user={profile || undefined}
+          isAdmin={profile?.role === "admin"}
+          accountLabel={
+            profile?.firstName
+              ? `Hi, ${profile.firstName}`
+              : authUser?.email || "My Account"
+          }
           onLoginClick={handleLoginClick}
+          onAccountClick={handleAccountClick}
           isOpen={isMobileMenuOpen}
           onClose={() => setIsMobileMenuOpen(false)}
         />
