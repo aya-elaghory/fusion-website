@@ -66,7 +66,9 @@ const isLikelyVercel =
   (typeof window !== "undefined" &&
     /\.vercel\.app$/i.test(window.location.hostname)) ||
   (import.meta.env as any).VERCEL === "1" ||
-  !!(import.meta.env as any).VITE_VERCEL_URL;
+  !!(import.meta.env as any).VITE_VERCEL_URL ||
+  !!(import.meta.env as any).VERCEL_URL ||
+  !!(import.meta.env as any).NEXT_PUBLIC_VERCEL_URL;
 
 // Default to the production backend as a proxy target in dev so CORS is avoided
 // even when no env vars are set locally.
@@ -91,15 +93,15 @@ const shouldUseDevProxy = isDev && !disableDevProxy;
 // This avoids hitting the remote backend directly and side-steps CORS.
 let rawBase = shouldUseDevProxy ? "/api" : envApiUrlRaw || defaultProdUrl;
 
-// On Vercel, default to the rewrite path (/api) to avoid CORS preflights to the
-// Railway origin. Opt out with VITE_FORCE_DIRECT_BACKEND=true if you truly want
-// to bypass the rewrite and call the backend directly.
-const forceVercelRewrite =
+// Fallback for Vercel deployments: prefer /api so the vercel.json rewrite
+// handles CORS and avoids 301/307 during preflight. Allow explicit override
+// only when a non-empty, non-default URL is provided.
+const shouldForcePlatformRewrite =
   !isDev &&
   isLikelyVercel &&
-  ((import.meta.env as any).VITE_FORCE_DIRECT_BACKEND as string) !== "true";
+  (!envApiUrlRaw || envApiUrlRaw === defaultProdUrl || envApiUrlRaw === "/api");
 
-if (forceVercelRewrite) {
+if (shouldForcePlatformRewrite) {
   rawBase = "/api";
 }
 const proxyTarget = coerceHttpsForRailway(
