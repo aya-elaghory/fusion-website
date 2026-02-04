@@ -27,38 +27,13 @@ const coerceHttpsForRailway = (url: string) => {
   }
 };
 
-// Decide whether to force the same-origin proxy to avoid CORS in static hosts.
-const shouldForceProxy = () => {
-  if (typeof window === "undefined") return false;
+// Always default to the hosted Railway backend; allow override via VITE_API_URL.
+const envApiUrlRaw = (import.meta.env.VITE_API_URL as string) || defaultProdUrl;
 
-  const host = window.location.hostname;
-  const isLocal =
-    host === "localhost" || host === "127.0.0.1" || host === "::1";
-
-  // On Netlify/Vercel (and other static hosts) we prefer the built-in /api
-  // proxy instead of talking to Railway directly, which triggers CORS.
-  const proxyHosts = [/netlify\.app$/i, /vercel\.app$/i];
-  const onStaticHost = proxyHosts.some((re) => re.test(host));
-
-  return !isLocal && onStaticHost;
-};
-
-// Default to same-origin "/api" so static hosts (e.g., Netlify) can proxy to
-// the backend and avoid CORS. Allow overriding in local/dev.
-const envApiUrlRaw = (import.meta.env.VITE_API_URL as string) || "";
-
-let baseURL: string;
-
-if (shouldForceProxy()) {
-  baseURL = "/api";
-} else if (!envApiUrlRaw) {
-  baseURL = "/api";
-} else {
-  const isFullUrl = /^https?:\/\//i.test(envApiUrlRaw);
-  baseURL = isFullUrl
-    ? coerceHttpsForRailway(envApiUrlRaw)
-    : envApiUrlRaw.replace(/\/+$/, "");
-}
+const isFullUrl = /^https?:\/\//i.test(envApiUrlRaw);
+let baseURL = isFullUrl
+  ? coerceHttpsForRailway(envApiUrlRaw)
+  : envApiUrlRaw.replace(/\/+$/, "");
 
 // Defensive: never talk to Railway over http
 if (/^http:\/\/[^/]*\.up\.railway\.app/i.test(baseURL)) {

@@ -328,7 +328,7 @@ const Checkout: React.FC = () => {
           quantity,
           ...(purchaseOption ? { purchase_option: purchaseOption } : {}),
         })),
-        shippingInfo: {
+        shipping_info: {
           email: formData.email.trim(),
           name: formData.name.trim(),
           phone: formData.phone.trim(),
@@ -336,12 +336,12 @@ const Checkout: React.FC = () => {
           city: formData.city.trim(),
           state: formData.state.trim(),
           country: formData.country.trim(),
-          zipCode: formData.zipCode.trim(),
-          postalCode: formData.zipCode.trim(),
+          zip_code: formData.zipCode.trim(),
+          postal_code: formData.zipCode.trim(),
         },
-        addConsultation,
-        consultationFee,
-        totalAmount: orderTotal,
+        add_consultation: addConsultation,
+        consultation_fee: consultationFee,
+        total_amount: orderTotal,
         status: "PENDING",
       };
 
@@ -354,7 +354,7 @@ const Checkout: React.FC = () => {
       // 2) stripe checkout session
       const origin = window.location.origin;
       const sessionRes = await api.post(
-        `/payments/orders/${orderId}/checkout/`,
+        `/payments/orders/${orderId}/checkout`,
         {
           addConsultation,
           consultationFee,
