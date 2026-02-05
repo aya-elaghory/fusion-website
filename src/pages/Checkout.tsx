@@ -323,18 +323,17 @@ const Checkout: React.FC = () => {
           firstName,
           lastName,
           email: formData.email.trim(),
-          addresses: [
-            {
-              label: "Shipping",
-              line1: formData.address.trim(),
-              line2: "",
-              city: formData.city.trim(),
-              state: formData.state.trim(),
-              postalCode: formData.zipCode.trim(),
-              country: formData.country.trim(),
-              phone: formData.phone.trim(),
-            },
-          ],
+          // Backend expects a single address dict, not an array
+          addresses: {
+            label: "Shipping",
+            line1: formData.address.trim(),
+            line2: "",
+            city: formData.city.trim(),
+            state: formData.state.trim(),
+            postalCode: formData.zipCode.trim(),
+            country: formData.country.trim(),
+            phone: formData.phone.trim(),
+          },
         } as any),
       ).unwrap?.();
 
