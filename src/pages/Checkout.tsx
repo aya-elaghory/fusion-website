@@ -59,6 +59,9 @@ const Checkout: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const location = useLocation();
+  const paymentProvider = String(
+    import.meta.env.VITE_PAYMENT_PROVIDER || "serverless",
+  ).toLowerCase();
 
   // Cart (single source of truth)
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -243,6 +246,62 @@ const Checkout: React.FC = () => {
     return itemsTotal + consultationFee;
   }, [summaryItems, consultationFee]);
 
+  const createStripeSession = async (
+    orderId: string | number | null,
+  ): Promise<string> => {
+    const origin = window.location.origin;
+    const successUrl = `${origin}/payment-success?orderId=${orderId ?? ""}&session_id={CHECKOUT_SESSION_ID}`;
+    const cancelUrl = `${origin}/payment-cancel?orderId=${orderId ?? ""}`;
+
+    const itemsForStripe = [
+      ...itemsDto.map((item: any) => ({
+        name: item.__ui.name,
+        amount: item.__ui.unit,
+        quantity: item.quantity,
+        productId: item.productId,
+      })),
+    ];
+
+    if (addConsultation && consultationFee > 0) {
+      itemsForStripe.push({
+        name: "Consultation Fee",
+        amount: consultationFee,
+        quantity: 1,
+        productId: "consultation",
+      });
+    }
+
+    const payload = {
+      orderId,
+      items: itemsForStripe,
+      successUrl,
+      cancelUrl,
+      customerEmail: formData.email.trim(),
+      allowCountries: ["US", "CA"],
+      phoneRequired: true,
+      metadata: {
+        addConsultation: addConsultation ? "yes" : "no",
+        orderTotal,
+      },
+    };
+
+    const resp = await fetch("/.netlify/functions/create-checkout-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      credentials: "include",
+    });
+
+    if (!resp.ok) {
+      const text = await resp.text();
+      throw new Error(text || "Unable to create Stripe session.");
+    }
+
+    const data = await resp.json();
+    if (!data?.url) throw new Error("Stripe session URL missing.");
+    return data.url as string;
+  };
+
   const handleShippingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -351,19 +410,36 @@ const Checkout: React.FC = () => {
       const orderId = orderRes.data?.id || orderRes.data?.id;
       if (!orderId) throw new Error("Order created but no orderId returned.");
 
-      // 2) stripe checkout session
-      const origin = window.location.origin;
-      const sessionRes = await api.post(
-        `/payments/orders/${orderId}/checkout`,
-        {
-          addConsultation,
-          consultationFee,
-          successUrl: `${origin}/payment-success`,
-          cancelUrl: `${origin}/payment-cancel`,
-        },
-      );
+      // 2) Stripe Checkout session (serverless preferred, backend fallback)
+      let url: string | null = null;
+      const shouldUseServerless = paymentProvider !== "backend";
 
-      const url = sessionRes.data?.url;
+      if (shouldUseServerless) {
+        try {
+          url = await createStripeSession(orderId);
+        } catch (fnErr) {
+          // eslint-disable-next-line no-console
+          console.error(
+            "Serverless Stripe session failed, falling back",
+            fnErr,
+          );
+        }
+      }
+
+      if (!url) {
+        const origin = window.location.origin;
+        const sessionRes = await api.post(
+          `/payments/orders/${orderId}/checkout`,
+          {
+            addConsultation,
+            consultationFee,
+            successUrl: `${origin}/payment-success`,
+            cancelUrl: `${origin}/payment-cancel`,
+          },
+        );
+        url = sessionRes.data?.url;
+      }
+
       if (!url) throw new Error("Stripe session URL missing.");
 
       window.location.assign(url);
