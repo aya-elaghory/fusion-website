@@ -55,6 +55,9 @@ const CONSULTATION_PRICE = 25;
 
 type Step = "shipping" | "payment";
 
+const uuidRe =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
 const Checkout: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -213,11 +216,14 @@ const Checkout: React.FC = () => {
               p.id === ci.productId,
           ) || null;
 
-        const productId =
-          product?.id || product?.id || ci.productId || ci.id || "";
+        const productId = product?.id || ci.productId || ci.id || "";
+        const validProductId =
+          typeof productId === "string" && uuidRe.test(productId.trim())
+            ? productId.trim()
+            : "";
 
         return {
-          productId,
+          productId: validProductId,
           quantity: Number(ci.quantity) || 1,
           purchaseOption: "ONE_TIME",
           __ui: {
@@ -226,7 +232,7 @@ const Checkout: React.FC = () => {
           },
         };
       })
-      .filter((x) => !!x.productId); // drop invalid items
+      .filter((x) => !!x.productId); // drop invalid items and non-UUIDs
   }, [cartItems, products]);
 
   // UI order summary items
@@ -330,8 +336,8 @@ const Checkout: React.FC = () => {
             line2: "",
             city: formData.city.trim(),
             state: formData.state.trim(),
-            postalCode: formData.zipCode.trim(),
             country: formData.country.trim(),
+            postal_code: formData.zipCode.trim(),
             phone: formData.phone.trim(),
           },
         } as any),
@@ -384,7 +390,7 @@ const Checkout: React.FC = () => {
         items: itemsDto.map(({ productId, quantity, purchaseOption }: any) => ({
           product_id: productId,
           quantity,
-          ...(purchaseOption ? { purchase_option: purchaseOption } : {}),
+          purchase_option: purchaseOption || "ONE_TIME",
         })),
         shipping_info: {
           email: formData.email.trim(),
@@ -398,9 +404,8 @@ const Checkout: React.FC = () => {
           postal_code: formData.zipCode.trim(),
         },
         add_consultation: addConsultation,
-        consultation_fee: consultationFee,
-        total_amount: orderTotal,
-        status: "PENDING",
+        currency: "USD",
+        // add_consultation maps to backend column add_consultation
       };
 
       // 1) create order
